@@ -1,0 +1,127 @@
+# SDLC factor ontology: the 14 project characteristics the extractor rates, with what each level means.
+# Every factor also allows `not_stated`: the description gives no basis for inference.
+version: "1.2"
+levels: [low, medium, high, not_stated]
+
+factors:
+  requirement_stability:
+    question: How well-known and frozen are the requirements at project start?
+    high: Scope is signed off, contractually fixed, or dictated by statute/regulation.
+    medium: Core scope is known; details are expected to be refined.
+    low: Requirements are exploratory or will be discovered from users/market.
+    not_evidence: A claim that requirements are clear or well understood with no sign-off,
+      contract, statute or baseline named; a statement that some input (data, a schedule, a
+      price list) has been agreed, which says nothing about the project scope.
+
+  change_frequency:
+    question: How often are requirements expected to change during and after development?
+    high: Features are expected to change continuously based on feedback or competition.
+    medium: Occasional planned change (e.g., quarterly adjustments).
+    low: Changes are rare (e.g., yearly or only through formal change control).
+    not_evidence: A statement that things change when someone decides to change them, or that
+      rules may be updated, with no rate, cadence or history given.
+
+  continuous_delivery_need:
+    question: How frequently must working software reach production?
+    high: Weekly or more often, or on demand.
+    medium: Every two weeks to quarterly, inclusive - fortnightly, monthly and quarterly all
+      count as medium.
+    low: One or very few releases (about yearly or rarer); deployment is costly or physically
+      constrained.
+    not_evidence: A wish for changes to arrive quickly or as soon as possible with no cadence;
+      how often the business data changes, as opposed to how often software is released; working
+      in sprints or iterations, which is how the team develops, not how often it releases.
+
+  regulatory_criticality:
+    question: Is the software subject to binding external regulation or audit?
+    high: A named standard or regulator certifies or audits the software (e.g., IEC 62304, DO-178C, PCI DSS).
+    medium: General legal obligations apply (e.g., data protection) without software certification.
+    low: No specific regulatory obligations.
+    not_evidence: The organisation being in a regulated industry, when nothing is said about
+      this software being certified, audited or subject to a named obligation.
+
+  security_risk:
+    question: How attractive and damaging a target is the system?
+    high: Handles payments, credentials, health or other sensitive data, or faces a known active threat.
+    medium: Holds personal data or is internet-facing with moderate exposure.
+    low: Internal, non-sensitive, or offline system.
+    evidence_note: What the system holds decides this even when the text uses no security
+      vocabulary - names and addresses are medium; diagnoses, card or bank details are high; an
+      offline system holding neither is low.
+    not_evidence: A promise that the system will be secure, with nothing said about what it
+      holds or who can reach it.
+
+  failure_consequence:
+    question: What happens if the software fails?
+    high: Safety harm, large financial loss, or serious legal/reputational damage.
+    medium: Noticeable business disruption or recoverable financial loss.
+    low: Minor inconvenience.
+    not_evidence: An assertion that failure would be bad, serious or unacceptable with no
+      described consequence; the importance of the business the software serves.
+
+  verification_rigor:
+    question: How rigorous must verification and validation be?
+    high: Requirement-to-test traceability, independent V&V, certification evidence or formal methods required.
+    medium: Structured test plans and reviews expected, no certification evidence.
+    low: Ad-hoc or developer-level testing is acceptable.
+    not_evidence: A demand that the software be properly, thoroughly or fully tested with no
+      practice named; the existence of testing as such, which every project has.
+
+  test_doc_rigor:
+    question: How much formal test and documentation output is required?
+    high: Extensive formal deliverables (test reports, design documents, manuals) are acceptance conditions.
+    medium: Standard documentation expected but not contractually audited.
+    low: Minimal documentation.
+    not_evidence: A statement that the work will be documented or written up with no
+      deliverable named and no acceptance condition attached.
+
+  complexity:
+    question: How technically complex is the system?
+    high: Many interacting components/integrations or algorithmically hard problems.
+    medium: Several components with some integration.
+    low: Simple, largely self-contained application.
+    evidence_note: What the system does decides this even when the text uses no technical
+      vocabulary - one form and a list, or reading two sensors and printing a ticket, is low.
+    not_evidence: The word complex or sophisticated applied to the business, the organisation
+      or the problem domain rather than to the software.
+
+  size:
+    question: How large is the effort?
+    high: 26 people or more, or many subsystems/teams.
+    medium: 6 to 25 people.
+    low: 5 people or fewer.
+    not_evidence: An unquantified team (a proper team, a dedicated squad, enough people);
+      counts of things that are not the delivery effort - users, customers, sites, rooms,
+      machines, or staff who will merely use the software.
+
+  technical_novelty:
+    question: Is the technology unproven or feasibility uncertain?
+    high: New or unproven technology; feasibility itself is a risk.
+    medium: Some unfamiliar components within an otherwise known stack.
+    low: Well-understood technology and problem type.
+    not_evidence: The absence of any mention of technology; a project being ordinary is not by
+      itself a statement that its technology is well understood.
+
+  legacy_dependence:
+    question: How much does the project depend on existing legacy systems?
+    high: Must integrate with, replace, or migrate data from legacy systems.
+    medium: Some integration with existing systems.
+    low: Greenfield with no legacy constraints.
+    not_evidence: Owning existing hardware or equipment that the software does not have to
+      work with; the organisation being long-established.
+
+  stakeholder_availability:
+    question: How available are customers / product owners to the team?
+    high: A customer or product owner is embedded or available daily.
+    medium: Regular (e.g., weekly/bi-weekly) access.
+    low: Available only at infrequent milestones.
+    not_evidence: Someone being named, interested or supportive; people who will merely test
+      or use the software, when nothing is said about their availability to the team.
+
+  scope_rigidity:
+    question: How fixed are scope and budget contractually?
+    high: Fixed-price, fixed-scope contract or milestone-bound funding.
+    medium: Budget fixed but scope negotiable.
+    low: Scope and budget are flexible.
+    not_evidence: A deadline on its own; a budget mentioned without saying whether the scope it
+      buys is fixed.

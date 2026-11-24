@@ -1,0 +1,658 @@
+# Compliance knowledge base for retrieval (compliance/). Version it like the rubric.
+#
+# Paraphrased summaries of each standard's lifecycle obligations, with clause references.
+# Not the standards' text and not legal advice.
+#
+# Fields
+#   scope       one paragraph describing when the standard applies - the text dense retrieval matches
+#   triggers    case-insensitive regexes over the description; a hit means the text NAMES the standard
+#   obligations id, ref (clause), text, phase, and `keywords` in the plan checker's element format
+#               (eval/plan_checker.py): the obligation counts as covered when any keyword appears in a
+#               plan phase, matched loosely ("sign-off" = "sign off")
+#   triggers_all  regexes that must ALL match for the text to count as naming the standard
+#   jurisdiction  regex the text must match before the standard can be inferred by meaning
+#   document      id of the official document in knowledge/sources.yaml, used for clause retrieval
+version: "1.3"
+
+phases: [planning, requirements, design, implementation, verification, release, operations]
+
+standards:
+
+  # medical devices
+  - id: iec62304
+    name: IEC 62304 - Medical device software life cycle processes
+    domain: medical devices
+    scope: >-
+      Software that is itself a medical device or is part of one, such as infusion pump firmware,
+      diagnostic imaging software or AI screening software sold to hospitals and clinics. Classifies
+      software by the harm a failure could cause (safety class A, B or C) and sets lifecycle processes.
+    triggers: ['\b62304\b', 'software safety class(ification)?', '\bclass [abc] software\b', 'medical[- ]software lifecycle']
+    obligations:
+      - {id: iec62304-4.3, ref: "4.3", phase: planning,
+         text: "Assign a software safety class (A, B or C) from the harm a failure could contribute to.",
+         keywords: [safety class, software safety classification, class c, class b]}
+      - {id: iec62304-5.1, ref: "5.1", phase: planning,
+         text: "Maintain a software development plan covering processes, deliverables and traceability.",
+         keywords: [software development plan, development plan]}
+      - {id: iec62304-5.2, ref: "5.2", phase: requirements,
+         text: "Specify software requirements, including risk control measures, and keep them traceable to system requirements.",
+         keywords: [software requirements specification, srs, software requirements]}
+      - {id: iec62304-5.5, ref: "5.5-5.7", phase: verification,
+         text: "Verify units, integration and the system against requirements, with records (depth grows with class).",
+         keywords: [unit verification, unit test, integration test, system test]}
+      - {id: iec62304-7, ref: "7", phase: design,
+         text: "Run software risk management, including hazards from third-party (SOUP) components.",
+         keywords: [software risk management, soup, hazard analysis, risk control]}
+      - {id: iec62304-8, ref: "8", phase: operations,
+         text: "Keep configuration management and controlled change for every released version.",
+         keywords: [configuration management, change control]}
+      - {id: iec62304-6, ref: "6", phase: operations,
+         text: "Maintain a software maintenance plan covering problem reports and field feedback.",
+         keywords: [maintenance plan, problem report, post-market]}
+
+  - id: iso14971
+    name: ISO 14971 - Application of risk management to medical devices
+    domain: medical devices
+    scope: >-
+      Risk management for medical devices across the whole life cycle: identifying hazards, estimating
+      and controlling risk to patients and users, and reviewing residual risk before release.
+    triggers: ['\b14971\b', 'risk management file', 'hazard analysis', '\bhazards?\b.*\b(patient|clinical)']
+    obligations:
+      - {id: iso14971-4, ref: "4", phase: planning,
+         text: "Keep a risk management plan and a risk management file for the device.",
+         keywords: [risk management plan, risk management file]}
+      - {id: iso14971-5, ref: "5", phase: requirements,
+         text: "Identify hazards and hazardous situations and estimate their risks.",
+         keywords: [hazard analysis, hazard identification, fmea, failure mode]}
+      - {id: iso14971-7, ref: "7", phase: design,
+         text: "Implement risk control measures and verify that each one is effective.",
+         keywords: [risk control, mitigation verification, verify risk control]}
+      - {id: iso14971-8, ref: "8", phase: release,
+         text: "Evaluate overall residual risk and review it before release.",
+         keywords: [residual risk, risk management review, benefit-risk]}
+
+  - id: fda_design_controls
+    name: FDA design controls (21 CFR 820 / QMSR, aligned with ISO 13485 7.3)
+    domain: medical devices
+    scope: >-
+      Medical devices marketed in the United States, including software functions cleared through a
+      510(k) or other premarket submission to the FDA. Requires controlled design and development.
+    triggers: ['\bFDA\b', '510\(k\)', '\bQMSR\b', '21 CFR( part)? 820', 'ISO 13485', 'premarket (submission|notification)', 'national device regulator']
+    obligations:
+      - {id: fda-dc-planning, ref: "820 design planning", phase: planning,
+         text: "Plan design and development activities, responsibilities and reviews.",
+         keywords: [design plan, development plan, design and development plan]}
+      - {id: fda-dc-inputs, ref: "820 design inputs/outputs", phase: requirements,
+         text: "Document design inputs and outputs and keep them traceable.",
+         keywords: [design input, design output, traceability]}
+      - {id: fda-dc-review, ref: "820 design review", phase: design,
+         text: "Hold formal design reviews at planned stages with an independent reviewer.",
+         keywords: [design review]}
+      - {id: fda-dc-vv, ref: "820 design verification/validation", phase: verification,
+         text: "Verify that outputs meet inputs and validate the device, software included, for its intended use.",
+         keywords: [design verification, design validation, software validation, clinical evaluation]}
+      - {id: fda-dc-dhf, ref: "820 design history", phase: release,
+         text: "Keep the design history record and control design changes.",
+         keywords: [design history, dhf, design change]}
+
+  - id: fda_cyber
+    name: FDA premarket cybersecurity for cyber devices (FD&C Act 524B)
+    domain: medical devices
+    scope: >-
+      Medical devices that include software and can connect to the internet or a network, such as
+      cloud-connected diagnostic or monitoring software submitted to the FDA.
+    triggers: ['\b524B\b', 'cyber device', 'cybersecurity controls']
+    obligations:
+      - {id: fda-cyber-sbom, ref: "524B(b)(3)", phase: release,
+         text: "Provide a software bill of materials, commercial, open-source and off-the-shelf components included.",
+         keywords: [sbom, software bill of materials]}
+      - {id: fda-cyber-spdf, ref: "524B(b)(2)", phase: design,
+         text: "Design, develop and maintain the device under a secure product development framework.",
+         keywords: [threat model, secure product development, security risk assessment]}
+      - {id: fda-cyber-monitor, ref: "524B(b)(1)", phase: operations,
+         text: "Keep a plan to monitor, identify and address postmarket vulnerabilities, with disclosure.",
+         keywords: [vulnerability management, vulnerability monitoring, coordinated disclosure, patch]}
+
+  # safety-critical engineering
+  - id: do178c
+    name: DO-178C - Software considerations in airborne systems
+    domain: aerospace
+    scope: >-
+      Software on board aircraft, such as flight control, avionics or engine control software, which
+      certification authorities approve according to a design assurance level (A to E).
+    triggers: ['DO-?178', 'design assurance level', '\bDAL [A-E]\b', 'airworthiness', 'avionics']
+    obligations:
+      - {id: do178c-plans, ref: "4, 11.1-11.5", phase: planning,
+         text: "Write the software plans (PSAC, development, verification, configuration management, quality assurance).",
+         keywords: [psac, plan for software aspects, software verification plan, software configuration management plan]}
+      - {id: do178c-trace, ref: "5.5, 6.5", phase: requirements,
+         text: "Keep bidirectional traceability between system requirements, software requirements, code and tests.",
+         keywords: [traceability]}
+      - {id: do178c-rbt, ref: "6.4", phase: verification,
+         text: "Verify by requirements-based testing at the levels the assurance level requires.",
+         keywords: [requirements-based test, requirements based test]}
+      - {id: do178c-coverage, ref: "6.4.4", phase: verification,
+         text: "Measure structural coverage (MC/DC at level A) and resolve any gaps.",
+         keywords: [structural coverage, mc/dc, mcdc, modified condition]}
+      - {id: do178c-independence, ref: "Annex A", phase: verification,
+         text: "Perform the verification objectives that require independence with independent staff.",
+         keywords: [independent verification, independence, independent v&v]}
+
+  - id: iso26262
+    name: ISO 26262 - Road vehicles functional safety (part 6, software)
+    domain: automotive
+    scope: >-
+      Safety-related electrical and electronic systems in series-production road vehicles, such as
+      braking, steering or driver-assistance software, classified by automotive safety integrity level.
+    triggers: ['\b26262\b', '\bASIL\b', 'functional safety.*(vehicle|automotive|car)']
+    obligations:
+      - {id: iso26262-asil, ref: "part 3", phase: planning,
+         text: "Determine the ASIL of each safety goal through hazard analysis and risk assessment.",
+         keywords: [asil, hara, hazard analysis and risk assessment]}
+      - {id: iso26262-6.6, ref: "6-6", phase: requirements,
+         text: "Specify software safety requirements derived from the technical safety concept.",
+         keywords: [software safety requirement, safety requirement]}
+      - {id: iso26262-6.9, ref: "6-9", phase: verification,
+         text: "Verify software units with methods and coverage appropriate to the ASIL.",
+         keywords: [unit verification, unit test, coverage]}
+      - {id: iso26262-safety-case, ref: "part 2", phase: release,
+         text: "Assemble a safety case and pass a functional safety assessment before release.",
+         keywords: [safety case, functional safety assessment]}
+
+  - id: iec61508
+    name: IEC 61508 - Functional safety of E/E/PE safety-related systems (part 3, software)
+    domain: industrial safety
+    scope: >-
+      Industrial control and protection systems whose software failure could harm people or the
+      environment, such as process plant shutdown systems, classified by safety integrity level (SIL).
+    triggers: ['\b61508\b', '\bSIL ?[1-4]\b', 'safety integrity level']
+    obligations:
+      - {id: iec61508-srs, ref: "3-7.2", phase: requirements,
+         text: "Specify software safety requirements, including the SIL each safety function needs.",
+         keywords: [safety requirements specification, software safety requirement, sil]}
+      - {id: iec61508-vv, ref: "3-7.9", phase: verification,
+         text: "Verify and validate the software with rigour and independence set by the SIL.",
+         keywords: [validation, independent verification, safety validation]}
+      - {id: iec61508-fsa, ref: "1-8", phase: release,
+         text: "Carry out a functional safety assessment before the system is put into service.",
+         keywords: [functional safety assessment, safety assessment]}
+
+  - id: en50128
+    name: EN 50128 / EN 50716 - Railway software for control and protection
+    domain: rail
+    scope: >-
+      Software for railway signalling, train control and protection systems, developed to a software
+      safety integrity level agreed with the railway safety authority.
+    triggers: ['\b5012[68]\b', '\b50716\b', 'railway (signalling|safety)', 'interlocking']
+    obligations:
+      - {id: en50128-plans, ref: "6.5", phase: planning,
+         text: "Keep software quality assurance, verification and validation plans for the agreed SIL.",
+         keywords: [quality assurance plan, verification plan, validation plan]}
+      - {id: en50128-independence, ref: "5.1", phase: verification,
+         text: "Keep verifier, validator and assessor roles independent of the implementers as the SIL requires.",
+         keywords: [independent verification, independent assessor, independence]}
+      - {id: en50128-assessment, ref: "6.4", phase: release,
+         text: "Obtain a software assessment report before the software is used in service.",
+         keywords: [software assessment, assessor report, safety assessment]}
+
+  # security and privacy
+  - id: pci_dss
+    name: PCI DSS v4.0 - Payment Card Industry Data Security Standard
+    domain: payments
+    scope: >-
+      Any system that stores, processes or transmits payment card data or can affect its security,
+      such as online checkout, card payment initiation or card-controls features in banking apps.
+    triggers: ['PCI[- ]?DSS', '\bPCI\b', 'cardholder data', 'card data']
+    obligations:
+      - {id: pci-3, ref: "Req. 3", phase: design,
+         text: "Protect stored account data, minimising and rendering it unreadable.",
+         keywords: [encrypt, tokenis, tokeniz, data minimisation]}
+      - {id: pci-6.2, ref: "Req. 6.2", phase: implementation,
+         text: "Develop bespoke software securely, with code review for vulnerabilities before release.",
+         keywords: [secure coding, code review, sast, static analysis]}
+      - {id: pci-8, ref: "Req. 8", phase: design,
+         text: "Identify users and authenticate access, multi-factor included.",
+         keywords: [multi-factor, mfa, authentication]}
+      - {id: pci-10, ref: "Req. 10", phase: operations,
+         text: "Log and monitor all access to system components and cardholder data.",
+         keywords: [audit log, logging, monitoring]}
+      - {id: pci-11, ref: "Req. 11.3-11.4", phase: verification,
+         text: "Run vulnerability scans and penetration tests regularly and after significant change.",
+         keywords: [penetration test, pen test, vulnerability scan]}
+
+  - id: gdpr
+    name: GDPR / UK GDPR - personal data protection
+    domain: privacy
+    scope: >-
+      Processing personal data of people in the EU or UK - names, addresses, health, financial or
+      identity data about citizens, patients, tenants, pupils or customers - by public or private bodies.
+    triggers: ['\bGDPR\b', 'data protection impact assessment', '\bDPIA\b', 'Data Protection Act', 'personal data']
+    obligations:
+      - {id: gdpr-25, ref: "Art. 25", phase: design,
+         text: "Build data protection in by design and by default, collecting only what is needed.",
+         keywords: [privacy by design, data protection by design, data minimisation, data minimization]}
+      - {id: gdpr-35, ref: "Art. 35", phase: design,
+         text: "Carry out a data protection impact assessment where processing is high risk.",
+         keywords: [dpia, data protection impact assessment, privacy impact assessment]}
+      - {id: gdpr-32, ref: "Art. 32", phase: implementation,
+         text: "Secure the processing with appropriate technical measures (encryption, access control, testing).",
+         keywords: [encrypt, access control, security testing, penetration test]}
+      - {id: gdpr-30, ref: "Art. 30", phase: operations,
+         text: "Keep records of processing activities and retention periods.",
+         keywords: [record of processing, retention, ropa]}
+      - {id: gdpr-33, ref: "Art. 33", phase: operations,
+         text: "Be able to detect personal data breaches and notify the authority within 72 hours.",
+         keywords: [breach notification, incident response, data breach]}
+
+  - id: hipaa
+    name: HIPAA Security Rule (45 CFR 164 Subpart C)
+    domain: privacy
+    scope: >-
+      US healthcare providers, health plans and their business associates handling electronic
+      protected health information, such as patient records, clinical systems or health apps in the US.
+    triggers: ['\bHIPAA\b', 'protected health information', '\bePHI\b', '\bPHI\b']
+    obligations:
+      - {id: hipaa-308a1, ref: "164.308(a)(1)", phase: requirements,
+         text: "Conduct a security risk analysis of threats to electronic health information.",
+         keywords: [security risk analysis, risk assessment, threat model]}
+      - {id: hipaa-312a, ref: "164.312(a)", phase: design,
+         text: "Enforce access control with unique user identification.",
+         keywords: [access control, role-based access, authentication]}
+      - {id: hipaa-312b, ref: "164.312(b)", phase: operations,
+         text: "Record and examine activity in systems that hold health information (audit controls).",
+         keywords: [audit log, audit control, audit trail]}
+      - {id: hipaa-312e, ref: "164.312(e)", phase: design,
+         text: "Protect health information in transit.",
+         keywords: [encrypt, tls, transmission security]}
+
+  - id: iso27001
+    name: ISO/IEC 27001:2022 - secure development controls (Annex A 8.25-8.32)
+    domain: information security
+    scope: >-
+      Organisations running a certified information security management system, or contracts that
+      require one, where software development must follow the standard's secure development controls.
+    triggers: ['\b27001\b', '\bISMS\b', 'information security management']
+    obligations:
+      - {id: iso27001-8.25, ref: "A.8.25", phase: planning,
+         text: "Define and follow rules for a secure development life cycle.",
+         keywords: [secure development, secure sdlc, security requirements]}
+      - {id: iso27001-8.28, ref: "A.8.28", phase: implementation,
+         text: "Apply secure coding principles.",
+         keywords: [secure coding, code review, sast]}
+      - {id: iso27001-8.29, ref: "A.8.29", phase: verification,
+         text: "Test security during development and acceptance.",
+         keywords: [security test, penetration test, dast]}
+      - {id: iso27001-8.31, ref: "A.8.31", phase: operations,
+         text: "Separate development, test and production environments.",
+         keywords: [separate environment, staging, test environment]}
+      - {id: iso27001-8.32, ref: "A.8.32", phase: operations,
+         text: "Control changes to systems through a change management process.",
+         keywords: [change management, change control, change advisory]}
+
+  - id: nist_ssdf
+    name: NIST SP 800-218 - Secure Software Development Framework (SSDF)
+    domain: information security
+    scope: >-
+      Software supplied to US federal agencies, or any organisation adopting a secure development
+      baseline, covering threat modelling, secure build, testing and vulnerability response.
+    triggers: ['\bSSDF\b', '800-218', 'secure software development framework', 'software supply chain']
+    obligations:
+      - {id: ssdf-pw1, ref: "PW.1", phase: design,
+         text: "Design software to meet security requirements and mitigate risks (threat modelling).",
+         keywords: [threat model]}
+      - {id: ssdf-pw7, ref: "PW.7-PW.8", phase: verification,
+         text: "Review and test code for vulnerabilities before release.",
+         keywords: [code review, sast, dast, security test]}
+      - {id: ssdf-ps3, ref: "PS.3", phase: release,
+         text: "Archive and protect each release, with provenance such as an SBOM.",
+         keywords: [sbom, software bill of materials, provenance, signed release]}
+      - {id: ssdf-rv1, ref: "RV.1", phase: operations,
+         text: "Identify and confirm vulnerabilities in released software on an ongoing basis.",
+         keywords: [vulnerability management, vulnerability scan, dependency scan]}
+
+  - id: soc2
+    name: SOC 2 - Trust Services Criteria (security)
+    domain: information security
+    scope: >-
+      Service providers, typically SaaS companies, whose customers require an independent SOC 2
+      attestation of their controls over security, availability and confidentiality.
+    triggers: ['\bSOC ?2\b', 'trust services criteria']
+    obligations:
+      - {id: soc2-cc6, ref: "CC6", phase: design,
+         text: "Restrict logical access to systems and data.",
+         keywords: [access control, least privilege, authentication]}
+      - {id: soc2-cc7, ref: "CC7", phase: operations,
+         text: "Monitor systems to detect and respond to security events.",
+         keywords: [monitoring, incident response, alerting]}
+      - {id: soc2-cc8, ref: "CC8.1", phase: operations,
+         text: "Authorise, test and approve changes before they reach production.",
+         keywords: [change management, change approval, change control]}
+
+  - id: sox
+    name: SOX section 404 - IT general controls over financial reporting
+    domain: finance
+    scope: >-
+      Systems at US-listed companies that feed financial statements, such as ledgers, billing or
+      payroll, where auditors test IT general controls over access, change and operations.
+    triggers: ['\bSOX\b', 'Sarbanes', 'section 404', 'ITGC', 'internal control over financial reporting']
+    obligations:
+      - {id: sox-change, ref: "ITGC change management", phase: release,
+         text: "Test and approve every change to financially significant systems, with segregation of duties.",
+         keywords: [change approval, change management, segregation of duties]}
+      - {id: sox-access, ref: "ITGC access", phase: design,
+         text: "Control and periodically review user access.",
+         keywords: [access review, access control]}
+      - {id: sox-evidence, ref: "ITGC", phase: operations,
+         text: "Retain evidence of control operation for external audit.",
+         keywords: [audit trail, audit evidence, audit log]}
+
+  # public sector and accessibility
+  - id: wcag22
+    name: WCAG 2.2 level AA - Web Content Accessibility Guidelines
+    domain: accessibility
+    scope: >-
+      Public-facing websites and apps that must be usable by people with disabilities, which public
+      sector bodies in the UK and EU must meet, including users of screen readers and assistive technology.
+    triggers: ['\bWCAG\b', 'accessibility (audit|regulations|requirements)', 'assistive technolog', 'access needs']
+    obligations:
+      - {id: wcag-design, ref: "Level AA", phase: design,
+         text: "Design to WCAG 2.2 AA (perceivable, operable, understandable, robust).",
+         keywords: [wcag, accessib]}
+      - {id: wcag-test, ref: "Level AA", phase: verification,
+         text: "Test with assistive technologies and users with access needs; audit before launch.",
+         keywords: [accessibility test, accessibility audit, assistive technolog, screen reader]}
+      - {id: wcag-statement, ref: "PSBAR 2018", phase: release,
+         text: "Publish an accessibility statement (UK and EU public sector).",
+         keywords: [accessibility statement]}
+
+  - id: govuk_service_standard
+    name: GOV.UK Service Standard (14 points, phase assessments)
+    domain: public sector
+    scope: >-
+      UK central government digital services, which pass service assessments at the end of the alpha,
+      beta and live phases against the 14-point Service Standard.
+    triggers: ['service standard', 'service assessment', '(alpha|beta|live) assessment', 'digital service standard']
+    obligations:
+      - {id: govuk-1, ref: "Points 1-5", phase: requirements,
+         text: "Research with real users, those with access needs and low digital skills included, throughout.",
+         keywords: [user research, usability test]}
+      - {id: govuk-8, ref: "Point 8", phase: implementation,
+         text: "Iterate and improve frequently, releasing small changes.",
+         keywords: [iterat, sprint, continuous deployment, frequent release]}
+      - {id: govuk-9, ref: "Point 9", phase: design,
+         text: "Create a secure service that protects users' privacy.",
+         keywords: [security, privacy, penetration test]}
+      - {id: govuk-10, ref: "Point 10", phase: operations,
+         text: "Define what success looks like and publish performance data.",
+         keywords: [performance data, kpi, cost per transaction, analytics]}
+      - {id: govuk-12, ref: "Points 12-13", phase: implementation,
+         text: "Make new source code open and use open standards.",
+         keywords: [open source, open standard, public repository]}
+      - {id: govuk-assess, ref: "Assessments", phase: release,
+         text: "Pass the service assessment for each phase (alpha, beta, live) before moving on.",
+         keywords: [service assessment, alpha assessment, beta assessment, live assessment]}
+
+  - id: uk_stats_code
+    name: UK Code of Practice for Statistics
+    domain: public sector
+    scope: >-
+      Systems that collect or produce official or national statistics in the UK, which must be
+      trustworthy, of assured quality and released under the pre-release access rules.
+    triggers: ['(official|national) statistics', 'Code of Practice for Statistics']
+    obligations:
+      - {id: stats-quality, ref: "Quality pillar", phase: verification,
+         text: "Quality-assure data collection and processing, with documented checks.",
+         keywords: [quality assurance, data validation, validation checks]}
+      - {id: stats-audit, ref: "Trustworthiness pillar", phase: operations,
+         text: "Keep an auditable record of data changes and revisions.",
+         keywords: [audit trail, version history, revision]}
+
+  # financial crime
+  - id: fatf
+    name: FATF Recommendations - anti-money laundering and customer due diligence (KYC)
+    domain: finance
+    scope: >-
+      Banks, fintechs, wallets, remittance, lending and payment providers that open accounts or onboard
+      customers, move money or hold funds, where customers must be identified and verified, screened
+      for sanctions and politically exposed persons, and monitored for money laundering.
+    triggers: ['FATF', '\bKYC\b', 'know[- ]your[- ]customer', 'anti[- ]money[- ]laundering', '\bAML\b',
+               'money laundering', 'customer due diligence']
+    obligations:
+      - {id: fatf-15, ref: "R.15", phase: planning,
+         text: "Assess money laundering and terrorist financing risks before launching a new product or technology.",
+         keywords: [money laundering risk assessment, ml/tf risk, financial crime risk assessment]}
+      - {id: fatf-10-id, ref: "R.10", phase: design,
+         text: "Identify each customer and verify their identity from reliable, independent sources before opening the account.",
+         keywords: [identity verification, verify identity, customer due diligence, kyc check]}
+      - {id: fatf-10-ongoing, ref: "R.10", phase: operations,
+         text: "Keep customer information up to date and monitor the relationship and its transactions on an ongoing basis.",
+         keywords: [ongoing due diligence, transaction monitoring, periodic review]}
+      - {id: fatf-12, ref: "R.12", phase: design,
+         text: "Check whether a customer is a politically exposed person and apply enhanced due diligence if so.",
+         keywords: [politically exposed, pep screening, enhanced due diligence]}
+      - {id: fatf-6, ref: "R.6", phase: design,
+         text: "Screen customers against targeted financial sanctions lists.",
+         keywords: [sanctions screening, sanctions list]}
+      - {id: fatf-11, ref: "R.11", phase: operations,
+         text: "Keep customer due diligence and transaction records for at least five years.",
+         keywords: [record retention, record keeping, five years]}
+      - {id: fatf-20, ref: "R.20", phase: operations,
+         text: "Report suspicious transactions promptly to the financial intelligence unit.",
+         keywords: [suspicious transaction report, suspicious activity, financial intelligence unit]}
+
+  # AI
+  - id: eu_ai_act
+    name: EU AI Act - obligations for high-risk AI systems (Art. 9-15)
+    domain: artificial intelligence
+    scope: >-
+      AI systems placed on the EU market in high-risk uses, such as medical devices with machine
+      learning, recruitment, credit scoring or critical infrastructure, and general-purpose AI models.
+    triggers: ['AI Act', 'high-risk AI']
+    obligations:
+      - {id: aiact-9, ref: "Art. 9", phase: planning,
+         text: "Run a risk management system across the AI system's life cycle.",
+         keywords: [risk management]}
+      - {id: aiact-10, ref: "Art. 10", phase: requirements,
+         text: "Govern training, validation and test data for relevance, representativeness and bias.",
+         keywords: [data governance, training data, bias, dataset]}
+      - {id: aiact-11, ref: "Art. 11-12", phase: release,
+         text: "Keep technical documentation and automatic event logs.",
+         keywords: [technical documentation, logging, event log]}
+      - {id: aiact-14, ref: "Art. 14", phase: design,
+         text: "Design for effective human oversight.",
+         keywords: [human oversight, human in the loop, human review]}
+      - {id: aiact-15, ref: "Art. 15", phase: verification,
+         text: "Test accuracy, robustness and cybersecurity to declared levels.",
+         keywords: [accuracy, robustness, performance testing]}
+
+  # India
+  - id: dpdp
+    name: Digital Personal Data Protection Act 2023 and Rules 2025 (India)
+    domain: privacy
+    document: dpdp_rules_2025
+    jurisdiction: '\bIndia\b|\bIndian\b|Aadhaar|\bRBI\b|Reserve Bank of India|\bNBFC|\bUPI\b|₹|crore|lakh'
+    scope: >-
+      Organisations in India that process digital personal data of individuals in India - customers,
+      account holders, borrowers, patients, students or citizens - such as banks, NBFCs, fintechs,
+      e-commerce platforms, hospitals and government services.
+    triggers: ['\bDPDP', 'Digital Personal Data Protection', 'Data Protection Board', 'data fiduciary',
+               'data principal', 'consent manager']
+    triggers_all: ['personal data|customer data|identity|KYC|account holder|Aadhaar|mobile number|borrower|student|patient|citizen',
+                   '\bIndia\b|\bIndian\b|Aadhaar|\bRBI\b|Reserve Bank of India|\bNBFC|\bUPI\b|₹|crore|lakh']
+    obligations:
+      - {id: dpdp-r3, ref: "Rule 3", phase: requirements,
+         text: "Give a clear notice itemising the personal data and purposes before consent, with a way to withdraw consent as easily as it was given.",
+         keywords: [privacy notice, consent notice, withdraw consent, consent management]}
+      - {id: dpdp-r6, ref: "Rule 6", phase: design,
+         text: "Protect personal data with encryption, masking or tokenisation, access control, monitoring logs and backups.",
+         keywords: [encryption, masking, tokenisation, tokenization, access control, data backup]}
+      - {id: dpdp-r7, ref: "Rule 7", phase: operations,
+         text: "Notify affected individuals of a personal data breach without delay and report it to the Data Protection Board within 72 hours.",
+         keywords: [breach notification, data protection board, incident response, 72 hours]}
+      - {id: dpdp-r8, ref: "Rule 8", phase: operations,
+         text: "Keep processing logs for at least one year, erase personal data once the purpose is served, and warn the individual 48 hours before erasure.",
+         keywords: [data retention, erasure, retention schedule, log retention]}
+      - {id: dpdp-r9-14, ref: "Rules 9 and 14", phase: release,
+         text: "Publish a contact for data protection questions and a way to exercise data rights, and resolve grievances within 90 days.",
+         keywords: [data protection officer, grievance redressal, data subject request, data principal rights]}
+
+  - id: certin
+    name: CERT-In Directions 2022 (IT Act section 70B, India)
+    domain: security
+    document: certin_directions_2022
+    jurisdiction: '\bIndia\b|\bIndian\b|Aadhaar|\bRBI\b|Reserve Bank of India|\bNBFC|\bUPI\b|₹|crore|lakh'
+    scope: >-
+      Service providers, intermediaries, data centres, cloud providers, companies and government
+      organisations running ICT systems in India, which must report cyber incidents and keep system logs.
+    triggers: ['CERT-In', 'Indian Computer Emergency Response Team', 'section 70B']
+    triggers_all: ['cyber|security incident|attack|breach|logs|cloud|data centre|online|app',
+                   '\bIndia\b|\bIndian\b|Aadhaar|\bRBI\b|Reserve Bank of India|\bNBFC|\bUPI\b|₹|crore|lakh']
+    obligations:
+      - {id: certin-ii, ref: "Direction (ii)", phase: operations,
+         text: "Report cyber incidents of the listed types to CERT-In within 6 hours of noticing them.",
+         keywords: [incident reporting, cert-in, incident response, 6 hours]}
+      - {id: certin-iv, ref: "Direction (iv)", phase: operations,
+         text: "Enable logs on all ICT systems and keep them securely for a rolling 180 days within India.",
+         keywords: [audit log, log retention, logging, 180 days]}
+      - {id: certin-i, ref: "Direction (i)", phase: implementation,
+         text: "Synchronise all system clocks with the NIC or NPL NTP servers, or sources traceable to them.",
+         keywords: [ntp, time synchronisation, time synchronization, clock sync]}
+      - {id: certin-iii, ref: "Direction (iii)", phase: planning,
+         text: "Designate a point of contact to interface with CERT-In.",
+         keywords: [point of contact, cert-in liaison, security officer]}
+
+  - id: gigw
+    name: Guidelines for Indian Government Websites and Apps (GIGW) 3.0
+    domain: public sector
+    document: gigw_3_0
+    jurisdiction: '\bIndia\b|\bIndian\b|Aadhaar|\bRBI\b|Reserve Bank of India|\bNBFC|\bUPI\b|₹|crore|lakh'
+    scope: >-
+      Websites, portals and mobile apps of Indian central and state government ministries, departments,
+      municipal bodies and public sector organisations, such as citizen service and e-governance portals.
+    triggers: ['GIGW', 'Guidelines for Indian Government Websites', '\.gov\.in\b', '\.nic\.in\b',
+               'National Informatics Centre', 'STQC']
+    triggers_all: ['website|portal|web app|mobile app|\bapp\b',
+                   'Government of India|state government|ministry of|municipal corporation|e-governance|government department',
+                   '\bIndia\b|\bIndian\b|Aadhaar|lakh|crore|₹|direct benefit transfer']
+    obligations:
+      - {id: gigw-access, ref: "Ch. 5.2", phase: design,
+         text: "Make the website and app conform to WCAG 2.1 accessibility success criteria.",
+         keywords: [wcag 2.1, accessibility, screen reader, assistive technology]}
+      - {id: gigw-cqw, ref: "Introduction", phase: verification,
+         text: "Establish conformity with GIGW, e.g. through STQC Certified Quality Website (CQW) certification.",
+         keywords: [stqc, cqw, certified quality website, conformity audit]}
+      - {id: gigw-safe, ref: "Section 3.4", phase: release,
+         text: "Obtain a safe-to-host certificate from cybersecurity auditors empanelled by CERT-In or STQC before hosting.",
+         keywords: [safe to host, security audit, cert-in empanelled auditor]}
+      - {id: gigw-lifecycle, ref: "Ch. 5.4", phase: planning,
+         text: "Appoint a Web Information Manager and set policies for content, archival, security and review across the site's lifecycle.",
+         keywords: [web information manager, content policy, archival policy, lifecycle management]}
+      - {id: gigw-feedback, ref: "5.1.11", phase: operations,
+         text: "Collect feedback through online forms and respond to it in time.",
+         keywords: [feedback form, user feedback, grievance]}
+
+  - id: rbi_kyc
+    name: RBI Know Your Customer Directions 2025 (India)
+    domain: finance
+    document: rbi_kyc_2025
+    jurisdiction: '\bIndia\b|\bIndian\b|Aadhaar|\bRBI\b|Reserve Bank of India|\bNBFC|\bUPI\b|₹|crore|lakh'
+    scope: >-
+      Banks and other entities regulated by the Reserve Bank of India that open accounts or onboard
+      customers in India, including digital onboarding with Aadhaar e-KYC, CKYCR and video-based
+      customer identification (V-CIP).
+    triggers: ['Know Your Customer.{0,40}Directions', 'KYC Directions', 'Master Direction.{0,20}KYC',
+               '\bV-CIP\b', 'Video[- ]based Customer Identification', '\bCKYCR?\b']
+    triggers_all: ['\bKYC\b|know your customer|customer identification|account opening|onboard',
+                   '\bRBI\b|Reserve Bank of India|\bNBFC|Aadhaar']
+    obligations:
+      - {id: rbi-kyc-20, ref: "Para 20", phase: requirements,
+         text: "Categorise customers as low, medium or high risk and keep the categorisation and its reasons confidential from the customer.",
+         keywords: [risk categorisation, risk categorization, customer risk rating, risk profile]}
+      - {id: rbi-kyc-27-infra, ref: "Para 27(1)", phase: design,
+         text: "For video KYC, encrypt end to end, record consent in an alteration-proof way, block connections from outside India or spoofed IPs, and geo-tag and time-stamp recordings.",
+         keywords: [end-to-end encryption, geo-tagging, geo tagging, ip blocking, consent record, video kyc]}
+      - {id: rbi-kyc-27-liveness, ref: "Para 27(1)(v)", phase: implementation,
+         text: "Build face liveness / spoof detection and accurate face matching into the video KYC application.",
+         keywords: [liveness, spoof detection, face match, face matching]}
+      - {id: rbi-kyc-27-test, ref: "Para 27(1)(viii)-(ix)", phase: verification,
+         text: "Have CERT-In empanelled auditors run vulnerability assessment, penetration testing and a security audit, and test functions, performance and APIs; close critical gaps before going live.",
+         keywords: [vulnerability assessment, penetration testing, security audit, performance testing, cert-in empanelled]}
+      - {id: rbi-kyc-27-procedure, ref: "Para 27(2)", phase: operations,
+         text: "Run video KYC only with specially trained officials following a written SOP; vary the questions, reject the case on any prompting, and capture the PAN and a photograph.",
+         keywords: [standard operating procedure, sop, trained officials, kyc procedure]}
+      - {id: rbi-kyc-27-audit, ref: "Para 27(2)(xv)", phase: release,
+         text: "Make accounts opened through video KYC operational only after a concurrent audit.",
+         keywords: [concurrent audit, account activation, audit before activation]}
+      - {id: rbi-kyc-27-records, ref: "Para 27(3)", phase: operations,
+         text: "Store all video KYC data and recordings on systems in India, time-stamped and searchable, with the activity log and the official's credentials.",
+         keywords: [data localisation, data localization, stored in india, activity log, recording storage]}
+      - {id: rbi-kyc-50, ref: "Para 50", phase: operations,
+         text: "Keep transaction records for at least five years, and identification records for five years after the relationship ends, retrievable on request.",
+         keywords: [record retention, five years, 5 years, records management]}
+
+  - id: rbi_it_governance
+    name: RBI IT Governance, Risk, Controls and Assurance Directions 2023 (India; marked withdrawn)
+    domain: finance
+    document: rbi_it_governance_2023
+    jurisdiction: '\bIndia\b|\bIndian\b|Aadhaar|\bRBI\b|Reserve Bank of India|\bNBFC|\bUPI\b|₹|crore|lakh'
+    scope: >-
+      Banks, NBFCs, credit information companies and all-India financial institutions regulated by the
+      Reserve Bank of India building or running IT systems: project management, change control, audit
+      trails, disaster recovery and information systems audit.
+    triggers: ['IT Governance, Risk, Controls', 'Master Direction on Information Technology']
+    triggers_all: ['\bbank\b|banking|\bNBFC|financial institution|lender|lending',
+                   'system|software|platform|\bapp\b|application|portal|core banking',
+                   '\bRBI\b|Reserve Bank of India|\bNBFC']
+    obligations:
+      - {id: rbi-itg-12, ref: "Para 12", phase: planning,
+         text: "Follow a formally defined project management approach with stakeholder participation, and put new applications through product approval and quality assurance.",
+         keywords: [project management, stakeholder, product approval, quality assurance]}
+      - {id: rbi-itg-12g, ref: "Para 12(g)", phase: release,
+         text: "Obtain the vendor's written confirmation that the application is free of known vulnerabilities and malware, again after every material change.",
+         keywords: [vendor certificate, vulnerability free, source code escrow]}
+      - {id: rbi-itg-13, ref: "Para 13", phase: operations,
+         text: "Assess, approve, document and review every change and patch, with a way to recover from failed changes.",
+         keywords: [change management, patch management, change control, rollback]}
+      - {id: rbi-itg-15, ref: "Para 15", phase: design,
+         text: "Keep audit trails detailed enough for audit and forensics, and monitor them regularly.",
+         keywords: [audit trail, audit log, forensic]}
+      - {id: rbi-itg-29, ref: "Para 29", phase: operations,
+         text: "Define RTO and RPO, run DR drills at least half-yearly for critical systems, and test backup restores.",
+         keywords: [disaster recovery, dr drill, rto, rpo, backup restore, business continuity]}
+      - {id: rbi-itg-30, ref: "Para 30", phase: verification,
+         text: "Cover the system in the information systems audit overseen by the board's audit committee.",
+         keywords: [is audit, information systems audit, audit committee]}
+
+  - id: rbi_digital_lending
+    name: RBI Digital Lending Directions 2025 (India; marked withdrawn)
+    domain: finance
+    document: rbi_digital_lending_2025
+    jurisdiction: '\bIndia\b|\bIndian\b|Aadhaar|\bRBI\b|Reserve Bank of India|\bNBFC|\bUPI\b|₹|crore|lakh'
+    scope: >-
+      Banks and NBFCs regulated by the Reserve Bank of India that lend through digital lending apps or
+      lending service providers: disclosures, the Key Fact Statement, disbursal, cooling-off, grievances
+      and borrower data.
+    triggers: ['Digital Lending\b.{0,20}Directions', 'Key Fact(s)? Statement', '\bKFS\b',
+               'lending service provider', '\bLSP\b', '\bDLA\b']
+    triggers_all: ['\bloans?\b|lending|borrower|credit line',
+                   'digital|\bapp\b|online|mobile',
+                   '\bIndia\b|\bIndian\b|Aadhaar|\bRBI\b|Reserve Bank of India|\bNBFC|\bUPI\b|₹|crore|lakh']
+    obligations:
+      - {id: rbi-dl-8, ref: "Para 8", phase: requirements,
+         text: "Show the borrower a Key Fact Statement with the annual percentage rate and all fees before the loan contract is executed.",
+         keywords: [key fact statement, kfs, annual percentage rate, apr, fee disclosure]}
+      - {id: rbi-dl-9, ref: "Para 9", phase: design,
+         text: "Disburse only into the borrower's bank account and take repayments directly into the lender's account, with no pass-through or LSP pool account.",
+         keywords: [disbursal, disbursement, repayment, pool account, direct transfer]}
+      - {id: rbi-dl-10, ref: "Para 10", phase: requirements,
+         text: "Let the borrower exit the loan during a cooling-off period of at least one day by paying principal and proportionate APR without penalty.",
+         keywords: [cooling-off, cooling off, loan exit, prepayment]}
+      - {id: rbi-dl-11, ref: "Para 11", phase: release,
+         text: "Designate nodal grievance officers, show their contacts in the app, website and KFS, and allow complaints in the app.",
+         keywords: [grievance redressal, nodal officer, complaint, ombudsman]}
+      - {id: rbi-dl-12, ref: "Para 12", phase: design,
+         text: "Collect only need-based data with explicit, audit-trailed consent; no access to contacts, files or call logs; one-time camera, microphone or location access only for onboarding.",
+         keywords: [explicit consent, app permissions, camera access, data minimisation, data minimization]}
+      - {id: rbi-dl-13, ref: "Para 13", phase: design,
+         text: "Store all data on servers in India, collect no biometric data, and publish the data storage and destruction policy.",
+         keywords: [data localisation, data localization, stored in india, biometric, data retention policy]}

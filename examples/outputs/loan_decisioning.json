@@ -1,0 +1,742 @@
+{
+  "description": "A consumer lending fintech wants to replace the spreadsheet-driven credit decisions behind its personal loans with an automated decision service. Applicants apply through the website and mobile app; the service pulls their credit bureau report and bank-account transaction data through open-banking APIs, runs affordability and fraud checks, and returns approve, decline or refer within a few seconds. Referred applications go to an underwriter's queue. The credit risk team changes the lending rules constantly: cut-off scores, affordability buffers and fraud rules are adjusted every few weeks as default rates and competitor offers move, and the product manager wants new rules in production within days of being agreed. The platform team already deploys the website several times a week through an automated pipeline on a public cloud, and the decision service is expected to ship the same way. The service handles bank statements, income details and national identity numbers, and last year the company fought off a credential-stuffing attack on its customer login. The consumer credit regulator expects every decision to be explainable to the applicant, and declined applicants can ask why. The product manager sits with the team every day, and the first version should be live within four months.",
+  "id": "loan_decisioning",
+  "requirements": [
+    {
+      "id": "NFR-INT-01",
+      "statement": "The system shall pull credit bureau reports and bank-account transaction data via open-banking APIs.",
+      "type": "non-functional",
+      "category": "integration",
+      "basis": "stated",
+      "source": "the service pulls their credit bureau report and bank-account transaction data through open-banking APIs",
+      "citation": null
+    },
+    {
+      "id": "FR-01",
+      "statement": "The system shall run affordability and fraud checks on applicant data.",
+      "type": "functional",
+      "category": "functional",
+      "basis": "stated",
+      "source": "runs affordability and fraud checks",
+      "citation": null
+    },
+    {
+      "id": "NFR-PERF-01",
+      "statement": "The system shall return an approval, decline, or refer decision within a few seconds.",
+      "type": "non-functional",
+      "category": "performance",
+      "basis": "stated",
+      "source": "returns approve, decline or refer within a few seconds",
+      "citation": null
+    },
+    {
+      "id": "FR-02",
+      "statement": "The system shall route referred applications to an underwriter's queue.",
+      "type": "functional",
+      "category": "functional",
+      "basis": "stated",
+      "source": "Referred applications go to an underwriter's queue",
+      "citation": null
+    },
+    {
+      "id": "FR-03",
+      "statement": "The system shall allow the credit risk team to adjust cut-off scores, affordability buffers, and fraud rules every few weeks.",
+      "type": "functional",
+      "category": "functional",
+      "basis": "stated",
+      "source": "The credit risk team changes the lending rules constantly: cut-off scores, affordability buffers and fraud rules are adjusted every few weeks",
+      "citation": null
+    },
+    {
+      "id": "NFR-OPS-01",
+      "statement": "The system shall enable product managers to deploy new rules into production within days of agreement.",
+      "type": "non-functional",
+      "category": "operational",
+      "basis": "stated",
+      "source": "the product manager wants new rules in production within days of being agreed",
+      "citation": null
+    },
+    {
+      "id": "NFR-OPS-02",
+      "statement": "The system shall be deployed through an automated pipeline on a public cloud.",
+      "type": "non-functional",
+      "category": "operational",
+      "basis": "stated",
+      "source": "The platform team already deploys the website several times a week through an automated pipeline on a public cloud, and the decision service is expected to ship the same way",
+      "citation": null
+    },
+    {
+      "id": "FR-04",
+      "statement": "The system shall be able to process bank statements, income details, and national identity numbers.",
+      "type": "functional",
+      "category": "functional",
+      "basis": "stated",
+      "source": "the service handles bank statements, income details and national identity numbers",
+      "citation": null
+    },
+    {
+      "id": "NFR-PRI-01",
+      "statement": "The system shall provide an explanation for every credit decision to the applicant.",
+      "type": "non-functional",
+      "category": "privacy",
+      "basis": "stated",
+      "source": "the consumer credit regulator expects every decision to be explainable to the applicant",
+      "citation": null
+    },
+    {
+      "id": "FR-05",
+      "statement": "The system shall allow declined applicants to ask why their application was declined.",
+      "type": "functional",
+      "category": "functional",
+      "basis": "stated",
+      "source": "declined applicants can ask why",
+      "citation": null
+    },
+    {
+      "id": "NFR-SEC-01",
+      "statement": "The system shall be resilient against credential-stuffing attacks.",
+      "type": "non-functional",
+      "category": "security",
+      "basis": "stated",
+      "source": "last year the company fought off a credential-stuffing attack on its customer login",
+      "citation": null
+    },
+    {
+      "id": "NFR-REG-01",
+      "statement": "The system shall comply with the consumer credit regulator's explainability requirements.",
+      "type": "non-functional",
+      "category": "regulatory",
+      "basis": "stated",
+      "source": "the consumer credit regulator expects every decision to be explainable to the applicant",
+      "citation": null
+    },
+    {
+      "id": "NFR-OPS-03",
+      "statement": "The system shall be deployed at least once within four months of project start.",
+      "type": "non-functional",
+      "category": "operational",
+      "basis": "stated",
+      "source": "the first version should be live within four months",
+      "citation": null
+    }
+  ],
+  "factors": {
+    "requirement_stability": {
+      "level": "not_stated",
+      "evidence": null
+    },
+    "change_frequency": {
+      "level": "high",
+      "evidence": "cut-off scores, affordability buffers and fraud rules are adjusted every few weeks as default rates and competitor offers move"
+    },
+    "continuous_delivery_need": {
+      "level": "high",
+      "evidence": "The platform team already deploys the website several times a week through an automated pipeline on a public cloud, and the decision service is expected to ship the same way"
+    },
+    "regulatory_criticality": {
+      "level": "high",
+      "evidence": "The consumer credit regulator expects every decision to be explainable to the applicant, and declined applicants can ask why"
+    },
+    "security_risk": {
+      "level": "high",
+      "evidence": "The service handles bank statements, income details and national identity numbers, and last year the company fought off a credential-stuffing attack on its customer login"
+    },
+    "failure_consequence": {
+      "level": "not_stated",
+      "evidence": null
+    },
+    "verification_rigor": {
+      "level": "not_stated",
+      "evidence": null
+    },
+    "test_doc_rigor": {
+      "level": "not_stated",
+      "evidence": null
+    },
+    "complexity": {
+      "level": "not_stated",
+      "evidence": null
+    },
+    "size": {
+      "level": "not_stated",
+      "evidence": null
+    },
+    "technical_novelty": {
+      "level": "not_stated",
+      "evidence": null
+    },
+    "legacy_dependence": {
+      "level": "not_stated",
+      "evidence": null
+    },
+    "stakeholder_availability": {
+      "level": "high",
+      "evidence": "The product manager sits with the team every day"
+    },
+    "scope_rigidity": {
+      "level": "not_stated",
+      "evidence": null
+    }
+  },
+  "questions": [],
+  "answers": {},
+  "recommendation": {
+    "ranking": [
+      "DevSecOps",
+      "Agile",
+      "Spiral",
+      "V-Model",
+      "Waterfall"
+    ],
+    "primary": "DevSecOps",
+    "acceptable_set": [
+      "DevSecOps",
+      "Agile",
+      "Spiral"
+    ],
+    "hybrid": [
+      "compliance gates"
+    ],
+    "low_evidence": true,
+    "stated": 5,
+    "stated_coverage": 0.3571,
+    "primary_withheld": false,
+    "withheld_reasons": [],
+    "supported_models": [
+      "Agile",
+      "DevSecOps"
+    ]
+  },
+  "plan": {
+    "lifecycle": "DevSecOps",
+    "phases": [
+      {
+        "name": "Plan",
+        "objective": "Define the scope, requirements, and risk factors for the automated credit decision service",
+        "activities": [
+          "Conduct stakeholder workshops with product manager, credit risk team, and compliance officer",
+          "Define user stories for loan application, affordability, fraud checks, and explainability",
+          "Establish initial data flow and integration points with open-banking APIs"
+        ],
+        "roles": [
+          "Project Manager",
+          "Product Owner",
+          "Domain Expert",
+          "Compliance Officer"
+        ],
+        "deliverables": [
+          "Requirements specification",
+          "High-level architecture document",
+          "Initial threat model draft"
+        ],
+        "security_activities": [],
+        "testing": [],
+        "compliance_checkpoints": [],
+        "approval_gate": {
+          "approver": "Compliance Officer",
+          "criteria": "Requirements and risk factors are aligned with regulatory explainability and data handling standards"
+        },
+        "entry_criteria": [
+          "Stakeholder agreement on scope and user needs"
+        ],
+        "exit_criteria": [
+          "Finalized requirements document approved by Product Owner",
+          "Initial threat model reviewed and accepted"
+        ]
+      },
+      {
+        "name": "Code",
+        "objective": "Develop the core decision service logic and data processing components",
+        "activities": [
+          "Implement affordability, fraud, and credit scoring logic",
+          "Integrate with open-banking APIs for bank statements and income data",
+          "Develop explainability engine for decision outputs"
+        ],
+        "roles": [
+          "Software Architect",
+          "Developer",
+          "Domain Expert"
+        ],
+        "deliverables": [
+          "Source code for decision engine",
+          "API contracts for data ingestion"
+        ],
+        "security_activities": [],
+        "testing": [],
+        "compliance_checkpoints": [],
+        "approval_gate": {
+          "approver": "Security Engineer",
+          "criteria": "Code structure supports data isolation and privacy by design"
+        },
+        "entry_criteria": [
+          "Requirements specification and architecture document approved"
+        ],
+        "exit_criteria": [
+          "Source code committed and version-controlled",
+          "Initial threat model updated with code design"
+        ]
+      },
+      {
+        "name": "Build",
+        "objective": "Create a secure, reproducible build of the decision service",
+        "activities": [
+          "Set up CI/CD pipeline with automated build and test steps",
+          "Configure static application security testing (SAST)",
+          "Perform dependency and software-composition scanning"
+        ],
+        "roles": [
+          "Developer",
+          "Platform Engineer",
+          "Security Engineer"
+        ],
+        "deliverables": [
+          "Automated build artifact",
+          "SAST and dependency scan reports"
+        ],
+        "security_activities": [
+          "Static application security testing on every build",
+          "Dependency and software-composition scanning",
+          "Threat modelling of the architecture and data flows"
+        ],
+        "testing": [],
+        "compliance_checkpoints": [],
+        "approval_gate": {
+          "approver": "Security Engineer",
+          "criteria": "All security scans pass with no critical vulnerabilities"
+        },
+        "entry_criteria": [
+          "Source code committed and reviewed"
+        ],
+        "exit_criteria": [
+          "Build artifact generated and scanned for security issues"
+        ]
+      },
+      {
+        "name": "Test",
+        "objective": "Validate functionality, security, and regulatory compliance of the decision service",
+        "activities": [
+          "Run unit and integration tests for scoring and fraud checks",
+          "Test explainability of decisions for declined applications",
+          "Simulate real-world data flows from open-banking APIs"
+        ],
+        "roles": [
+          "Developer",
+          "QA Engineer",
+          "Test Lead"
+        ],
+        "deliverables": [
+          "Test case documentation",
+          "Test execution reports"
+        ],
+        "security_activities": [],
+        "testing": [
+          "Unit and integration testing",
+          "Security testing via SAST and dependency scans"
+        ],
+        "compliance_checkpoints": [],
+        "approval_gate": {
+          "approver": "Independent V&V Engineer",
+          "criteria": "All test cases pass with 100% coverage of core business flows"
+        },
+        "entry_criteria": [
+          "Build artifact is complete and secure"
+        ],
+        "exit_criteria": [
+          "All test cases pass and are documented"
+        ]
+      },
+      {
+        "name": "Release",
+        "objective": "Prepare the service for production release with full compliance and security validation",
+        "activities": [
+          "Conduct penetration test on the service and data flows",
+          "Generate audit trail and evidence file for regulator review",
+          "Re-prioritise requirements based on latest market and competitor data"
+        ],
+        "roles": [
+          "Release Manager",
+          "Compliance Officer",
+          "Security Engineer",
+          "Product Owner"
+        ],
+        "deliverables": [
+          "Release package for production",
+          "Audit trail and evidence file",
+          "Penetration test report"
+        ],
+        "security_activities": [
+          "Penetration test before release",
+          "Security sign-off at the release gate"
+        ],
+        "testing": [],
+        "compliance_checkpoints": [
+          "Compliance officer approves release based on explainability and data handling",
+          "Audit trail and evidence file are complete and accessible"
+        ],
+        "approval_gate": {
+          "approver": "Compliance Officer + Security Engineer",
+          "criteria": "All security and compliance checks pass; audit trail is complete and regulator-ready"
+        },
+        "entry_criteria": [
+          "Test execution reports are complete and approved"
+        ],
+        "exit_criteria": [
+          "Penetration test report shows no critical vulnerabilities",
+          "Compliance officer and security engineer sign off"
+        ]
+      },
+      {
+        "name": "Deploy",
+        "objective": "Deploy the decision service to production with automated rollback capability",
+        "activities": [
+          "Deploy to public cloud via automated pipeline",
+          "Configure automated rollback in case of failure"
+        ],
+        "roles": [
+          "Platform Engineer",
+          "Release Manager",
+          "Operations Engineer"
+        ],
+        "deliverables": [
+          "Production deployment with rollback mechanism"
+        ],
+        "security_activities": [],
+        "testing": [],
+        "compliance_checkpoints": [],
+        "approval_gate": {
+          "approver": "Release Manager",
+          "criteria": "Deployment succeeds and rollback is tested and functional"
+        },
+        "entry_criteria": [
+          "Release package approved and tested"
+        ],
+        "exit_criteria": [
+          "Service is live in production and accessible via website and mobile app"
+        ]
+      },
+      {
+        "name": "Operate and Monitor",
+        "objective": "Ensure the service runs securely and reliably in production with real-time monitoring",
+        "activities": [
+          "Monitor system performance, fraud patterns, and decision outcomes",
+          "Respond to incidents with automated alerts and root cause analysis"
+        ],
+        "roles": [
+          "Operations Engineer",
+          "Platform Engineer",
+          "Security Engineer"
+        ],
+        "deliverables": [
+          "Real-time monitoring dashboard",
+          "Incident response log"
+        ],
+        "security_activities": [],
+        "testing": [],
+        "compliance_checkpoints": [],
+        "approval_gate": {
+          "approver": "Operations Engineer",
+          "criteria": "All monitoring and incident response systems are operational"
+        },
+        "entry_criteria": [
+          "Service is live and running in production"
+        ],
+        "exit_criteria": [
+          "Monitoring and incident response systems are fully operational"
+        ]
+      },
+      {
+        "name": "Feedback",
+        "objective": "Collect user and stakeholder feedback to re-prioritise requirements and improve the service",
+        "activities": [
+          "Gather feedback from applicants and underwriters",
+          "Review declined applications for explainability and fairness",
+          "Update requirements based on feedback and market changes"
+        ],
+        "roles": [
+          "Product Owner",
+          "Customer Representative",
+          "Domain Expert"
+        ],
+        "deliverables": [
+          "Feedback report",
+          "Updated requirements and rule adjustments"
+        ],
+        "security_activities": [],
+        "testing": [],
+        "compliance_checkpoints": [],
+        "approval_gate": {
+          "approver": "Product Owner",
+          "criteria": "Feedback is collected and requirements are re-prioritised within 7 days"
+        },
+        "entry_criteria": [
+          "Service is live and monitoring is active"
+        ],
+        "exit_criteria": [
+          "Requirements are re-prioritised and new rules are planned for next cycle"
+        ]
+      }
+    ]
+  },
+  "justification": "DevSecOps is ranked first due to its support for high change frequency and continuous delivery need, enabling rapid rule updates and automated deployments. Agile fits well due to daily product manager involvement and dynamic requirements, but lacks explicit structure for compliance gates. Waterfall is unfit due to static requirements and inability to handle frequent changes or continuous delivery. All mandatory elements are directly supported by DevSecOps' iterative, secure, and compliant flow.",
+  "report": {
+    "schema_valid": true,
+    "schema_errors": [],
+    "n_phases": 8,
+    "lifecycle_conformance": 1.0,
+    "unmatched_phases": [],
+    "missing_phases": [],
+    "pairings_present": null,
+    "mandatory_recall": 1.0,
+    "missing_elements": [],
+    "overgeneration_rate": null,
+    "overgenerated_elements": [],
+    "gate_completeness": 1.0,
+    "role_validity": 1.0,
+    "invalid_roles": [],
+    "flow_coherence": 1.0,
+    "entity_recall": 1.0
+  },
+  "repairs": 0,
+  "insufficient_evidence": false,
+  "compliance": {
+    "standards": [],
+    "obligations": [],
+    "coverage": null,
+    "missing": []
+  },
+  "risks": [
+    {
+      "id": "security_breach",
+      "title": "Security breach or data exposure",
+      "owner": "Security Lead",
+      "evidence": [
+        {
+          "factor": "security_risk",
+          "level": "high",
+          "evidence": "The service handles bank statements, income details and national identity numbers, and last year the company fought off a credential-stuffing attack on its customer login"
+        }
+      ],
+      "likelihood": "high",
+      "impact": "high",
+      "score": 9,
+      "assumed": true,
+      "note": null,
+      "mitigations": [
+        {
+          "id": "threat_modelling",
+          "description": "Threat modelling of the architecture and data flows",
+          "covered_by": [
+            "Plan",
+            "Code",
+            "Build"
+          ]
+        },
+        {
+          "id": "penetration_test",
+          "description": "Penetration test before release",
+          "covered_by": [
+            "Release"
+          ]
+        },
+        {
+          "id": "sast",
+          "description": "Static application security testing on every build",
+          "covered_by": [
+            "Build",
+            "Test"
+          ]
+        },
+        {
+          "id": "dependency_scanning",
+          "description": "Dependency and software-composition scanning",
+          "covered_by": [
+            "Build",
+            "Test"
+          ]
+        }
+      ],
+      "mitigated": true
+    },
+    {
+      "id": "regulatory_findings",
+      "title": "Regulatory or audit findings delay release",
+      "owner": "Compliance Officer",
+      "evidence": [
+        {
+          "factor": "regulatory_criticality",
+          "level": "high",
+          "evidence": "The consumer credit regulator expects every decision to be explainable to the applicant, and declined applicants can ask why"
+        }
+      ],
+      "likelihood": "medium",
+      "impact": "high",
+      "score": 6,
+      "assumed": false,
+      "note": null,
+      "mitigations": [
+        {
+          "id": "compliance_checkpoints",
+          "description": "Compliance checkpoint at every approval gate",
+          "covered_by": [
+            "Release"
+          ]
+        },
+        {
+          "id": "audit_trail",
+          "description": "Audit trail and evidence file kept for the regulator or auditor",
+          "covered_by": [
+            "Release"
+          ]
+        },
+        {
+          "id": "compliance_approval",
+          "description": "Compliance officer approval before release",
+          "covered_by": [
+            "Plan",
+            "Release"
+          ]
+        }
+      ],
+      "mitigated": true
+    },
+    {
+      "id": "requirements_churn",
+      "title": "Changing requirements cause rework",
+      "owner": "Product Owner",
+      "evidence": [
+        {
+          "factor": "change_frequency",
+          "level": "high",
+          "evidence": "cut-off scores, affordability buffers and fraud rules are adjusted every few weeks as default rates and competitor offers move"
+        }
+      ],
+      "likelihood": "high",
+      "impact": "medium",
+      "score": 6,
+      "assumed": false,
+      "note": null,
+      "mitigations": [
+        {
+          "id": "requirement_refinement",
+          "description": "Regular re-prioritisation of requirements as they change",
+          "covered_by": [
+            "Release",
+            "Feedback"
+          ]
+        },
+        {
+          "id": "incremental_delivery",
+          "description": "Delivery in increments with a stakeholder review of each",
+          "covered_by": []
+        }
+      ],
+      "mitigated": true
+    }
+  ],
+  "summary": "Recommended lifecycle: DevSecOps with compliance gates  [PROVISIONAL - low evidence: 5 of 14 factors stated]\nAcceptable alternatives: DevSecOps, Agile, Spiral\nRanking: DevSecOps > Agile > Spiral > V-Model > Waterfall\nFactors read from the description: 5 of 14\n  change_frequency=high, continuous_delivery_need=high, regulatory_criticality=high, security_risk=high, stakeholder_availability=high\nPlan check: mandatory recall 1.0, over-generation None, schema valid",
+  "log": [
+    {
+      "node": "comply",
+      "ok": true,
+      "seconds": 12.59,
+      "detail": {
+        "standards": [],
+        "obligations": 0
+      }
+    },
+    {
+      "node": "requirements",
+      "ok": true,
+      "seconds": 84.44,
+      "detail": {
+        "parsed": true,
+        "count": 13,
+        "stated": 13,
+        "regulation": 0,
+        "inferred": 0
+      }
+    },
+    {
+      "node": "regulate",
+      "ok": true,
+      "seconds": 0.0,
+      "detail": {
+        "obligations_offered": 0
+      }
+    },
+    {
+      "node": "extract",
+      "ok": true,
+      "seconds": 56.74,
+      "detail": {
+        "parse_ok": true,
+        "stated": 5
+      }
+    },
+    {
+      "node": "clarify",
+      "ok": true,
+      "seconds": 0.01,
+      "detail": {
+        "asked": 0,
+        "unstated": 9
+      }
+    },
+    {
+      "node": "rubric",
+      "ok": true,
+      "seconds": 0.02,
+      "detail": {
+        "primary": "DevSecOps",
+        "acceptable": [
+          "DevSecOps",
+          "Agile",
+          "Spiral"
+        ],
+        "hybrid": [
+          "compliance gates"
+        ],
+        "stated": 5,
+        "low_evidence": true,
+        "insufficient_evidence": false
+      }
+    },
+    {
+      "node": "plan",
+      "ok": true,
+      "seconds": 226.17,
+      "detail": {
+        "parse_ok": true,
+        "phases": 8,
+        "rag": null
+      }
+    },
+    {
+      "node": "check",
+      "ok": true,
+      "seconds": 0.03,
+      "detail": {
+        "mandatory_recall": 1.0,
+        "missing": [],
+        "missing_phases": []
+      }
+    },
+    {
+      "node": "assess",
+      "ok": true,
+      "seconds": 0.04,
+      "detail": {
+        "coverage": null,
+        "missing": 0,
+        "risks": 3,
+        "unmitigated": 0
+      }
+    },
+    {
+      "node": "explain",
+      "ok": true,
+      "seconds": 0.0,
+      "detail": {}
+    }
+  ]
+}

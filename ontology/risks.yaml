@@ -1,0 +1,94 @@
+# Risk register templates (compliance/analysis.py). A risk appears only when its factor
+# conditions hold, cites their evidence, and is scored from factor levels.
+#
+#   when        list of alternatives; each is {factor: [levels]} and all its entries must hold
+#   likelihood  a fixed level, or {from: [factors]}: the highest of those factors' levels
+#   impact      same form
+#   mitigations plan element ids from ontology/plan_skeletons.yaml; the plan checker's keyword
+#               matching decides whether the plan contains each one
+# Unstated factors in a `from` list are read as medium and the risk is marked "assumed", so a score
+# never silently rests on a guess.
+version: "1.0"
+
+risks:
+  - id: security_breach
+    title: Security breach or data exposure
+    when: [{security_risk: [high]}, {security_risk: [medium]}]
+    likelihood: {from: [security_risk]}
+    impact: {from: [security_risk, failure_consequence]}
+    mitigations: [threat_modelling, penetration_test, sast, dependency_scanning]
+    owner: Security Lead
+
+  - id: harm_from_failure
+    title: A software failure causes harm or major loss
+    when: [{failure_consequence: [high]}]
+    likelihood: {from: [complexity, technical_novelty]}
+    impact: high
+    mitigations: [hazard_analysis, independent_vv, traceability_matrix, monitoring]
+    owner: QA / Safety Lead
+
+  - id: unproven_technology
+    title: Unproven technology does not work as planned
+    when: [{technical_novelty: [high]}]
+    likelihood: high
+    impact: {from: [failure_consequence]}
+    mitigations: [prototype_spike, risk_register]
+    owner: Software Architect
+
+  - id: legacy_integration
+    title: Integration with legacy systems breaks or delays delivery
+    when: [{legacy_dependence: [high]}, {legacy_dependence: [medium]}]
+    likelihood: {from: [legacy_dependence]}
+    impact: {from: [complexity]}
+    mitigations: [interface_analysis, migration_plan, legacy_regression]
+    owner: Software Architect
+
+  - id: scope_change_conflict
+    title: Requirements change under a fixed-scope contract
+    when: [{scope_rigidity: [high], change_frequency: [high]}, {scope_rigidity: [high], requirement_stability: [low]}]
+    likelihood: high
+    impact: high
+    mitigations: [change_control, requirement_refinement]
+    owner: Project Manager
+
+  - id: requirements_churn
+    title: Changing requirements cause rework
+    when: [{change_frequency: [high], scope_rigidity: [low, medium, not_stated]},
+           {requirement_stability: [low], scope_rigidity: [low, medium, not_stated]}]
+    likelihood: high
+    impact: medium
+    mitigations: [requirement_refinement, incremental_delivery]
+    owner: Product Owner
+
+  - id: stakeholder_gap
+    title: Requirements misunderstood without regular stakeholder access
+    when: [{stakeholder_availability: [low]}]
+    likelihood: high
+    impact: {from: [change_frequency]}   # absent stakeholders hurt most when requirements move
+    mitigations: [stakeholder_proxy, scheduled_reviews]
+    owner: Business Analyst
+
+  - id: regulatory_findings
+    title: Regulatory or audit findings delay release
+    when: [{regulatory_criticality: [high]}, {standards: [any]}]
+    likelihood: medium          # raised to high when the compliance map has missing obligations
+    impact: high
+    mitigations: [compliance_checkpoints, audit_trail, compliance_approval]
+    owner: Compliance Officer
+
+  - id: integration_defects
+    title: Defects where many components meet
+    when: [{complexity: [high]}]
+    likelihood: high
+    impact: {from: [failure_consequence]}
+    mitigations: [interface_analysis, v_pairing]
+    owner: QA Lead
+
+  - id: release_outpaces_verification
+    title: Release cadence outpaces verification
+    when: [{continuous_delivery_need: [high], verification_rigor: [high]},
+           {continuous_delivery_need: [high], failure_consequence: [high]}]
+    likelihood: high
+    impact: high
+    mitigations: [automated_pipeline, automated_deployment, monitoring]
+    owner: DevOps Engineer

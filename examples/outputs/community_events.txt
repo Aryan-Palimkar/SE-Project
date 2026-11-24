@@ -1,0 +1,120 @@
+================================================================================================
+REQUIREMENTS (11)
+  FR-01       The system shall allow users to create local events such as street clean-ups, book
+              swaps, and pick-up football.
+              [functional] from the text: "A three-person startup is building a mobile app that
+              helps neighbours organise small local events: street clean-ups, book swaps, pick-
+              up football."
+  FR-02       The system shall enable users to invite nearby neighbours to join an event.
+              [functional] from the text: "Users create an event, invite people nearby and chat
+              in the event's group."
+  FR-03       The system shall support a group chat feature within each event.
+              [functional] from the text: "Users create an event, invite people nearby and chat
+              in the event's group."
+  NFR-DATA-01 The system shall display a user's name, email address, and approximate location.
+              [data] from the text: "The app stores only a display name, an email address and an
+              approximate location for each user; there are no payments."
+  NFR-OPS-01  The system shall allow the product owner to review daily with developers and
+              adjust the feature list based on user feedback.
+              [operational] from the text: "One of the founders acts as product owner and sits
+              with the developer every day, and there is no fixed budget or scope: the seed
+              funding covers about nine months."
+  NFR-OPS-02  The system shall support weekly shipping of updates to the app stores.
+              [operational] from the text: "The founders talk to users every week and expect the
+              feature list to change after almost every round of feedback. They want to ship
+              updates to the app stores every week."
+  NFR-AVL-01  The system shall be available to users with minimal downtime, as events can be
+              organised in other ways for a day if the app goes down.
+              [availability] from the text: "If the app goes down, events are simply organised
+              in other ways for a day."
+  NFR-DATA-02 The system shall store user data including display name, email address, and
+              approximate location.
+              [data] from the text: "The app stores only a display name, an email address and an
+              approximate location for each user; there are no payments."
+  FR-04       The system shall not support any payment functionality.
+              [functional] from the text: "There are no payments."
+  NFR-INT-01  The system shall be built using a standard managed database and serverless
+              functions.
+              [integration] from the text: "The backend is a standard managed database and
+              serverless functions, which the team has used before."
+  NFR-OPS-03  The system shall be updated weekly based on user feedback from field testing.
+              [operational] from the text: "The founders talk to users every week and expect the
+              feature list to change after almost every round of feedback."
+
+Recommended lifecycle: Agile
+Acceptable alternatives: Agile
+Ranking: Agile > DevSecOps > Spiral > Waterfall > V-Model
+Factors read from the description: 10 of 14
+  requirement_stability=low, change_frequency=high, continuous_delivery_need=high, security_risk=low, failure_consequence=low, complexity=medium, size=low, technical_novelty=low
+Plan check: mandatory recall 1.0, over-generation 0.0, schema valid
+
+FACTORS (10 of 14 stated)
+requirement_stability low "The founders are not sure which features people actually want"
+change_frequency high "The founders talk to users every week and expect the feature list to ..."
+continuous_delivery_need high "They want to ship updates to the app stores every week"
+security_risk low "The app stores only a display name, an email address and an approximate ..."
+failure_consequence low "If the app goes down, events are simply organised in other ways ..."
+complexity medium "Users create an event, invite people nearby and chat in the event's group"
+size low "A three-person startup"
+technical_novelty low "The backend is a standard managed database and serverless functions, ..."
+stakeholder_availability high "One of the founders acts as product owner and sits with the ..."
+scope_rigidity low "there is no fixed budget or scope: the seed funding covers about nine ..."
+
+LIFECYCLE: Agile
+PHASES   : Inception -> Iterations -> Release -> Operate and Improve
+
+  Inception
+    Define initial product vision and validate core user needs with early prototypes
+    activities             Conduct user interviews to identify key event types and user pain
+                           points; Define initial feature set based on user feedback from pilot
+                           city; Establish product vision and key success metrics with the
+                           product owner
+    roles                  Product Owner; Developer; Customer Representative
+    deliverables           Initial product vision document; List of top 5 user needs
+    approval_gate          Product Owner - Vision aligns with user needs and has at least 3 confirmed use cases
+
+  Iterations
+    Develop and test a minimum viable product with regular re-prioritisation of features
+    activities             Build a basic event creation and chat feature in iterative sprints;
+                           Integrate user invite and location-based notification functionality;
+                           Conduct weekly user feedback sessions to re-prioritise requirements
+    roles                  Product Owner; Developer; QA Engineer
+    deliverables           Working prototype of event creation and chat; Traceability matrix
+                           linking features to user needs
+    testing                Unit testing for core event flow; Basic usability testing with 5
+                           users
+    approval_gate          Product Owner - At least 70% of users report positive experience with core features
+
+  Release
+    Deploy a new version of the app to production with automated rollback capability
+    activities             Package the updated app with automated deployment scripts; Run
+                           automated tests and validate rollback procedure; Deploy to app stores
+                           with display name, email, and location data
+    roles                  Developer; Release Manager; Operations Engineer
+    deliverables           Updated app version in app stores; Automated deployment script
+    testing                Integration testing with backend services; Automated regression test
+    approval_gate          Product Owner - App is live, deployment script passes automated tests, and rollback is functional
+
+  Operate and Improve
+    Monitor production performance and iterate based on user feedback and usage data
+    activities             Monitor app performance and user engagement in real time; Respond to
+                           incidents within 15 minutes of detection; Conduct weekly review to
+                           re-prioritise features based on user feedback
+    roles                  Product Owner; Developer; Operations Engineer
+    deliverables           Weekly usage report; Updated feature roadmap
+    testing                Production monitoring logs and incident reports
+    approval_gate          Product Owner - At least 2 new features added or 1 major feature improved in the next iteration
+
+RUN LOG
+  comply         ok       10.23s  {"obligations": 0}
+  requirements   ok       56.25s  {"parsed": true, "count": 11, "stated": 11, "regulation": 0, "inferred": 0}
+  regulate       ok        0.00s  {"obligations_offered": 0}
+  extract        ok       43.97s  {"parse_ok": true, "stated": 10}
+  clarify        ok        0.01s  {"asked": 0, "unstated": 4}
+  rubric         ok        0.02s  {"primary": "Agile", "acceptable": ["Agile"], "stated": 10, "low_evidence": false, "insufficient_evidence": false}
+  plan           ok       77.82s  {"parse_ok": true, "phases": 4}
+  check          ok        0.03s  {"mandatory_recall": 1.0}
+  assess         ok        0.03s  {"missing": 0, "risks": 1, "unmitigated": 0}
+  explain        ok        0.00s  {}
+
+wrote examples\runs\community_events.json

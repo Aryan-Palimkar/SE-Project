@@ -1,0 +1,75 @@
+# SDLC suitability rubric.
+# Freeze before any test-set evaluation; bump `version` whenever weights,
+# delta or rules change, and record it in every generated record.
+version: "1.3"
+
+models: [Waterfall, V-Model, Spiral, Agile, DevSecOps]
+
+encoding: {low: -1, medium: 0, high: 1, not_stated: 0}
+
+# score[m] = sum over factors f of weights[f][m] * encoding[level_f]
+weights:
+  requirement_stability:    {Waterfall:  2, V-Model:  2, Spiral: -1, Agile: -2, DevSecOps: -1}
+  change_frequency:         {Waterfall: -2, V-Model: -2, Spiral:  0, Agile:  2, DevSecOps:  2}
+  continuous_delivery_need: {Waterfall: -2, V-Model: -2, Spiral: -1, Agile:  1, DevSecOps:  3}
+  regulatory_criticality:   {Waterfall:  1, V-Model:  2, Spiral:  0, Agile: -1, DevSecOps:  1}
+  security_risk:            {Waterfall:  0, V-Model:  1, Spiral:  1, Agile:  0, DevSecOps:  3}
+  failure_consequence:      {Waterfall:  0, V-Model:  2, Spiral:  2, Agile: -1, DevSecOps:  1}
+  verification_rigor:       {Waterfall:  1, V-Model:  3, Spiral:  0, Agile: -2, DevSecOps:  0}
+  test_doc_rigor:           {Waterfall:  1, V-Model:  2, Spiral:  0, Agile: -1, DevSecOps:  1}
+  complexity:               {Waterfall: -1, V-Model:  0, Spiral:  1, Agile:  0, DevSecOps:  1}
+  size:                     {Waterfall:  0, V-Model:  1, Spiral:  1, Agile: -1, DevSecOps:  1}
+  technical_novelty:        {Waterfall: -2, V-Model: -1, Spiral:  3, Agile:  1, DevSecOps:  0}
+  legacy_dependence:        {Waterfall:  1, V-Model:  1, Spiral:  1, Agile: -1, DevSecOps: -1}
+  stakeholder_availability: {Waterfall: -1, V-Model: -1, Spiral:  0, Agile:  3, DevSecOps:  1}
+  scope_rigidity:           {Waterfall:  2, V-Model:  1, Spiral: -1, Agile: -1, DevSecOps: -1}
+
+# Top-1 vs runner-up margin at or below delta => ambiguous (acceptable set = top-2).
+delta: 3
+
+# Low-evidence gate: below min_coverage the acceptable set widens to the top k models.
+low_evidence:
+  min_coverage: 0.5
+  top_k: 3
+
+# Tie gate: withhold the primary when the top two models are (nearly) level.
+tie_gate:
+  withhold_at_margin: 0                    # an exact tie is never an answer
+  withhold_at_margin_low_evidence: 1       # under the low_evidence threshold, a margin of 1 is noise
+  top_k: 3
+
+# Precondition gate: name a model only when one of its defining conditions is stated.
+preconditions:
+  top_k: 3
+  models:
+    Waterfall: {requirement_stability: [high], scope_rigidity: [high]}
+    V-Model:   {verification_rigor: [high], failure_consequence: [high]}
+    Spiral:    {technical_novelty: [high]}
+    Agile:     {change_frequency: [high], requirement_stability: [low], stakeholder_availability: [high]}
+    DevSecOps: {continuous_delivery_need: [high], security_risk: [high]}
+
+# Unordered pairs that may be combined into a hybrid when ambiguous.
+compatible_hybrids:
+  - [Waterfall, V-Model]
+  - [Agile, V-Model]
+  - [Agile, DevSecOps]
+  - [Spiral, V-Model]
+
+# Overlay added to the backbone when the runner-up is folded into a hybrid.
+overlay_names:
+  Waterfall: phase-gate reviews
+  V-Model: V-Model test levels
+  Spiral: risk-driven prototyping cycles
+  Agile: iterative increments
+  DevSecOps: CI/CD with automated security
+
+rules:
+  # R4: novelty=high AND consequence=high AND size>=medium => Spiral bonus
+  R4_spiral_bonus: 2
+  # C1: consequence=high AND verification=high AND top is iterative => overlay
+  C1_iterative_models: [Agile, DevSecOps]
+  C1_overlay: V-Model verification gates
+  # C2: regulatory=high AND (change=high OR continuous_delivery=high) => overlay
+  C2_overlay: compliance gates
+  # C3: continuous_delivery=high => these models cannot rank first
+  C3_blocked_models: [Waterfall, V-Model]

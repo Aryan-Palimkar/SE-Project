@@ -1,0 +1,202 @@
+# Plan ontology, used to generate SDLC plans and to check them.
+#
+#   lifecycles  fixed phase names and order per SDLC model (aliases are accepted by the checker);
+#               V-Model phases name the test level they pair with
+#   overlays    extra plan elements added by each hybrid overlay the rubric can emit
+#   elements    plan elements with the factor levels that make them mandatory (`when`, a list of
+#               alternative conditions) and the levels at which including them is over-generation
+#               (`discouraged_when`); `keywords` are lower-case substrings the checker looks for
+#
+# Bump `version` whenever phases, triggers or keywords change.
+version: "1.1"
+
+lifecycles:
+  Waterfall:
+    phases:
+      - {name: Requirements, aliases: [requirements analysis, requirements specification]}
+      - {name: Design, aliases: [system design, architecture and design]}
+      - {name: Implementation, aliases: [development, construction, build]}
+      - {name: Integration and Test, aliases: [integration and testing, testing, verification]}
+      - {name: Deployment, aliases: [release, rollout, go-live]}
+      - {name: Maintenance, aliases: [operations and maintenance, support]}
+  V-Model:
+    phases:
+      - {name: User Requirements, pairs_with: Acceptance Testing, aliases: [user requirements specification]}
+      - {name: System Requirements, pairs_with: System Testing, aliases: [system requirements specification]}
+      - {name: Architecture Design, pairs_with: Integration Testing, aliases: [architectural design, high-level design]}
+      - {name: Detailed Design, pairs_with: Unit Testing, aliases: [module design, low-level design]}
+      - {name: Implementation, aliases: [coding, development]}
+      - {name: Unit Testing, aliases: [unit verification]}
+      - {name: Integration Testing, aliases: [integration verification]}
+      - {name: System Testing, aliases: [system verification]}
+      - {name: Acceptance Testing, aliases: [user acceptance testing, validation]}
+  Spiral:
+    phases:
+      - {name: "Cycle 1: Objectives and Risk Assessment", anchor: Life Cycle Objectives, aliases: [concept cycle, objectives and risks]}
+      - {name: "Cycle 2: Prototyping and Architecture", anchor: Life Cycle Architecture, aliases: [prototype cycle, architecture cycle]}
+      - {name: "Cycle 3: Development and Verification", anchor: Initial Operational Capability, aliases: [development cycle, build cycle]}
+      - {name: Transition and Operation, aliases: [transition, deployment and operation]}
+  Agile:
+    phases:
+      - {name: Inception, aliases: [iteration zero, discovery, project setup]}
+      - {name: Iterations, aliases: [iteration cycles, delivery iterations, development iterations]}
+      - {name: Release, aliases: [release and deployment, launch]}
+      - {name: Operate and Improve, aliases: [operations, operate, continuous improvement]}
+  DevSecOps:
+    phases:
+      - {name: Plan, aliases: [plan and threat model, planning]}
+      - {name: Code, aliases: [develop, coding]}
+      - {name: Build, aliases: [build and package]}
+      - {name: Test, aliases: [automated testing, verify]}
+      - {name: Release, aliases: [release gate]}
+      - {name: Deploy, aliases: [deployment]}
+      - {name: Operate and Monitor, aliases: [operate, monitor, operations]}
+      - {name: Feedback, aliases: [learn and improve, continuous feedback]}
+
+overlays:
+  phase-gate reviews: [phase_gate_signoff]
+  V-Model test levels: [v_pairing, traceability_matrix]
+  risk-driven prototyping cycles: [prototype_spike, risk_register]
+  iterative increments: [incremental_delivery]
+  CI/CD with automated security: [automated_pipeline, sast, dependency_scanning]
+  V-Model verification gates: [traceability_matrix, independent_vv, verification_gate]
+  compliance gates: [compliance_checkpoints, audit_trail, compliance_approval]
+
+elements:
+  # security
+  threat_modelling:
+    description: Threat modelling of the architecture and data flows
+    keywords: [threat model]
+    when: [{security_risk: [high]}]
+    discouraged_when: [{security_risk: [low]}]
+  sast:
+    description: Static application security testing on every build
+    keywords: [sast, static application security, static analysis]
+    when: [{security_risk: [high]}]
+  dependency_scanning:
+    description: Dependency and software-composition scanning
+    keywords: [dependency scan, software composition, sbom, vulnerable dependenc]
+    when: [{security_risk: [high, medium]}]
+  penetration_test:
+    description: Penetration test before release
+    keywords: [penetration test, pen test, pentest]
+    when: [{security_risk: [high]}]
+    discouraged_when: [{security_risk: [low]}]
+  security_signoff:
+    description: Security sign-off at the release gate
+    keywords: [security sign-off, security sign off, security approval]
+    when: [{security_risk: [high]}]
+  # regulation
+  compliance_checkpoints:
+    description: Compliance checkpoint at every approval gate
+    keywords: [compliance check, compliance review, regulatory review, conformity assessment,
+               compliance officer review, review compliance]
+    when: [{regulatory_criticality: [high]}]
+    discouraged_when: [{regulatory_criticality: [low]}]
+  audit_trail:
+    description: Audit trail and evidence file kept for the regulator or auditor
+    keywords: [audit trail, audit evidence, evidence file, technical file, design history file]
+    when: [{regulatory_criticality: [high]}]
+  compliance_approval:
+    description: Compliance officer approval before release
+    keywords: [compliance officer]
+    match_roles: true          # the approver is the evidence here
+    when: [{regulatory_criticality: [high]}]
+  compliance_review_release:
+    description: Compliance review before release
+    keywords: [compliance review, regulatory review, compliance check, compliance officer review,
+               review compliance]
+    when: [{regulatory_criticality: [medium]}]
+  # verification and failure impact
+  traceability_matrix:
+    description: Requirements-to-test traceability matrix
+    keywords: [traceability]
+    when: [{verification_rigor: [high]}, {failure_consequence: [high]}]
+  independent_vv:
+    description: Independent verification and validation
+    keywords: [independent verification, independent v&v, iv&v, independent test, independent validation,
+               independently test, independently verif]
+    when: [{verification_rigor: [high]}]
+    discouraged_when: [{verification_rigor: [low], failure_consequence: [low]}]
+  hazard_analysis:
+    description: Hazard or failure-mode analysis
+    keywords: [hazard, fmea, failure mode]
+    when: [{failure_consequence: [high]}]
+    discouraged_when: [{failure_consequence: [low]}]
+  verification_gate:
+    description: Verification gate before release requiring every requirement traced to a passed test
+    keywords: [verification gate, verification review, release readiness review]
+    when: []
+  # legacy
+  interface_analysis:
+    description: Analysis of legacy interfaces and data formats
+    keywords: [interface analysis, interface control, legacy interface, integration analysis]
+    when: [{legacy_dependence: [high, medium]}]
+  migration_plan:
+    description: Data migration or coexistence plan for the legacy system
+    keywords: [migration plan, data migration, cutover, coexistence]
+    when: [{legacy_dependence: [high]}]
+    discouraged_when: [{legacy_dependence: [low]}]
+  legacy_regression:
+    description: Regression suite for the legacy interfaces
+    keywords: [regression]
+    when: [{legacy_dependence: [high]}]
+  # stakeholders and scope
+  stakeholder_proxy:
+    description: Named stakeholder representative who can decide between reviews
+    keywords: [proxy, representative, delegate]
+    when: [{stakeholder_availability: [low]}]
+  scheduled_reviews:
+    description: Scheduled stakeholder review points fixed in advance
+    keywords: [scheduled review, stakeholder review, milestone review, review gate]
+    when: [{stakeholder_availability: [low]}]
+  change_control:
+    description: Formal change control against an agreed baseline
+    keywords: [change control, change request, change board]
+    when: [{scope_rigidity: [high]}, {requirement_stability: [high]}]
+  requirement_refinement:
+    description: Regular re-prioritisation of requirements as they change
+    keywords: [refinement, reprioriti, re-prioriti, backlog]
+    when: [{change_frequency: [high]}, {requirement_stability: [low]}]
+  # documentation
+  documentation_deliverables:
+    description: Explicit documentation deliverables (test report, design document, manuals)
+    keywords: [test report, design document, user manual, operations manual]
+    when: [{test_doc_rigor: [high]}]
+  # technical uncertainty
+  prototype_spike:
+    description: Prototype or technical spike for the unproven technology
+    keywords: [prototype, spike, proof of concept]
+    when: [{technical_novelty: [high]}]
+  risk_register:
+    description: Risk register reviewed at every gate
+    keywords: [risk register, risk log]
+    when: [{technical_novelty: [high]}, {failure_consequence: [high]}]
+  # delivery and operations
+  automated_deployment:
+    description: Automated deployment with a tested rollback
+    keywords: [automated deploy, deployment automation, rollback, blue-green, canary]
+    when: [{continuous_delivery_need: [high]}]
+    discouraged_when: [{continuous_delivery_need: [low]}]
+  monitoring:
+    description: Production monitoring and incident response
+    keywords: [monitoring, incident response, alerting]
+    when: [{continuous_delivery_need: [high]}, {failure_consequence: [high]}]
+  # overlay-only elements
+  phase_gate_signoff:
+    description: Formal sign-off gate at the end of every phase
+    keywords: [sign-off, signoff, gate review, phase gate]
+    when: []
+  v_pairing:
+    description: Every specification level paired with a planned test level
+    keywords: [acceptance test, system test, integration test, unit test]
+    require_all_keywords: true
+    when: []
+  incremental_delivery:
+    description: Delivery in increments with a stakeholder review of each
+    keywords: [increment, iteration, demo]
+    when: []
+  automated_pipeline:
+    description: Automated build, test and deployment pipeline
+    keywords: [pipeline, continuous integration, automated build]
+    when: []

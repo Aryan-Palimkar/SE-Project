@@ -1,0 +1,7 @@
+Northbridge Bank, a mid-sized retail bank, wants new customers to be able to open a current account entirely from its mobile app instead of visiting a branch. Today onboarding takes up to five days: customers bring their passport and proof of address to a branch, staff key the details into the core banking system, and the compliance team runs KYC and sanctions checks by hand.
+
+The new flow should let a customer enter their details, photograph their passport or national ID card, and record a short selfie video. The documents must be checked for authenticity, the selfie matched to the document photo, and the customer screened against sanctions and politically exposed person lists before the account is opened. Applications that fail any check go to a compliance analyst for manual review, and every decision must be recorded so that the bank can show auditors who approved what and why.
+
+Once approved, the account must be created in the core banking system, a mainframe platform that is over twenty years old and only accepts batch updates overnight. Customer data, including the identity documents, must be stored encrypted and kept for five years after the relationship ends. The bank's regulator will review the onboarding controls before launch.
+
+The bank expects around 2,000 applications a day at launch, and marketing wants the app to be live before the new financial year in April. The digital team is small and has not built biometric features before, and the vendor for document checks has not been chosen yet.

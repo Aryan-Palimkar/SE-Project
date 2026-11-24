@@ -1,0 +1,46 @@
+# Official documents indexed for retrieval. `standard` links each one to its entry in
+# ontology/standards.yaml, which decides when the document applies to a project.
+sources:
+  - id: rbi_kyc_2025
+    standard: rbi_kyc
+    title: Reserve Bank of India (Commercial Banks - Know Your Customer) Directions, 2025
+    issuer: Reserve Bank of India
+    url: https://rbidocs.rbi.org.in/rdocs/notification/PDFs/169MD.PDF
+    file: rbi_kyc_2025.pdf
+
+  - id: rbi_it_governance_2023
+    standard: rbi_it_governance
+    title: Master Direction on Information Technology Governance, Risk, Controls and Assurance Practices, 2023
+    issuer: Reserve Bank of India
+    url: https://rbidocs.rbi.org.in/rdocs/notification/PDFs/107MDITGOVERNANCE3303572008604C67AC25B84292D85567.PDF
+    file: rbi_it_governance_2023.pdf
+    note: every page of the PDF on rbi.org.in is stamped Withdrawn (RBI consolidated its directions in Nov 2025)
+
+  - id: rbi_digital_lending_2025
+    standard: rbi_digital_lending
+    title: Reserve Bank of India (Digital Lending) Directions, 2025
+    issuer: Reserve Bank of India
+    url: https://rbidocs.rbi.org.in/rdocs/notification/PDFs/36NT8C402BE7C2A349E0BFFF3C526668CD7A.PDF
+    file: rbi_digital_lending_2025.pdf
+    note: every page of the PDF on rbi.org.in is stamped Withdrawn (RBI consolidated its directions in Nov 2025)
+
+  - id: dpdp_rules_2025
+    standard: dpdp
+    title: Digital Personal Data Protection Rules, 2025 (G.S.R. 846(E))
+    issuer: Ministry of Electronics and Information Technology
+    url: https://egazette.gov.in/WriteReadData/2025/267650.pdf
+    file: dpdp_rules_2025.pdf
+
+  - id: certin_directions_2022
+    standard: certin
+    title: CERT-In Directions under Section 70B(6) of the IT Act, 2000 (No. 20(3)/2022-CERT-In)
+    issuer: Indian Computer Emergency Response Team
+    url: https://www.cert-in.org.in/PDF/CERT-In_Directions_70B_28.04.2022.pdf
+    file: certin_directions_2022.pdf
+
+  - id: gigw_3_0
+    standard: gigw
+    title: Guidelines for Indian Government Websites and Apps (GIGW) 3.0
+    issuer: Government of India
+    url: https://cdnbbsr.s3waas.gov.in/s3c92a10324374fac681719d63979d00fe/uploads/2025/02/2025021775.pdf
+    file: gigw_3_0.pdf

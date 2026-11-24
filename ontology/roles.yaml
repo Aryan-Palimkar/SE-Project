@@ -1,0 +1,28 @@
+# Controlled role vocabulary for SDLC plans.
+# Plans may use only these roles; aliases are accepted by the checker.
+version: "1.0"
+roles:
+  Project Manager: [programme manager, delivery manager]
+  Product Owner: [product manager]
+  Business Analyst: [requirements analyst]
+  Software Architect: [solution architect, system architect, technical architect]
+  Developer: [software engineer, software developer, engineer]
+  QA Engineer: [tester, test engineer, quality engineer]
+  Test Lead: [test manager]
+  Independent V&V Engineer: [independent verifier, iv&v engineer, verification engineer]
+  Security Engineer: [security architect, security analyst]
+  Platform Engineer: [devops engineer, site reliability engineer, sre, build engineer]
+  Operations Engineer: [operations team, support engineer]
+  Release Manager: []
+  Compliance Officer: [regulatory affairs manager, quality and regulatory manager]
+  Data Protection Officer: [dpo, privacy officer]
+  Safety Engineer: [safety manager]
+  Risk Manager: []
+  UX Designer: [user experience designer, designer]
+  Technical Writer: [documentation specialist]
+  Database Administrator: [dba, data engineer]
+  Integration Engineer: [interface engineer]
+  Domain Expert: [subject matter expert, sme]
+  Customer Representative: [client representative, user representative, stakeholder representative]
+  Project Sponsor: [sponsor, steering committee]
+  Change Control Board: [change board]

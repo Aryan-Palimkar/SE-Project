@@ -1,0 +1,1 @@
+Build a KYC module for our bank's mobile app: new customers upload an ID document and a selfie, we verify their identity and screen them against sanctions lists before the account is opened.

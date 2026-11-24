@@ -1,0 +1,194 @@
+================================================================================================
+REQUIREMENTS (13)
+  FR-01       The system shall allow new customers to upload an ID document
+              [functional] from the text: "new customers upload an ID document and a selfie"
+  FR-02       The system shall allow new customers to upload a selfie
+              [functional] from the text: "new customers upload an ID document and a selfie"
+  FR-03       The system shall verify the identity of new customers
+              [functional] from the text: "we verify their identity"
+  FR-04       The system shall screen customers against sanctions lists
+              [functional] from the text: "screen them against sanctions lists"
+  FR-05       The system shall prevent account opening until identity verification and sanctions
+              screening are completed
+              [functional] from the text: "before the account is opened"
+  NFR-SEC-01  The system shall store uploaded ID documents and selfies in a secure manner
+              [security] inferred, not in the text: confirm with a stakeholder
+  NFR-PRI-01  The system shall ensure personal data collected during KYC is processed in
+              compliance with privacy regulations
+              [privacy] inferred, not in the text: confirm with a stakeholder
+  NFR-AUD-01  The system shall maintain an audit trail of all KYC actions and decisions
+              [audit] inferred, not in the text: confirm with a stakeholder
+  NFR-REG-01  The system shall assess money laundering and terrorist financing risks before
+              launching the KYC module in the mobile app.
+              [regulatory] required by FATF Recommendations - anti-money laundering and customer
+              due diligence (KYC) R.15
+  FR-06       The system shall verify the identity of new customers using reliable and
+              independent sources as required by FATF Recommendation R.10.
+              [functional] required by FATF Recommendations - anti-money laundering and customer
+              due diligence (KYC) R.10
+  FR-07       The system shall check whether a customer is a politically exposed person (PEP)
+              and apply enhanced due diligence if such a status is confirmed.
+              [functional] required by FATF Recommendations - anti-money laundering and customer
+              due diligence (KYC) R.12
+  NFR-DATA-01 The system shall retain all customer due diligence records, including KYC data and
+              verification results, for at least five years from the date of account opening.
+              [data] required by FATF Recommendations - anti-money laundering and customer due
+              diligence (KYC) R.11
+  FR-08       The system shall screen customers against targeted financial sanctions lists in
+              real time during the KYC process.
+              [functional] required by FATF Recommendations - anti-money laundering and customer
+              due diligence (KYC) R.6
+
+Recommended lifecycle: V-Model  [PROVISIONAL - low evidence: 4 of 14 factors stated]
+Acceptable alternatives: V-Model, DevSecOps, Waterfall
+Ranking: V-Model > DevSecOps > Waterfall > Spiral > Agile
+Factors read from the description: 4 of 14
+  regulatory_criticality=high, failure_consequence=high, test_doc_rigor=high, size=medium
+Unanswered questions that could change this: change_frequency, continuous_delivery_need, technical_novelty
+Plan check: mandatory recall 0.375, over-generation None, schema valid, repaired 1x
+
+FACTORS (4 of 14 stated)
+regulatory_criticality high "stakeholder: The central bank's KYC and anti-money-laundering ..."
+failure_consequence high "stakeholder: Letting a sanctioned person open an account could ..."
+test_doc_rigor high "stakeholder: Internal audit requires a formal test report and design ..."
+size medium "stakeholder: A team of eight developers and testers"
+
+QUESTIONS WORTH ASKING (each one would change the recommendation):
+
+  [change_frequency]  could lead to: DevSecOps, V-Model
+    How often are requirements expected to change during and after development?
+    low = Changes are rare (e.g., yearly or only through formal change control).
+    medium = Occasional planned change (e.g., quarterly adjustments).
+    high = Features are expected to change continuously based on feedback or competition.
+
+  [continuous_delivery_need]  could lead to: DevSecOps, V-Model
+    How frequently must working software reach production?
+    low = One or very few releases (about yearly or rarer); deployment is costly or physically constrained.
+    medium = Every two weeks to quarterly, inclusive - fortnightly, monthly and quarterly all count as medium.
+    high = Weekly or more often, or on demand.
+
+  [technical_novelty]  could lead to: Spiral, V-Model
+    Is the technology unproven or feasibility uncertain?
+    low = Well-understood technology and problem type.
+    medium = Some unfamiliar components within an otherwise known stack.
+    high = New or unproven technology; feasibility itself is a risk.
+
+LIFECYCLE: V-Model
+PHASES   : User Requirements -> System Requirements -> Architecture Design -> Detailed Design -> Implementation -> Unit Testing -> Integration Testing -> System Testing -> Acceptance Testing
+
+  User Requirements
+    Define user needs for identity verification and onboarding flow
+    activities             Conduct interviews with customer service and compliance teams; Map
+                           KYC workflow for new customer onboarding; Document user stories for
+                           ID upload, selfie capture, and verification
+    roles                  Product Owner; Business Analyst; Domain Expert
+    deliverables           User Requirements Document (URD)
+    testing                Acceptance Testing
+    compliance_checkpoints FATF R.10: Verify identity from reliable sources
+    approval_gate          Compliance Officer + Risk Manager - All user requirements align with FATF R.10 and R.15
+
+  System Requirements
+    Define functional and non-functional requirements for identity verification and sanctions
+    screening
+    activities             Define document validation rules and selfie matching logic; Specify
+                           sanctions list screening process; Define data retention and audit
+                           logging requirements
+    roles                  Business Analyst; Software Architect; Domain Expert
+    deliverables           System Requirements Specification (SRS)
+    testing                Acceptance Testing
+    compliance_checkpoints FATF R.6: Screen against financial sanctions lists
+    approval_gate          Compliance Officer + Risk Manager - All system requirements meet FATF R.10, R.6, R.12, and R.15
+
+  Architecture Design
+    Design system architecture to support secure, compliant, and scalable KYC processing
+    activities             Design document upload and selfie processing pipeline; Design
+                           integration with sanctions list database; Design data storage and
+                           access controls
+    roles                  Software Architect; Security Engineer; Platform Engineer
+    deliverables           Architecture Design Document (ADD)
+    security_activities    Conduct threat modelling for document tampering and data exfiltration
+    testing                Integration Testing
+    compliance_checkpoints FATF R.10: Identity verification from reliable sources
+    approval_gate          Compliance Officer + Security Engineer - Architecture supports all compliance requirements and includes threat modelling
+
+  Detailed Design
+    Detail implementation logic for document validation, selfie matching, and sanctions
+    screening
+    activities             Define document validation rules (e.g., format, blur, watermark);
+                           Design selfie alignment and liveness detection logic; Define data
+                           flow and error handling for sanctions screening
+    roles                  Software Architect; Developer; QA Engineer
+    deliverables           Detailed Design Document (DDD)
+    testing                Unit Testing
+    compliance_checkpoints FATF R.6: Sanctions screening implemented
+    approval_gate          Compliance Officer + Risk Manager - All design elements meet FATF R.6 and R.11
+
+  Implementation
+    Develop the KYC module with document upload, selfie processing, and sanctions screening
+    logic
+    activities             Implement document upload and validation logic; Implement selfie
+                           capture and liveness detection; Integrate with sanctions list
+                           database
+    roles                  Developer; Integration Engineer; Platform Engineer
+    deliverables           Source code for KYC module
+    approval_gate          Release Manager - All code is version-controlled and reviewed
+
+  Unit Testing
+    Verify individual components function correctly under test conditions
+    activities             Write unit tests for document validation logic; Write unit tests for
+                           selfie processing and liveness detection; Write unit tests for
+                           sanctions screening logic
+    roles                  Developer; QA Engineer
+    deliverables           Unit Test Report
+    testing                Unit Testing
+    approval_gate          Test Lead - All unit tests pass with 100% coverage of critical logic
+
+  Integration Testing
+    Verify that all modules work together correctly in the full KYC flow
+    activities             Test document upload and selfie processing end-to-end; Test sanctions
+                           screening integration with external database; Test data flow to audit
+                           log and retention system
+    roles                  Integration Engineer; QA Engineer; Test Lead
+    deliverables           Integration Test Report
+    testing                Integration Testing
+    compliance_checkpoints FATF R.10: Identity verified from reliable sources
+    approval_gate          Compliance Officer + Operations Engineer - All integration points function correctly and meet compliance requirements
+
+  System Testing
+    Validate the entire KYC module under realistic operational conditions
+    activities             Conduct end-to-end testing of onboarding flow; Test failure modes and
+                           error handling; Validate data retention and logging
+    roles                  Test Lead; Independent V&V Engineer; QA Engineer
+    deliverables           System Test Report
+    testing                System Testing
+    compliance_checkpoints FATF R.10: Identity verified from reliable sources
+    approval_gate          Compliance Officer + Risk Manager - All system tests pass and all compliance requirements are met
+
+  Acceptance Testing
+    Validate that the KYC module meets business and regulatory needs in real-world use
+    activities             Conduct user acceptance testing with real customer scenarios;
+                           Validate document and selfie verification accuracy; Verify sanctions
+                           screening and PEP checks
+    roles                  Product Owner; Customer Representative; QA Engineer
+    deliverables           Acceptance Test Report; User Manual
+    testing                Acceptance Testing
+    compliance_checkpoints FATF R.15: Assess money laundering risks before launch
+    approval_gate          Compliance Officer + Project Sponsor - All acceptance tests pass and all FATF requirements are met
+
+RUN LOG
+  comply         ok        9.31s  {"standards": ["fatf"], "obligations": 7}
+  requirements   ok       53.03s  {"parsed": true, "count": 8, "stated": 5, "regulation": 0, "inferred": 3}
+  regulate       ok       29.08s  {"parsed": true, "obligations_offered": 7, "linked": 0, "added": 5, "standards": ["fatf"]}
+  extract        ok       53.80s  {"parse_ok": true, "stated": 0}
+  clarify        ok        0.01s  {"asked": 4, "unstated": 14}
+  apply_answers  ok        1.46s  {"applied": {"regulatory_criticality": "high", "failure_consequence": "high", "size": "medium", "test_doc_rigor": "h
+  clarify        ok        0.01s  {"asked": 3, "unstated": 10}
+  rubric         ok        0.02s  {"primary": "V-Model", "acceptable": ["V-Model", "DevSecOps", "Waterfall"], "stated": 4, "low_evidence": true, "insu
+  plan           ok      309.23s  {"parse_ok": true, "phases": 9, "rag": "v1"}
+  check          FAILED    0.04s  {"mandatory_recall": 0.375, "missing": ["compliance_checkpoints", "audit_trail", "traceability_matrix", "risk_regist
+  repair         ok      644.71s  {"faults": 9, "phases_changed": 9, "mandatory_recall_before": 0.375, "mandatory_recall_after": 0.375}
+  repair         FAILED   66.62s  {"faults": 5, "reason": "unparseable"}
+  assess         ok        0.05s  {"coverage": 0.2857, "missing": 5, "risks": 2, "unmitigated": 0}
+  explain        ok        0.00s  {}
+
+wrote examples\runs\kyc_short_answered.json

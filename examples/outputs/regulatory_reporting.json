@@ -1,0 +1,925 @@
+{
+  "description": "A building society has been told by its prudential regulator that its quarterly capital and liquidity returns must be submitted in a new XBRL-based format from 1 January next year. The data items, validation rules and submission deadlines are set out in the regulator's published reporting framework, and they will not change before go-live. The society has awarded a fixed-price contract to a supplier to build a reporting system that extracts balances from the core banking ledger and the treasury system every quarter, maps them to the regulator's templates, runs the published validation rules and produces a submission file. The core banking ledger is a twenty-five-year-old mainframe, and its extract formats are documented but cannot be changed. Every figure in a return must be traceable back to the source ledger entries, and the internal audit team will sign off each release after reviewing a full test report against the regulator's validation rules. A wrong or late return can lead to a fine and supervisory action. The finance team will be available for acceptance testing in the final two months of the project. The work uses the supplier's established reporting product, and the team of about twelve people has built similar returns for other lenders.",
+  "id": "regulatory_reporting",
+  "requirements": [
+    {
+      "id": "FR-01",
+      "statement": "The system shall extract balances from the core banking ledger and the treasury system every quarter.",
+      "type": "functional",
+      "category": "functional",
+      "basis": "stated",
+      "source": "system that extracts balances from the core banking ledger and the treasury system every quarter",
+      "citation": null
+    },
+    {
+      "id": "FR-02",
+      "statement": "The system shall map the extracted data to the regulator's XBRL templates.",
+      "type": "functional",
+      "category": "functional",
+      "basis": "stated",
+      "source": "maps them to the regulator's templates",
+      "citation": null
+    },
+    {
+      "id": "FR-03",
+      "statement": "The system shall apply the regulator's published validation rules to the mapped data.",
+      "type": "functional",
+      "category": "functional",
+      "basis": "stated",
+      "source": "runs the published validation rules",
+      "citation": null
+    },
+    {
+      "id": "FR-04",
+      "statement": "The system shall produce a submission file in the required XBRL format.",
+      "type": "functional",
+      "category": "functional",
+      "basis": "stated",
+      "source": "produces a submission file",
+      "citation": null
+    },
+    {
+      "id": "FR-05",
+      "statement": "The system shall ensure every figure in a return is traceable back to a source ledger entry.",
+      "type": "functional",
+      "category": "functional",
+      "basis": "stated",
+      "source": "every figure in a return must be traceable back to the source ledger entries",
+      "citation": null
+    },
+    {
+      "id": "FR-06",
+      "statement": "The system shall submit returns to the regulator by the published deadline.",
+      "type": "functional",
+      "category": "functional",
+      "basis": "stated",
+      "source": "submission deadlines are set out in the regulator's published reporting framework",
+      "citation": null
+    },
+    {
+      "id": "FR-07",
+      "statement": "The system shall support quarterly reporting cycles starting from 1 January next year.",
+      "type": "functional",
+      "category": "functional",
+      "basis": "stated",
+      "source": "quarterly capital and liquidity returns must be submitted in a new XBRL-based format from 1 January next year",
+      "citation": null
+    },
+    {
+      "id": "FR-08",
+      "statement": "The system shall not change the extract formats from the core banking ledger.",
+      "type": "functional",
+      "category": "functional",
+      "basis": "inferred",
+      "source": null,
+      "citation": null
+    },
+    {
+      "id": "FR-09",
+      "statement": "The system shall generate a full test report for internal audit review prior to submission.",
+      "type": "functional",
+      "category": "functional",
+      "basis": "stated",
+      "source": "the internal audit team will sign off each release after reviewing a full test report",
+      "citation": null
+    },
+    {
+      "id": "NFR-AVL-01",
+      "statement": "The system shall be resilient to errors in the core banking ledger extracts.",
+      "type": "non-functional",
+      "category": "availability",
+      "basis": "stated",
+      "source": "the core banking ledger is a twenty-five-year-old mainframe",
+      "citation": null
+    },
+    {
+      "id": "NFR-DATA-01",
+      "statement": "The system shall maintain data traceability from source ledger entries to final return figures.",
+      "type": "non-functional",
+      "category": "data",
+      "basis": "stated",
+      "source": "every figure in a return must be traceable back to the source ledger entries",
+      "citation": null
+    },
+    {
+      "id": "NFR-REG-01",
+      "statement": "The system shall comply with the regulator's published reporting framework.",
+      "type": "non-functional",
+      "category": "regulatory",
+      "basis": "stated",
+      "source": "the data items, validation rules and submission deadlines are set out in the regulator's published reporting framework",
+      "citation": null
+    },
+    {
+      "id": "NFR-REG-02",
+      "statement": "The system shall support the regulator's fixed reporting schedule and deadlines.",
+      "type": "non-functional",
+      "category": "regulatory",
+      "basis": "stated",
+      "source": "submission deadlines are set out in the regulator's published reporting framework",
+      "citation": null
+    },
+    {
+      "id": "FR-10",
+      "statement": "The system shall prevent submission of returns with validation rule errors.",
+      "type": "functional",
+      "category": "functional",
+      "basis": "stated",
+      "source": "runs the published validation rules",
+      "citation": null
+    },
+    {
+      "id": "NFR-SEC-01",
+      "statement": "The system shall ensure returns are submitted on time to avoid regulatory fines.",
+      "type": "non-functional",
+      "category": "security",
+      "basis": "stated",
+      "source": "a wrong or late return can lead to a fine and supervisory action",
+      "citation": null
+    },
+    {
+      "id": "NFR-AUD-01",
+      "statement": "The system shall provide audit trails for all data mappings and validation steps.",
+      "type": "non-functional",
+      "category": "audit",
+      "basis": "stated",
+      "source": "the internal audit team will sign off each release after reviewing a full test report",
+      "citation": null
+    },
+    {
+      "id": "NFR-OPS-01",
+      "statement": "The system shall be available for acceptance testing by the finance team in the final two months of the project.",
+      "type": "non-functional",
+      "category": "operational",
+      "basis": "stated",
+      "source": "the finance team will be available for acceptance testing in the final two months of the project",
+      "citation": null
+    },
+    {
+      "id": "NFR-INT-01",
+      "statement": "The system shall be built using the supplier's established reporting product.",
+      "type": "non-functional",
+      "category": "integration",
+      "basis": "stated",
+      "source": "the work uses the supplier's established reporting product",
+      "citation": null
+    },
+    {
+      "id": "FR-11",
+      "statement": "The system shall support the same data structure and validation rules as defined in the regulator's framework.",
+      "type": "functional",
+      "category": "functional",
+      "basis": "stated",
+      "source": "the data items, validation rules and submission deadlines are set out in the regulator's published reporting framework",
+      "citation": null
+    },
+    {
+      "id": "NFR-DATA-02",
+      "statement": "The system shall ensure data integrity through the application of published validation rules.",
+      "type": "non-functional",
+      "category": "data",
+      "basis": "stated",
+      "source": "runs the published validation rules",
+      "citation": null
+    }
+  ],
+  "factors": {
+    "requirement_stability": {
+      "level": "high",
+      "evidence": "The data items, validation rules and submission deadlines are set out in the regulator's published reporting framework, and they will not change before go-live"
+    },
+    "change_frequency": {
+      "level": "low",
+      "evidence": "The data items, validation rules and submission deadlines are set out in the regulator's published reporting framework, and they will not change before go-live"
+    },
+    "continuous_delivery_need": {
+      "level": "not_stated",
+      "evidence": null
+    },
+    "regulatory_criticality": {
+      "level": "high",
+      "evidence": "A building society has been told by its prudential regulator that its quarterly capital and liquidity returns must be submitted in a new XBRL-based format from 1 January next year"
+    },
+    "security_risk": {
+      "level": "not_stated",
+      "evidence": null
+    },
+    "failure_consequence": {
+      "level": "high",
+      "evidence": "A wrong or late return can lead to a fine and supervisory action"
+    },
+    "verification_rigor": {
+      "level": "high",
+      "evidence": "Every figure in a return must be traceable back to the source ledger entries, and the internal audit team will sign off each release after reviewing a full test report against the regulator's validation rules"
+    },
+    "test_doc_rigor": {
+      "level": "not_stated",
+      "evidence": null
+    },
+    "complexity": {
+      "level": "not_stated",
+      "evidence": null
+    },
+    "size": {
+      "level": "medium",
+      "evidence": "The team of about twelve people has built similar returns for other lenders"
+    },
+    "technical_novelty": {
+      "level": "low",
+      "evidence": "The work uses the supplier's established reporting product"
+    },
+    "legacy_dependence": {
+      "level": "high",
+      "evidence": "The core banking ledger is a twenty-five-year-old mainframe, and its extract formats are documented but cannot be changed"
+    },
+    "stakeholder_availability": {
+      "level": "medium",
+      "evidence": "The finance team will be available for acceptance testing in the final two months of the project"
+    },
+    "scope_rigidity": {
+      "level": "high",
+      "evidence": "The society has awarded a fixed-price contract to a supplier to build a reporting system that extracts balances from the core banking ledger and the treasury system every quarter, maps them to the regulator's templates, runs the published validation rules and produces a submission file"
+    }
+  },
+  "questions": [
+    {
+      "factor": "continuous_delivery_need",
+      "could_lead_to": [
+        "DevSecOps",
+        "V-Model"
+      ],
+      "question": "How frequently must working software reach production?\n   low = One or very few releases (about yearly or rarer); deployment is costly or physically constrained.\n   medium = Every two weeks to quarterly, inclusive - fortnightly, monthly and quarterly all count as medium.\n   high = Weekly or more often, or on demand."
+    }
+  ],
+  "answers": {},
+  "recommendation": {
+    "ranking": [
+      "V-Model",
+      "Waterfall",
+      "Spiral",
+      "DevSecOps",
+      "Agile"
+    ],
+    "primary": "V-Model",
+    "acceptable_set": [
+      "V-Model",
+      "Waterfall"
+    ],
+    "hybrid": [
+      "phase-gate reviews"
+    ],
+    "low_evidence": false,
+    "stated": 10,
+    "stated_coverage": 0.7143,
+    "primary_withheld": false,
+    "withheld_reasons": [],
+    "supported_models": [
+      "Waterfall",
+      "V-Model"
+    ]
+  },
+  "plan": {
+    "lifecycle": "V-Model",
+    "phases": [
+      {
+        "name": "User Requirements",
+        "objective": "Define the data, validation rules, and submission format as required by the regulator",
+        "activities": [
+          "Map regulator's reporting framework to business needs",
+          "Document data items and submission deadlines",
+          "Define traceability requirements for internal audit"
+        ],
+        "roles": [
+          "Business Analyst",
+          "Domain Expert",
+          "Project Manager"
+        ],
+        "deliverables": [
+          "User Requirements Specification",
+          "Regulator reporting framework summary"
+        ],
+        "security_activities": [],
+        "testing": [
+          "Acceptance Testing"
+        ],
+        "compliance_checkpoints": [
+          "Regulator framework compliance verified"
+        ],
+        "approval_gate": {
+          "approver": "Project Sponsor + Compliance Officer",
+          "criteria": "All data items and deadlines match regulator's published framework"
+        },
+        "entry_criteria": [
+          "Regulator framework published and finalised"
+        ],
+        "exit_criteria": [
+          "User requirements formally signed off"
+        ],
+        "hazard_analysis": "Hazard or failure-mode analysis conducted to identify risks related to data extraction from legacy mainframe, validation rule errors, and submission delays",
+        "change_control": "Formal change control process in place against agreed baseline, with all changes approved by change board",
+        "risk_register": "Risk register reviewed at every gate, with documented risk assessment, mitigation, and owner for each identified risk"
+      },
+      {
+        "name": "System Requirements",
+        "objective": "Define system functions to extract, map, and validate data from core banking and treasury systems",
+        "activities": [
+          "Define data extraction logic from mainframe and treasury",
+          "Map data to regulator's XBRL templates",
+          "Define validation rules and error handling"
+        ],
+        "roles": [
+          "Business Analyst",
+          "Software Architect",
+          "Project Manager"
+        ],
+        "deliverables": [
+          "System Requirements Specification",
+          "Data mapping schema"
+        ],
+        "security_activities": [],
+        "testing": [
+          "System Testing"
+        ],
+        "compliance_checkpoints": [
+          "All validation rules match regulator's published rules"
+        ],
+        "approval_gate": {
+          "approver": "Project Sponsor + Compliance Officer",
+          "criteria": "All validation rules are fully documented and traceable"
+        },
+        "entry_criteria": [
+          "User requirements formally signed off"
+        ],
+        "exit_criteria": [
+          "System requirements approved and signed off"
+        ]
+      },
+      {
+        "name": "Architecture Design",
+        "objective": "Design the system architecture to interface with legacy mainframe and treasury systems",
+        "activities": [
+          "Design data extraction interfaces for mainframe",
+          "Define data flow and transformation logic",
+          "Design error handling and logging"
+        ],
+        "roles": [
+          "Software Architect",
+          "Platform Engineer",
+          "Integration Engineer"
+        ],
+        "deliverables": [
+          "System architecture diagram",
+          "Interface specification"
+        ],
+        "security_activities": [],
+        "testing": [
+          "Integration Testing"
+        ],
+        "compliance_checkpoints": [
+          "Legacy interface design meets documented extract formats"
+        ],
+        "approval_gate": {
+          "approver": "Project Sponsor + Compliance Officer",
+          "criteria": "Architecture supports legacy data extraction and traceability"
+        },
+        "entry_criteria": [
+          "System requirements formally signed off"
+        ],
+        "exit_criteria": [
+          "Architecture approved and documented"
+        ],
+        "data_migration": "Data migration or coexistence plan defined for the legacy system, including cutover strategy and data validation during transition"
+      },
+      {
+        "name": "Detailed Design",
+        "objective": "Detail the implementation logic, data structures, and validation rules",
+        "activities": [
+          "Define data models and transformation rules",
+          "Design traceability mechanism from ledger to return",
+          "Define error logging and alerting"
+        ],
+        "roles": [
+          "Developer",
+          "Business Analyst",
+          "Data Protection Officer"
+        ],
+        "deliverables": [
+          "Detailed Design Specification",
+          "Traceability matrix"
+        ],
+        "security_activities": [],
+        "testing": [
+          "Unit Testing"
+        ],
+        "compliance_checkpoints": [
+          "Each return item is traceable to source ledger entry"
+        ],
+        "approval_gate": {
+          "approver": "Project Sponsor + Compliance Officer",
+          "criteria": "Traceability matrix covers 100% of return items"
+        },
+        "entry_criteria": [
+          "Architecture approved and documented"
+        ],
+        "exit_criteria": [
+          "Detailed design approved and signed off"
+        ]
+      },
+      {
+        "name": "Implementation",
+        "objective": "Build the reporting system using the supplier's established product",
+        "activities": [
+          "Develop data extraction scripts for mainframe and treasury",
+          "Implement data mapping and transformation logic",
+          "Integrate with existing reporting product"
+        ],
+        "roles": [
+          "Developer",
+          "Integration Engineer",
+          "Platform Engineer"
+        ],
+        "deliverables": [
+          "Source code and configuration files"
+        ],
+        "security_activities": [],
+        "testing": [],
+        "compliance_checkpoints": [],
+        "approval_gate": {
+          "approver": "Project Sponsor + Compliance Officer",
+          "criteria": "All components are built against agreed baseline"
+        },
+        "entry_criteria": [
+          "Detailed design approved and signed off"
+        ],
+        "exit_criteria": [
+          "Implementation complete and version-controlled"
+        ]
+      },
+      {
+        "name": "Unit Testing",
+        "objective": "Verify individual components function correctly and meet design specifications",
+        "activities": [
+          "Test data extraction from mainframe",
+          "Test data mapping to XBRL templates",
+          "Test validation rule execution"
+        ],
+        "roles": [
+          "Developer",
+          "QA Engineer",
+          "Test Lead"
+        ],
+        "deliverables": [
+          "Unit test reports",
+          "Test cases for individual components"
+        ],
+        "security_activities": [],
+        "testing": [
+          "Unit Testing"
+        ],
+        "compliance_checkpoints": [
+          "All unit tests pass and cover 100% of validation rules",
+          "Independent verification and validation conducted by a separate test team"
+        ],
+        "approval_gate": {
+          "approver": "Test Lead + Compliance Officer",
+          "criteria": "All unit tests pass with 100% coverage"
+        },
+        "entry_criteria": [
+          "Implementation complete and version-controlled"
+        ],
+        "exit_criteria": [
+          "Unit tests pass and are documented"
+        ],
+        "independent_verification": "Independent verification and validation performed on data extraction and mapping logic to ensure accuracy and compliance",
+        "regression_suite": "Regression suite established and maintained for legacy interfaces to ensure continued functionality after changes"
+      },
+      {
+        "name": "Integration Testing",
+        "objective": "Verify end-to-end data flow from core banking to final submission file",
+        "activities": [
+          "Test integration between mainframe, treasury, and reporting product",
+          "Validate data flow and transformation",
+          "Test error handling and logging"
+        ],
+        "roles": [
+          "Integration Engineer",
+          "QA Engineer",
+          "Test Lead"
+        ],
+        "deliverables": [
+          "Integration test report",
+          "Integration test cases"
+        ],
+        "security_activities": [],
+        "testing": [
+          "Integration Testing"
+        ],
+        "compliance_checkpoints": [
+          "All data flows match regulator's template structure"
+        ],
+        "approval_gate": {
+          "approver": "Project Sponsor + Compliance Officer",
+          "criteria": "All integration test cases pass"
+        },
+        "entry_criteria": [
+          "Unit testing completed and approved"
+        ],
+        "exit_criteria": [
+          "Integration test report approved"
+        ]
+      },
+      {
+        "name": "System Testing",
+        "objective": "Validate the entire system against regulator's validation rules and data integrity",
+        "activities": [
+          "Run full validation suite against test data",
+          "Verify traceability from ledger to return",
+          "Validate submission file format and structure"
+        ],
+        "roles": [
+          "QA Engineer",
+          "Independent V&V Engineer",
+          "Test Lead"
+        ],
+        "deliverables": [
+          "System test report",
+          "Validation results against regulator's rules"
+        ],
+        "security_activities": [],
+        "testing": [
+          "System Testing"
+        ],
+        "compliance_checkpoints": [
+          "All validation rules pass and are traceable"
+        ],
+        "approval_gate": {
+          "approver": "Project Sponsor + Compliance Officer",
+          "criteria": "All validation rules pass and traceability is complete"
+        },
+        "entry_criteria": [
+          "Integration testing completed and approved"
+        ],
+        "exit_criteria": [
+          "System test report approved"
+        ]
+      },
+      {
+        "name": "Acceptance Testing",
+        "objective": "Validate the system meets business and regulator requirements through finance team review",
+        "activities": [
+          "Finance team reviews test reports and validation results",
+          "Verify submission file matches regulator's format",
+          "Confirm traceability and auditability"
+        ],
+        "roles": [
+          "Finance Team",
+          "QA Engineer",
+          "Compliance Officer"
+        ],
+        "deliverables": [
+          "Acceptance test report",
+          "Final submission file"
+        ],
+        "security_activities": [],
+        "testing": [
+          "Acceptance Testing"
+        ],
+        "compliance_checkpoints": [
+          "Internal audit team signs off on full test report",
+          "Compliance review confirms alignment with regulator's validation rules and submission format",
+          "Regulatory review confirms traceability and auditability requirements are met"
+        ],
+        "approval_gate": {
+          "approver": "Compliance Officer + Internal Audit Team",
+          "criteria": "Finance team and internal audit sign off"
+        },
+        "entry_criteria": [
+          "System testing completed and approved"
+        ],
+        "exit_criteria": [
+          "Acceptance test report signed off by finance and audit"
+        ],
+        "audit_trail": "Audit trail and evidence file kept for the regulator or auditor, including test reports, validation logs, and traceability matrices"
+      }
+    ]
+  },
+  "justification": "The V-Model is preferred because it aligns with high requirement stability and scope rigidity, ensuring traceability from requirements to testing. The runner-up, Waterfall, lacks explicit test pairing and traceability enforcement, making it less rigorous for verification. Agile is ranked lowest due to its iterative nature, which conflicts with fixed requirements and regulatory deadlines. All mandatory elements are directly supported by the V-Model's phase-gate structure and test pairing.",
+  "report": {
+    "schema_valid": true,
+    "schema_errors": [],
+    "n_phases": 9,
+    "lifecycle_conformance": 1.0,
+    "unmatched_phases": [],
+    "missing_phases": [],
+    "pairings_present": 1.0,
+    "mandatory_recall": 0.5385,
+    "missing_elements": [
+      "audit_trail",
+      "hazard_analysis",
+      "migration_plan",
+      "legacy_regression",
+      "change_control",
+      "risk_register"
+    ],
+    "overgeneration_rate": null,
+    "overgenerated_elements": [],
+    "gate_completeness": 0.8889,
+    "role_validity": 0.9556,
+    "invalid_roles": [
+      "Finance Team",
+      "Internal Audit Team"
+    ],
+    "flow_coherence": 1.0,
+    "entity_recall": 0.0
+  },
+  "repairs": 2,
+  "insufficient_evidence": false,
+  "compliance": {
+    "standards": [],
+    "obligations": [],
+    "coverage": null,
+    "missing": []
+  },
+  "risks": [
+    {
+      "id": "harm_from_failure",
+      "title": "A software failure causes harm or major loss",
+      "owner": "QA / Safety Lead",
+      "evidence": [
+        {
+          "factor": "failure_consequence",
+          "level": "high",
+          "evidence": "A wrong or late return can lead to a fine and supervisory action"
+        }
+      ],
+      "likelihood": "medium",
+      "impact": "high",
+      "score": 6,
+      "assumed": true,
+      "note": null,
+      "mitigations": [
+        {
+          "id": "hazard_analysis",
+          "description": "Hazard or failure-mode analysis",
+          "covered_by": []
+        },
+        {
+          "id": "independent_vv",
+          "description": "Independent verification and validation",
+          "covered_by": [
+            "Unit Testing"
+          ]
+        },
+        {
+          "id": "traceability_matrix",
+          "description": "Requirements-to-test traceability matrix",
+          "covered_by": [
+            "User Requirements",
+            "Architecture Design",
+            "Detailed Design",
+            "System Testing",
+            "Acceptance Testing"
+          ]
+        },
+        {
+          "id": "monitoring",
+          "description": "Production monitoring and incident response",
+          "covered_by": [
+            "Detailed Design"
+          ]
+        }
+      ],
+      "mitigated": true
+    },
+    {
+      "id": "legacy_integration",
+      "title": "Integration with legacy systems breaks or delays delivery",
+      "owner": "Software Architect",
+      "evidence": [
+        {
+          "factor": "legacy_dependence",
+          "level": "high",
+          "evidence": "The core banking ledger is a twenty-five-year-old mainframe, and its extract formats are documented but cannot be changed"
+        }
+      ],
+      "likelihood": "high",
+      "impact": "medium",
+      "score": 6,
+      "assumed": true,
+      "note": null,
+      "mitigations": [
+        {
+          "id": "interface_analysis",
+          "description": "Analysis of legacy interfaces and data formats",
+          "covered_by": [
+            "Architecture Design"
+          ]
+        },
+        {
+          "id": "migration_plan",
+          "description": "Data migration or coexistence plan for the legacy system",
+          "covered_by": []
+        },
+        {
+          "id": "legacy_regression",
+          "description": "Regression suite for the legacy interfaces",
+          "covered_by": []
+        }
+      ],
+      "mitigated": true
+    },
+    {
+      "id": "regulatory_findings",
+      "title": "Regulatory or audit findings delay release",
+      "owner": "Compliance Officer",
+      "evidence": [
+        {
+          "factor": "regulatory_criticality",
+          "level": "high",
+          "evidence": "A building society has been told by its prudential regulator that its quarterly capital and liquidity returns must be submitted in a new XBRL-based format from 1 January next year"
+        }
+      ],
+      "likelihood": "medium",
+      "impact": "high",
+      "score": 6,
+      "assumed": false,
+      "note": null,
+      "mitigations": [
+        {
+          "id": "compliance_checkpoints",
+          "description": "Compliance checkpoint at every approval gate",
+          "covered_by": [
+            "Acceptance Testing"
+          ]
+        },
+        {
+          "id": "audit_trail",
+          "description": "Audit trail and evidence file kept for the regulator or auditor",
+          "covered_by": []
+        },
+        {
+          "id": "compliance_approval",
+          "description": "Compliance officer approval before release",
+          "covered_by": [
+            "User Requirements",
+            "System Requirements",
+            "Architecture Design",
+            "Detailed Design",
+            "Implementation",
+            "Unit Testing",
+            "Integration Testing",
+            "System Testing",
+            "Acceptance Testing"
+          ]
+        }
+      ],
+      "mitigated": true
+    }
+  ],
+  "summary": "Recommended lifecycle: V-Model with phase-gate reviews\nAcceptable alternatives: V-Model, Waterfall\nRanking: V-Model > Waterfall > Spiral > DevSecOps > Agile\nFactors read from the description: 10 of 14\n  requirement_stability=high, change_frequency=low, regulatory_criticality=high, failure_consequence=high, verification_rigor=high, size=medium, technical_novelty=low, legacy_dependence=high\nUnanswered questions that could change this: continuous_delivery_need\nPlan check: mandatory recall 0.5385, over-generation None, schema valid, repaired 1x",
+  "log": [
+    {
+      "node": "comply",
+      "ok": true,
+      "seconds": 12.65,
+      "detail": {
+        "standards": [],
+        "obligations": 0
+      }
+    },
+    {
+      "node": "requirements",
+      "ok": true,
+      "seconds": 99.84,
+      "detail": {
+        "parsed": true,
+        "count": 20,
+        "stated": 19,
+        "regulation": 0,
+        "inferred": 1
+      }
+    },
+    {
+      "node": "regulate",
+      "ok": true,
+      "seconds": 0.0,
+      "detail": {
+        "obligations_offered": 0
+      }
+    },
+    {
+      "node": "extract",
+      "ok": true,
+      "seconds": 80.55,
+      "detail": {
+        "parse_ok": true,
+        "stated": 10
+      }
+    },
+    {
+      "node": "clarify",
+      "ok": true,
+      "seconds": 0.01,
+      "detail": {
+        "asked": 1,
+        "unstated": 4
+      }
+    },
+    {
+      "node": "rubric",
+      "ok": true,
+      "seconds": 0.02,
+      "detail": {
+        "primary": "V-Model",
+        "acceptable": [
+          "V-Model",
+          "Waterfall"
+        ],
+        "hybrid": [
+          "phase-gate reviews"
+        ],
+        "stated": 10,
+        "low_evidence": false,
+        "insufficient_evidence": false
+      }
+    },
+    {
+      "node": "plan",
+      "ok": true,
+      "seconds": 269.56,
+      "detail": {
+        "parse_ok": true,
+        "phases": 9,
+        "rag": null
+      }
+    },
+    {
+      "node": "check",
+      "ok": true,
+      "seconds": 0.02,
+      "detail": {
+        "mandatory_recall": 0.3846,
+        "missing": [
+          "compliance_checkpoints",
+          "audit_trail",
+          "independent_vv",
+          "hazard_analysis",
+          "migration_plan",
+          "legacy_regression",
+          "change_control",
+          "risk_register"
+        ],
+        "missing_phases": []
+      }
+    },
+    {
+      "node": "repair",
+      "ok": true,
+      "seconds": 101.5,
+      "detail": {
+        "faults": 10,
+        "phases_changed": 4,
+        "mandatory_recall_before": 0.3846,
+        "mandatory_recall_after": 0.5385
+      }
+    },
+    {
+      "node": "repair",
+      "ok": false,
+      "seconds": 107.35,
+      "detail": {
+        "faults": 8,
+        "phases_returned": 4,
+        "reason": "rejected, scored no better",
+        "mandatory_recall_before": 0.5385,
+        "mandatory_recall_candidate": 0.5385,
+        "still_missing": [
+          "audit_trail",
+          "hazard_analysis",
+          "migration_plan",
+          "legacy_regression",
+          "change_control",
+          "risk_register"
+        ],
+        "candidate_overgenerated": []
+      }
+    },
+    {
+      "node": "assess",
+      "ok": true,
+      "seconds": 0.03,
+      "detail": {
+        "coverage": null,
+        "missing": 0,
+        "risks": 3,
+        "unmitigated": 0
+      }
+    },
+    {
+      "node": "explain",
+      "ok": true,
+      "seconds": 0.0,
+      "detail": {}
+    }
+  ]
+}

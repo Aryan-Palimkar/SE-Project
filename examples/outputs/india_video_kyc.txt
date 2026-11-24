@@ -1,0 +1,198 @@
+================================================================================================
+REQUIREMENTS (29)
+  FR-01       The system shall enable new savings account customers to complete KYC entirely
+              through the mobile app.
+              [functional] from the text: "Sahyadri Bank, a private sector bank regulated by the
+              RBI, wants new savings account customers to complete KYC entirely through its
+              mobile app using video-based customer identification."
+  FR-02       The system shall allow customers to provide consent for e-KYC and data collection
+              during the account opening process.
+              [functional] from the text: "In the new flow the customer gives consent, completes
+              Aadhaar OTP-based e-KYC, uploads their PAN, and joins a live video call"
+  FR-03       The system shall support Aadhaar OTP-based e-KYC for identity verification.
+              [functional] from the text: "In the new flow the customer gives consent, completes
+              Aadhaar OTP-based e-KYC, uploads their PAN, and joins a live video call"
+  FR-04       The system shall allow customers to upload their PAN card during the account
+              opening process.
+              [functional] from the text: "In the new flow the customer gives consent, completes
+              Aadhaar OTP-based e-KYC, uploads their PAN, and joins a live video call"
+  FR-05       The system shall initiate a live video call with a trained bank official for face
+              matching and verification.
+              [functional] from the text: "In the new flow the customer gives consent, completes
+              Aadhaar OTP-based e-KYC, uploads their PAN, and joins a live video call with a
+              trained bank official who matches their face against the Aadhaar photo and asks a
+              few questions."
+  FR-06       The system shall match the customer's face against the Aadhaar photo during the
+              video call.
+              [functional] from the text: "In the new flow the customer gives consent, completes
+              Aadhaar OTP-based e-KYC, uploads their PAN, and joins a live video call with a
+              trained bank official who matches their face against the Aadhaar photo and asks a
+              few questions."
+  FR-07       The system shall ask the customer a few questions during the video call for
+              verification.
+              [functional] from the text: "In the new flow the customer gives consent, completes
+              Aadhaar OTP-based e-KYC, uploads their PAN, and joins a live video call with a
+              trained bank official who matches their face against the Aadhaar photo and asks a
+              few questions."
+  NFR-SEC-01  The system shall block video calls from IP addresses outside India.
+              [security] from the text: "Calls from IP addresses outside India must be blocked"
+  NFR-SEC-02  The system shall store video recordings and all customer data on servers located
+              in India.
+              [security] from the text: "the video recordings and all customer data must be
+              stored on servers in India."; satisfies RBI Know Your Customer Directions 2025
+              (India) Para 27(3)
+  NFR-SEC-03  The system shall encrypt all customer data, including Aadhaar numbers, PAN,
+              photographs, and video recordings.
+              [security] from the text: "the security team insists on encryption, access logs
+              and a quick response to any breach"
+  NFR-SEC-04  The system shall maintain access logs for all user and system interactions with
+              customer data.
+              [security] from the text: "the security team insists on encryption, access logs
+              and a quick response to any breach"
+  NFR-SEC-05  The system shall enable a quick response to any data breach or security incident.
+              [security] from the text: "the security team insists on encryption, access logs
+              and a quick response to any breach"
+  FR-08       The system shall not activate or operate a new savings account until the video
+              check and a review of the recording are complete.
+              [functional] from the text: "Accounts must not become operational until the video
+              check and a review of the recording are complete."
+  NFR-DATA-01 The system shall store Aadhaar numbers, PAN, photographs, and video recordings for
+              the duration of the account lifecycle.
+              [data] from the text: "The app will hold Aadhaar numbers, PAN, photographs and
+              video recordings"
+  NFR-INT-01  The system shall integrate with the video-KYC vendor platform to enable live video
+              calls.
+              [integration] from the text: "the digital team, and the video-KYC vendor platform
+              has not been integrated with the core banking system before"
+  NFR-INT-02  The system shall integrate with the core banking system to enable account
+              activation after KYC verification.
+              [integration] from the text: "the digital team, and the video-KYC vendor platform
+              has not been integrated with the core banking system before"
+  NFR-PERF-01 The system shall support up to 5,000 account applications per day.
+              [performance] from the text: "The bank expects about 5,000 applications a day"
+  NFR-AVL-01  The system shall be available for use with at least 99.9% uptime during peak hours
+              leading up to Diwali.
+              [availability] inferred, not in the text: confirm with a stakeholder
+  NFR-AUD-01  The system shall allow internal audit team to review onboarding controls and KYC
+              processes.
+              [audit] from the text: "The bank's internal audit team will review the onboarding
+              controls, and the RBI may inspect them."
+  NFR-AUD-02  The system shall allow RBI to inspect onboarding controls and KYC processes during
+              audits.
+              [audit] from the text: "The bank's internal audit team will review the onboarding
+              controls, and the RBI may inspect them."
+  NFR-PRI-01  The system shall ensure personal data is collected only with explicit customer
+              consent.
+              [privacy] from the text: "In the new flow the customer gives consent, completes
+              Aadhaar OTP-based e-KYC, uploads their PAN, and joins a live video call"
+  NFR-REG-01  The system shall verify the identity of each new savings account customer using
+              reliable, independent sources before account activation, including Aadhaar OTP-
+              based e-KYC and face matching against the Aadhaar photo during the video call.
+              [regulatory] required by FATF Recommendations - anti-money laundering and customer
+              due diligence (KYC) R.10
+  NFR-REG-02  The system shall assess money laundering and terrorist financing risks before
+              launching the video-KYC feature and for each new customer, applying appropriate
+              risk-based measures.
+              [regulatory] required by FATF Recommendations - anti-money laundering and customer
+              due diligence (KYC) R.15
+  NFR-REG-03  The system shall check whether the customer is a politically exposed person (PEP)
+              and apply enhanced due diligence if such a status is confirmed.
+              [regulatory] required by FATF Recommendations - anti-money laundering and customer
+              due diligence (KYC) R.12
+  NFR-REG-04  The system shall screen customers against targeted financial sanctions lists prior
+              to account activation.
+              [regulatory] required by FATF Recommendations - anti-money laundering and customer
+              due diligence (KYC) R.6
+  NFR-REG-05  The system shall retain customer due diligence and transaction records for at
+              least five years after the relationship ends, and ensure these records are
+              retrievable on request.
+              [regulatory] required by FATF Recommendations - anti-money laundering and customer
+              due diligence (KYC) R.11
+  NFR-SEC-06  The system shall implement face liveness detection to prevent spoofing and ensure
+              the customer is a live person during the video call.
+              [security] required by RBI Know Your Customer Directions 2025 (India) Para
+              27(1)(v)
+  NFR-REG-06  The system shall make new savings accounts operational only after a concurrent
+              audit of the video KYC process and recording has been completed by a designated
+              official or auditor.
+              [regulatory] required by RBI Know Your Customer Directions 2025 (India) Para
+              27(2)(xv)
+  NFR-PRI-02  The system shall provide a clear notice to the customer itemising the personal
+              data being collected and the purposes for which it will be used, and provide a
+              mechanism to withdraw consent as easily as it was given.
+              [privacy] required by Digital Personal Data Protection Act 2023 and Rules 2025
+              (India) Rule 3
+
+REQUIREMENTS TO CLARIFY
+  Q1. What is the definition of 'complete KYC entirely through the mobile app' in terms of customer journey and data handling? (FR-01)
+      a) The customer completes all identity verification, document uploads, and video verification via the app without any branch visit or physical interaction.
+      b) The customer uploads documents and initiates e-KYC via the app, but must visit a branch for final verification and account activation.
+      c) The customer completes document uploads via the app, but the video call is conducted in person at a branch with a bank officer.
+      d) The mobile app only serves as a portal to initiate the process, with the actual KYC completed at a branch with staff assistance.
+  Q2. How should money laundering and terrorist financing risks be assessed for new customers during the video-KYC process? (NFR-REG-02)
+      a) Automated risk scoring based on PAN, Aadhaar, and transaction patterns with real-time risk alerts to auditors.
+      b) Manual review by a compliance officer for every customer, with no automated tools or thresholds.
+      c) Risk assessment based solely on the customer's address and PAN, with no additional data or behavioral analysis.
+      d) Risk assessment is performed only for high-risk customers identified by a predefined list, with no automated screening.
+  Q3. How will the system determine if a customer is a politically exposed person (PEP), and what action will be taken if confirmed? (NFR-REG-03)
+      a) The system checks against a real-time PEP database maintained by the RBI and applies enhanced due diligence automatically.
+      b) The system flags PEP status for manual review by a compliance officer, with no automated screening or database.
+      c) PEP status is not checked, and the system assumes all customers are non-PEPs by default.
+      d) PEP status is verified only if the customer provides a self-declared statement, with no automated checks.
+  Q4. Who is responsible for conducting the concurrent audit of the video KYC process and recording before account activation? (NFR-REG-06)
+      a) A designated internal auditor from the bank's internal audit team performs the audit independently.
+      b) The RBI conducts the audit as part of its regulatory inspection process.
+      c) The video-KYC vendor platform performs the audit and provides a report to the bank.
+      d) The system automatically triggers a review by a bank officer without requiring a separate audit step.
+
+NO SINGLE LIFECYCLE: the top models are level on the stated evidence.  [PROVISIONAL - low evidence: 3 of 14 factors stated]
+Candidates: Spiral, DevSecOps, V-Model
+Ranking (provisional): Spiral > DevSecOps > V-Model > Agile > Waterfall
+What would decide it: Spiral if technical novelty high; DevSecOps if continuous delivery need high or security risk high; V-Model if verification rigor high or failure consequence high
+Factors read from the description: 3 of 14
+  regulatory_criticality=high, security_risk=high, technical_novelty=high
+Unanswered questions that could change this: change_frequency, continuous_delivery_need, failure_consequence, legacy_dependence
+
+FACTORS (3 of 14 stated)
+regulatory_criticality high "The bank's internal audit team will review the onboarding ..."
+security_risk high "The app will hold Aadhaar numbers, PAN, photographs and video ..."
+technical_novelty high "The account opening journey is new to the digital team, and the ..."
+
+QUESTIONS WORTH ASKING (each one would change the recommendation):
+
+  [change_frequency]  could lead to: DevSecOps, Spiral, V-Model
+    How often are requirements expected to change during and after development?
+    low = Changes are rare (e.g., yearly or only through formal change control).
+    medium = Occasional planned change (e.g., quarterly adjustments).
+    high = Features are expected to change continuously based on feedback or competition.
+
+  [continuous_delivery_need]  could lead to: DevSecOps, Spiral
+    How frequently must working software reach production?
+    low = One or very few releases (about yearly or rarer); deployment is costly or physically constrained.
+    medium = Every two weeks to quarterly, inclusive - fortnightly, monthly and quarterly all count as medium.
+    high = Weekly or more often, or on demand.
+
+  [failure_consequence]  could lead to: DevSecOps, Spiral
+    What happens if the software fails?
+    low = Minor inconvenience.
+    medium = Noticeable business disruption or recoverable financial loss.
+    high = Safety harm, large financial loss, or serious legal/reputational damage.
+
+  [legacy_dependence]  could lead to: DevSecOps, Spiral
+    How much does the project depend on existing legacy systems?
+    low = Greenfield with no legacy constraints.
+    medium = Some integration with existing systems.
+    high = Must integrate with, replace, or migrate data from legacy systems.
+no plan produced
+
+RUN LOG
+  comply         ok       22.96s  {"standards": ["fatf", "dpdp", "certin", "rbi_kyc", "rbi_it_governance"], "obligations": 30}
+  requirements   ok      124.53s  {"parsed": true, "count": 21, "stated": 20, "regulation": 0, "inferred": 1}
+  regulate       ok      972.25s  {"parsed": true, "obligations_offered": 36, "linked": 1, "added": 8, "clauses": ["rbi_kyc_2025#50", "rbi_kyc_2025#64
+  ask_requirements ok       50.39s  {"asked": 4}
+  extract        ok       40.30s  {"parse_ok": true, "stated": 3}
+  clarify        ok        0.01s  {"asked": 4, "unstated": 11}
+  rubric         ok        0.01s  {"primary": "Spiral", "acceptable": ["Spiral", "DevSecOps", "V-Model"], "stated": 3, "low_evidence": true, "insuffic
+  assess         ok        0.03s  {"missing": 0, "risks": 3, "unmitigated": 0}
+  explain        ok        0.02s  {}
+  srs            ok      113.56s  {"sections": 8, "constraints": 5}

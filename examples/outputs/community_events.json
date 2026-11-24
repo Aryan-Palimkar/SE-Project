@@ -1,0 +1,502 @@
+{
+  "description": "A three-person startup is building a mobile app that helps neighbours organise small local events: street clean-ups, book swaps, pick-up football. Users create an event, invite people nearby and chat in the event's group. The founders are not sure which features people actually want, so the plan is to put a basic version in front of a few hundred users in one city and change it based on what they do. The founders talk to users every week and expect the feature list to change after almost every round of feedback. They want to ship updates to the app stores every week. The app stores only a display name, an email address and an approximate location for each user; there are no payments. The backend is a standard managed database and serverless functions, which the team has used before. If the app goes down, events are simply organised in other ways for a day. One of the founders acts as product owner and sits with the developer every day, and there is no fixed budget or scope: the seed funding covers about nine months.",
+  "id": "community_events",
+  "requirements": [
+    {
+      "id": "FR-01",
+      "statement": "The system shall allow users to create local events such as street clean-ups, book swaps, and pick-up football.",
+      "type": "functional",
+      "category": "functional",
+      "basis": "stated",
+      "source": "A three-person startup is building a mobile app that helps neighbours organise small local events: street clean-ups, book swaps, pick-up football.",
+      "citation": null
+    },
+    {
+      "id": "FR-02",
+      "statement": "The system shall enable users to invite nearby neighbours to join an event.",
+      "type": "functional",
+      "category": "functional",
+      "basis": "stated",
+      "source": "Users create an event, invite people nearby and chat in the event's group.",
+      "citation": null
+    },
+    {
+      "id": "FR-03",
+      "statement": "The system shall support a group chat feature within each event.",
+      "type": "functional",
+      "category": "functional",
+      "basis": "stated",
+      "source": "Users create an event, invite people nearby and chat in the event's group.",
+      "citation": null
+    },
+    {
+      "id": "NFR-DATA-01",
+      "statement": "The system shall display a user's name, email address, and approximate location.",
+      "type": "non-functional",
+      "category": "data",
+      "basis": "stated",
+      "source": "The app stores only a display name, an email address and an approximate location for each user; there are no payments.",
+      "citation": null
+    },
+    {
+      "id": "NFR-OPS-01",
+      "statement": "The system shall allow the product owner to review daily with developers and adjust the feature list based on user feedback.",
+      "type": "non-functional",
+      "category": "operational",
+      "basis": "stated",
+      "source": "One of the founders acts as product owner and sits with the developer every day, and there is no fixed budget or scope: the seed funding covers about nine months.",
+      "citation": null
+    },
+    {
+      "id": "NFR-OPS-02",
+      "statement": "The system shall support weekly shipping of updates to the app stores.",
+      "type": "non-functional",
+      "category": "operational",
+      "basis": "stated",
+      "source": "The founders talk to users every week and expect the feature list to change after almost every round of feedback. They want to ship updates to the app stores every week.",
+      "citation": null
+    },
+    {
+      "id": "NFR-AVL-01",
+      "statement": "The system shall be available to users with minimal downtime, as events can be organised in other ways for a day if the app goes down.",
+      "type": "non-functional",
+      "category": "availability",
+      "basis": "stated",
+      "source": "If the app goes down, events are simply organised in other ways for a day.",
+      "citation": null
+    },
+    {
+      "id": "NFR-DATA-02",
+      "statement": "The system shall store user data including display name, email address, and approximate location.",
+      "type": "non-functional",
+      "category": "data",
+      "basis": "stated",
+      "source": "The app stores only a display name, an email address and an approximate location for each user; there are no payments.",
+      "citation": null
+    },
+    {
+      "id": "FR-04",
+      "statement": "The system shall not support any payment functionality.",
+      "type": "functional",
+      "category": "functional",
+      "basis": "stated",
+      "source": "There are no payments.",
+      "citation": null
+    },
+    {
+      "id": "NFR-INT-01",
+      "statement": "The system shall be built using a standard managed database and serverless functions.",
+      "type": "non-functional",
+      "category": "integration",
+      "basis": "stated",
+      "source": "The backend is a standard managed database and serverless functions, which the team has used before.",
+      "citation": null
+    },
+    {
+      "id": "NFR-OPS-03",
+      "statement": "The system shall be updated weekly based on user feedback from field testing.",
+      "type": "non-functional",
+      "category": "operational",
+      "basis": "stated",
+      "source": "The founders talk to users every week and expect the feature list to change after almost every round of feedback.",
+      "citation": null
+    }
+  ],
+  "factors": {
+    "requirement_stability": {
+      "level": "low",
+      "evidence": "The founders are not sure which features people actually want"
+    },
+    "change_frequency": {
+      "level": "high",
+      "evidence": "The founders talk to users every week and expect the feature list to change after almost every round of feedback"
+    },
+    "continuous_delivery_need": {
+      "level": "high",
+      "evidence": "They want to ship updates to the app stores every week"
+    },
+    "regulatory_criticality": {
+      "level": "not_stated",
+      "evidence": null
+    },
+    "security_risk": {
+      "level": "low",
+      "evidence": "The app stores only a display name, an email address and an approximate location for each user; there are no payments"
+    },
+    "failure_consequence": {
+      "level": "low",
+      "evidence": "If the app goes down, events are simply organised in other ways for a day"
+    },
+    "verification_rigor": {
+      "level": "not_stated",
+      "evidence": null
+    },
+    "test_doc_rigor": {
+      "level": "not_stated",
+      "evidence": null
+    },
+    "complexity": {
+      "level": "medium",
+      "evidence": "Users create an event, invite people nearby and chat in the event's group"
+    },
+    "size": {
+      "level": "low",
+      "evidence": "A three-person startup"
+    },
+    "technical_novelty": {
+      "level": "low",
+      "evidence": "The backend is a standard managed database and serverless functions, which the team has used before"
+    },
+    "legacy_dependence": {
+      "level": "not_stated",
+      "evidence": null
+    },
+    "stakeholder_availability": {
+      "level": "high",
+      "evidence": "One of the founders acts as product owner and sits with the developer every day"
+    },
+    "scope_rigidity": {
+      "level": "low",
+      "evidence": "there is no fixed budget or scope: the seed funding covers about nine months"
+    }
+  },
+  "questions": [],
+  "answers": {},
+  "recommendation": {
+    "ranking": [
+      "Agile",
+      "DevSecOps",
+      "Spiral",
+      "Waterfall",
+      "V-Model"
+    ],
+    "primary": "Agile",
+    "acceptable_set": [
+      "Agile"
+    ],
+    "hybrid": [],
+    "low_evidence": false,
+    "stated": 10,
+    "stated_coverage": 0.7143,
+    "primary_withheld": false,
+    "withheld_reasons": [],
+    "supported_models": [
+      "Agile",
+      "DevSecOps"
+    ]
+  },
+  "plan": {
+    "lifecycle": "Agile",
+    "phases": [
+      {
+        "name": "Inception",
+        "objective": "Define initial product vision and validate core user needs with early prototypes",
+        "activities": [
+          "Conduct user interviews to identify key event types and user pain points",
+          "Define initial feature set based on user feedback from pilot city",
+          "Establish product vision and key success metrics with the product owner"
+        ],
+        "roles": [
+          "Product Owner",
+          "Developer",
+          "Customer Representative"
+        ],
+        "deliverables": [
+          "Initial product vision document",
+          "List of top 5 user needs"
+        ],
+        "security_activities": [],
+        "testing": [],
+        "compliance_checkpoints": [],
+        "approval_gate": {
+          "approver": "Product Owner",
+          "criteria": "Vision aligns with user needs and has at least 3 confirmed use cases"
+        },
+        "entry_criteria": [
+          "Stakeholder availability confirmed"
+        ],
+        "exit_criteria": [
+          "Vision document approved and user needs validated"
+        ]
+      },
+      {
+        "name": "Iterations",
+        "objective": "Develop and test a minimum viable product with regular re-prioritisation of features",
+        "activities": [
+          "Build a basic event creation and chat feature in iterative sprints",
+          "Integrate user invite and location-based notification functionality",
+          "Conduct weekly user feedback sessions to re-prioritise requirements"
+        ],
+        "roles": [
+          "Product Owner",
+          "Developer",
+          "QA Engineer"
+        ],
+        "deliverables": [
+          "Working prototype of event creation and chat",
+          "Traceability matrix linking features to user needs"
+        ],
+        "security_activities": [],
+        "testing": [
+          "Unit testing for core event flow",
+          "Basic usability testing with 5 users"
+        ],
+        "compliance_checkpoints": [],
+        "approval_gate": {
+          "approver": "Product Owner",
+          "criteria": "At least 70% of users report positive experience with core features"
+        },
+        "entry_criteria": [
+          "Initial product vision approved"
+        ],
+        "exit_criteria": [
+          "Core features functional and validated by user feedback"
+        ]
+      },
+      {
+        "name": "Release",
+        "objective": "Deploy a new version of the app to production with automated rollback capability",
+        "activities": [
+          "Package the updated app with automated deployment scripts",
+          "Run automated tests and validate rollback procedure",
+          "Deploy to app stores with display name, email, and location data"
+        ],
+        "roles": [
+          "Developer",
+          "Release Manager",
+          "Operations Engineer"
+        ],
+        "deliverables": [
+          "Updated app version in app stores",
+          "Automated deployment script"
+        ],
+        "security_activities": [],
+        "testing": [
+          "Integration testing with backend services",
+          "Automated regression test"
+        ],
+        "compliance_checkpoints": [],
+        "approval_gate": {
+          "approver": "Product Owner",
+          "criteria": "App is live, deployment script passes automated tests, and rollback is functional"
+        },
+        "entry_criteria": [
+          "Core features validated and approved"
+        ],
+        "exit_criteria": [
+          "App deployed and available to users in pilot city"
+        ]
+      },
+      {
+        "name": "Operate and Improve",
+        "objective": "Monitor production performance and iterate based on user feedback and usage data",
+        "activities": [
+          "Monitor app performance and user engagement in real time",
+          "Respond to incidents within 15 minutes of detection",
+          "Conduct weekly review to re-prioritise features based on user feedback"
+        ],
+        "roles": [
+          "Product Owner",
+          "Developer",
+          "Operations Engineer"
+        ],
+        "deliverables": [
+          "Weekly usage report",
+          "Updated feature roadmap"
+        ],
+        "security_activities": [],
+        "testing": [
+          "Production monitoring logs and incident reports"
+        ],
+        "compliance_checkpoints": [],
+        "approval_gate": {
+          "approver": "Product Owner",
+          "criteria": "At least 2 new features added or 1 major feature improved in the next iteration"
+        },
+        "entry_criteria": [
+          "App deployed and live"
+        ],
+        "exit_criteria": [
+          "Next iteration plan approved and scheduled"
+        ]
+      }
+    ]
+  },
+  "justification": "Agile is ranked first due to high change frequency and low requirement stability, enabling adaptive planning. The runner-up, DevSecOps, fits less well because security risks are low and no security activities are mandated. V-Model is lowest-ranked as it requires fixed requirements and test documentation, contradicting the project's dynamic, evolving nature.",
+  "report": {
+    "schema_valid": true,
+    "schema_errors": [],
+    "n_phases": 4,
+    "lifecycle_conformance": 1.0,
+    "unmatched_phases": [],
+    "missing_phases": [],
+    "pairings_present": null,
+    "mandatory_recall": 1.0,
+    "missing_elements": [],
+    "overgeneration_rate": 0.0,
+    "overgenerated_elements": [],
+    "gate_completeness": 1.0,
+    "role_validity": 1.0,
+    "invalid_roles": [],
+    "flow_coherence": 1.0,
+    "entity_recall": null
+  },
+  "repairs": 0,
+  "insufficient_evidence": false,
+  "compliance": {
+    "standards": [],
+    "obligations": [],
+    "coverage": null,
+    "missing": []
+  },
+  "risks": [
+    {
+      "id": "requirements_churn",
+      "title": "Changing requirements cause rework",
+      "owner": "Product Owner",
+      "evidence": [
+        {
+          "factor": "change_frequency",
+          "level": "high",
+          "evidence": "The founders talk to users every week and expect the feature list to change after almost every round of feedback"
+        },
+        {
+          "factor": "requirement_stability",
+          "level": "low",
+          "evidence": "The founders are not sure which features people actually want"
+        },
+        {
+          "factor": "scope_rigidity",
+          "level": "low",
+          "evidence": "there is no fixed budget or scope: the seed funding covers about nine months"
+        }
+      ],
+      "likelihood": "high",
+      "impact": "medium",
+      "score": 6,
+      "assumed": false,
+      "note": null,
+      "mitigations": [
+        {
+          "id": "requirement_refinement",
+          "description": "Regular re-prioritisation of requirements as they change",
+          "covered_by": [
+            "Iterations",
+            "Operate and Improve"
+          ]
+        },
+        {
+          "id": "incremental_delivery",
+          "description": "Delivery in increments with a stakeholder review of each",
+          "covered_by": [
+            "Iterations",
+            "Operate and Improve"
+          ]
+        }
+      ],
+      "mitigated": true
+    }
+  ],
+  "summary": "Recommended lifecycle: Agile\nAcceptable alternatives: Agile\nRanking: Agile > DevSecOps > Spiral > Waterfall > V-Model\nFactors read from the description: 10 of 14\n  requirement_stability=low, change_frequency=high, continuous_delivery_need=high, security_risk=low, failure_consequence=low, complexity=medium, size=low, technical_novelty=low\nPlan check: mandatory recall 1.0, over-generation 0.0, schema valid",
+  "log": [
+    {
+      "node": "comply",
+      "ok": true,
+      "seconds": 10.23,
+      "detail": {
+        "standards": [],
+        "obligations": 0
+      }
+    },
+    {
+      "node": "requirements",
+      "ok": true,
+      "seconds": 56.25,
+      "detail": {
+        "parsed": true,
+        "count": 11,
+        "stated": 11,
+        "regulation": 0,
+        "inferred": 0
+      }
+    },
+    {
+      "node": "regulate",
+      "ok": true,
+      "seconds": 0.0,
+      "detail": {
+        "obligations_offered": 0
+      }
+    },
+    {
+      "node": "extract",
+      "ok": true,
+      "seconds": 43.97,
+      "detail": {
+        "parse_ok": true,
+        "stated": 10
+      }
+    },
+    {
+      "node": "clarify",
+      "ok": true,
+      "seconds": 0.01,
+      "detail": {
+        "asked": 0,
+        "unstated": 4
+      }
+    },
+    {
+      "node": "rubric",
+      "ok": true,
+      "seconds": 0.02,
+      "detail": {
+        "primary": "Agile",
+        "acceptable": [
+          "Agile"
+        ],
+        "hybrid": [],
+        "stated": 10,
+        "low_evidence": false,
+        "insufficient_evidence": false
+      }
+    },
+    {
+      "node": "plan",
+      "ok": true,
+      "seconds": 77.82,
+      "detail": {
+        "parse_ok": true,
+        "phases": 4,
+        "rag": null
+      }
+    },
+    {
+      "node": "check",
+      "ok": true,
+      "seconds": 0.03,
+      "detail": {
+        "mandatory_recall": 1.0,
+        "missing": [],
+        "missing_phases": []
+      }
+    },
+    {
+      "node": "assess",
+      "ok": true,
+      "seconds": 0.03,
+      "detail": {
+        "coverage": null,
+        "missing": 0,
+        "risks": 1,
+        "unmitigated": 0
+      }
+    },
+    {
+      "node": "explain",
+      "ok": true,
+      "seconds": 0.0,
+      "detail": {}
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+# Rubric, retrieval, API server and tests (CPU).
+pyyaml>=6.0
+numpy>=1.26
+scikit-learn>=1.4
+sentence-transformers>=5.0,<5.2
+fastapi>=0.110
+uvicorn>=0.29
+openai>=1.40          # Gemini and other OpenAI-compatible endpoints (optional)
+jsonschema>=4.20
+pytest>=8.0

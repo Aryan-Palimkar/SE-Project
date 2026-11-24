@@ -1,0 +1,236 @@
+================================================================================================
+REQUIREMENTS (20)
+  FR-01       The system shall allow new customers to open a current account entirely via the
+              mobile app.
+              [functional] from the text: "Northbridge Bank, a mid-sized retail bank, wants new
+              customers to be able to open a current account entirely from its mobile app
+              instead of visiting a branch."
+  FR-02       The system shall collect customer details, passport or national ID card images,
+              and a short selfie video during onboarding.
+              [functional] from the text: "Today onboarding takes up to five days: customers
+              bring their passport and proof of address to a branch, staff key the details into
+              the core banking system, and the compliance team runs KYC and sanctions checks by
+              hand. The new flow should let a customer enter their details, photograph their
+              passport or national ID card, and record a short selfie video."
+  FR-03       The system shall verify the authenticity of uploaded identity documents.
+              [functional] from the text: "The documents must be checked for authenticity, the
+              selfie matched to the document photo, and the customer screened against sanctions
+              and politically exposed person lists before the account is opened."
+  FR-04       The system shall match the customer's selfie to the photo on their identity
+              document.
+              [functional] from the text: "The documents must be checked for authenticity, the
+              selfie matched to the document photo, and the customer screened against sanctions
+              and politically exposed person lists before the account is opened."; satisfies
+              FATF Recommendations - anti-money laundering and customer due diligence (KYC) R.10
+  FR-05       The system shall screen customers against sanctions and politically exposed person
+              lists.
+              [functional] from the text: "The documents must be checked for authenticity, the
+              selfie matched to the document photo, and the customer screened against sanctions
+              and politically exposed person lists before the account is opened."; satisfies
+              FATF Recommendations - anti-money laundering and customer due diligence (KYC) R.6
+  FR-06       The system shall route applications that fail any check to a compliance analyst
+              for manual review.
+              [functional] from the text: "Applications that fail any check go to a compliance
+              analyst for manual review, and every decision must be recorded so that the bank
+              can show auditors who approved what and why."
+  NFR-AUD-01  The system shall record every decision made by compliance analysts, including who
+              approved it and the reason for approval.
+              [audit] from the text: "every decision must be recorded so that the bank can show
+              auditors who approved what and why."
+  FR-07       The system shall create the customer account in the core banking system once
+              approved.
+              [functional] from the text: "Once approved, the account must be created in the
+              core banking system, a mainframe platform that is over twenty years old and only
+              accepts batch updates overnight."
+  FR-08       The system shall create account records in the core banking system via batch
+              updates overnight.
+              [functional] from the text: "a mainframe platform that is over twenty years old
+              and only accepts batch updates overnight."
+  NFR-SEC-01  The system shall store customer identity documents and data encrypted.
+              [security] from the text: "Customer data, including the identity documents, must
+              be stored encrypted and kept for five years after the relationship ends."
+  NFR-DATA-01 The system shall retain customer data, including identity documents, for five
+              years after the relationship ends.
+              [data] from the text: "Customer data, including the identity documents, must be
+              stored encrypted and kept for five years after the relationship ends."; satisfies
+              FATF Recommendations - anti-money laundering and customer due diligence (KYC) R.11
+  NFR-REG-01  The system shall comply with regulatory requirements for onboarding controls prior
+              to launch.
+              [regulatory] from the text: "The bank's regulator will review the onboarding
+              controls before launch."
+  NFR-PERF-01 The system shall support an expected daily volume of 2,000 new account
+              applications at launch.
+              [performance] from the text: "The bank expects around 2,000 applications a day at
+              launch"
+  NFR-OPS-01  The system shall be live in the mobile app before the new financial year in April.
+              [operational] from the text: "The bank expects around 2,000 applications a day at
+              launch, and marketing wants the app to be live before the new financial year in
+              April."
+  NFR-INT-01  The system shall integrate with the core banking system to accept batch updates
+              overnight.
+              [integration] from the text: "a mainframe platform that is over twenty years old
+              and only accepts batch updates overnight."
+  NFR-PRI-01  The system shall ensure that all identity document data is masked or anonymized in
+              audit trails where necessary to protect privacy.
+              [privacy] inferred, not in the text: confirm with a stakeholder
+  NFR-USE-01  The system shall be accessible and usable by customers with common mobile device
+              capabilities.
+              [usability] from the text: "The digital team is small and has not built biometric
+              features before, and the vendor for document checks has not been chosen yet."
+  FR-09       The system shall allow for the selection of passport or national ID card for
+              verification.
+              [functional] from the text: "The new flow should let a customer enter their
+              details, photograph their passport or national ID card, and record a short selfie
+              video."
+  NFR-REG-02  The system shall assess money laundering and terrorist financing risks before
+              launching the new account onboarding feature.
+              [regulatory] required by FATF Recommendations - anti-money laundering and customer
+              due diligence (KYC) R.15
+  NFR-SEC-02  The system shall check whether a customer is a politically exposed person (PEP)
+              and apply enhanced due diligence if a PEP is identified.
+              [security] required by FATF Recommendations - anti-money laundering and customer
+              due diligence (KYC) R.12
+
+Recommended lifecycle: V-Model with risk-driven prototyping cycles
+Acceptable alternatives: V-Model, Spiral
+Ranking: V-Model > Spiral > DevSecOps > Waterfall > Agile
+Factors read from the description: 7 of 14
+  regulatory_criticality=high, security_risk=high, failure_consequence=medium, verification_rigor=high, test_doc_rigor=high, technical_novelty=high, legacy_dependence=high
+Unanswered questions that could change this: continuous_delivery_need
+Plan check: mandatory recall 0.5625, over-generation None, schema valid, 1 repair attempt rejected
+
+FACTORS (7 of 14 stated)
+regulatory_criticality high "The bank's regulator will review the onboarding controls ..."
+security_risk high "Customer data, including the identity documents, must be stored ..."
+failure_consequence medium "Applications that fail any check go to a compliance analyst for ..."
+verification_rigor high "The documents must be checked for authenticity, the selfie matched ..."
+test_doc_rigor high "every decision must be recorded so that the bank can show auditors who ..."
+technical_novelty high "The digital team is small and has not built biometric features before"
+legacy_dependence high "Once approved, the account must be created in the core banking ..."
+
+QUESTIONS WORTH ASKING (each one would change the recommendation):
+
+  [continuous_delivery_need]  could lead to: DevSecOps, V-Model
+    How frequently must working software reach production?
+    low = One or very few releases (about yearly or rarer); deployment is costly or physically constrained.
+    medium = Every two weeks to quarterly, inclusive - fortnightly, monthly and quarterly all count as medium.
+    high = Weekly or more often, or on demand.
+
+LIFECYCLE: V-Model
+PHASES   : User Requirements -> System Requirements -> Architecture Design -> Detailed Design -> Implementation -> Unit Testing -> Integration Testing -> System Testing -> Acceptance Testing
+
+  User Requirements
+    Define user needs for mobile-based account opening with document and selfie verification
+    activities             Conduct interviews with marketing, compliance, and customer service
+                           teams; Map customer journey from onboarding to account activation;
+                           Define success criteria for app usability and compliance coverage
+    roles                  Product Owner; Business Analyst; Customer Representative
+    deliverables           User Requirements Document
+    testing                Acceptance Testing
+    compliance_checkpoints FATF R.15: Assess money laundering risks for new onboarding flow
+    approval_gate          Compliance Officer - All user needs align with KYC and anti-money laundering requirements
+
+  System Requirements
+    Define functional and non-functional requirements for document verification and compliance
+    checks
+    activities             Define document validation, selfie matching, and sanctions screening
+                           logic; Specify data storage, encryption, and retention requirements;
+                           Define failure paths and manual review triggers
+    roles                  Business Analyst; Domain Expert; Compliance Officer
+    deliverables           System Requirements Specification
+    testing                Acceptance Testing
+    compliance_checkpoints FATF R.10: Verify identity using reliable, independent sources; FATF
+                           R.6: Screen against financial sanctions lists; FATF R.12: Check for
+                           politically exposed persons
+    approval_gate          Compliance Officer - All requirements meet FATF R.10, R.12, R.6, and R.15
+
+  Architecture Design
+    Design a secure, scalable architecture for document processing and compliance checks
+    activities             Design document capture, authentication, and storage flow; Define
+                           data encryption and access controls; Model data flows and identify
+                           security boundaries
+    roles                  Software Architect; Security Engineer; Platform Engineer
+    deliverables           Architecture Design Document
+    security_activities    Threat modelling of data flows and user interfaces
+    testing                Integration Testing
+    compliance_checkpoints FATF R.10: Identity verification via reliable sources; FATF R.11:
+                           Retention of records for five years
+    approval_gate          Security Engineer + Compliance Officer - Architecture includes threat modelling and meets data retention requirements
+
+  Detailed Design
+    Detail system components, interfaces, and data models for document and selfie verification
+    activities             Design document upload, selfie capture, and matching logic; Define
+                           API contracts for core banking integration; Map data flow from mobile
+                           app to core banking
+    roles                  Software Architect; Developer; Integration Engineer
+    deliverables           Detailed Design Document
+    testing                Unit Testing
+    approval_gate          Product Owner - All components support KYC and compliance checks
+
+  Implementation
+    Build the mobile app and backend services for document and selfie verification
+    activities             Develop document upload and capture UI; Implement selfie matching and
+                           document authenticity checks; Integrate with vendor for document
+                           verification
+    roles                  Developer; UX Designer; Technical Writer
+    deliverables           Mobile App Prototype; Backend Services
+    security_activities    Static application security testing on every build; Dependency and
+                           software-composition scanning
+    approval_gate          Risk Manager - All code passes SAST and dependency scanning
+
+  Unit Testing
+    Verify individual components function correctly under test conditions
+    activities             Test document parsing and validation logic; Test selfie matching and
+                           facial recognition logic; Test data encryption and storage
+    roles                  Developer; QA Engineer
+    deliverables           Unit Test Reports
+    testing                Unit Testing
+    approval_gate          QA Engineer - All unit tests pass with 100% coverage
+
+  Integration Testing
+    Verify end-to-end integration between mobile app, document vendor, and core banking
+    activities             Test document upload and processing flow; Test data transfer to core
+                           banking via batch update; Validate selfie-to-document match logic
+    roles                  Integration Engineer; Test Lead; Platform Engineer
+    deliverables           Integration Test Report
+    testing                Integration Testing
+    approval_gate          Compliance Officer - All integrations function correctly and meet compliance logic
+
+  System Testing
+    Validate full system functionality under real-world conditions
+    activities             Test end-to-end onboarding flow; Test failure paths and manual review
+                           triggers; Test data retention and encryption
+    roles                  Test Lead; Independent V&V Engineer
+    deliverables           System Test Report
+    security_activities    Penetration test before release
+    testing                System Testing
+    compliance_checkpoints FATF R.11: Records kept for five years; FATF R.20: Suspicious
+                           activity reported if detected
+    approval_gate          Compliance Officer - All system tests pass and all compliance checks are validated
+
+  Acceptance Testing
+    Validate that the system meets business and regulatory requirements
+    activities             Conduct end-to-end testing with real users and compliance staff;
+                           Verify audit trail and decision logging; Validate data retention and
+                           access controls
+    roles                  Product Owner; Compliance Officer; Customer Representative
+    deliverables           Acceptance Test Report; Audit Trail and Evidence File
+    testing                Acceptance Testing
+    compliance_checkpoints FATF R.10: Identity verified from reliable sources; FATF R.11:
+                           Records retained for five years
+    approval_gate          Compliance Officer - All acceptance tests pass and audit trail is complete
+
+RUN LOG
+  comply         ok        9.03s  {"standards": ["fatf"], "obligations": 7}
+  requirements   ok       98.90s  {"parsed": true, "count": 18, "stated": 17, "regulation": 0, "inferred": 1}
+  regulate       ok       21.58s  {"parsed": true, "obligations_offered": 7, "linked": 3, "added": 2, "standards": ["fatf"]}
+  extract        ok       43.96s  {"parse_ok": true, "stated": 7}
+  clarify        ok        0.01s  {"asked": 1, "unstated": 7}
+  rubric         ok        0.01s  {"primary": "V-Model", "acceptable": ["V-Model", "Spiral"], "hybrid": ["risk-driven prototyping cycles"], "stated": 
+  plan           ok      277.84s  {"parse_ok": true, "phases": 9, "rag": "v1"}
+  check          ok        0.03s  {"mandatory_recall": 0.5625, "missing": ["risk_register", "security_signoff", "traceability_matrix", "independent_vv
+  repair         FAILED  144.25s  {"faults": 7, "phases_returned": 4, "reason": "rejected, scored no better", "mandatory_recall_before": 0.5625, "mand
+  assess         ok        0.04s  {"coverage": 0.7143, "missing": 2, "risks": 4, "unmitigated": 1}
+  explain        ok        0.00s  {}
+
+wrote examples\runs\kyc_onboarding.json

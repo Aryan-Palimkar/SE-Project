@@ -1,0 +1,2300 @@
+{
+  "description": "Sahyadri Bank, a private sector bank regulated by the RBI, wants new savings account customers to complete KYC entirely through its mobile app using video-based customer identification. Today customers visit a branch with their Aadhaar and PAN cards, and staff upload the records to the Central KYC Records Registry the next day. In the new flow the customer gives consent, completes Aadhaar OTP-based e-KYC, uploads their PAN, and joins a live video call with a trained bank official who matches their face against the Aadhaar photo and asks a few questions. Calls from IP addresses outside India must be blocked, and the video recordings and all customer data must be stored on servers in India. Accounts must not become operational until the video check and a review of the recording are complete. The app will hold Aadhaar numbers, PAN, photographs and video recordings, so the security team insists on encryption, access logs and a quick response to any breach. The bank's internal audit team will review the onboarding controls, and the RBI may inspect them. The account opening journey is new to the digital team, and the video-KYC vendor platform has not been integrated with the core banking system before. The bank expects about 5,000 applications a day and wants to launch before Diwali.",
+  "id": "run",
+  "requirements": [
+    {
+      "id": "FR-01",
+      "statement": "The system shall enable new savings account customers to complete KYC entirely through the mobile app.",
+      "type": "functional",
+      "category": "functional",
+      "basis": "stated",
+      "source": "Sahyadri Bank, a private sector bank regulated by the RBI, wants new savings account customers to complete KYC entirely through its mobile app using video-based customer identification.",
+      "citation": null
+    },
+    {
+      "id": "FR-02",
+      "statement": "The system shall allow customers to provide consent for e-KYC and data collection during the account opening process.",
+      "type": "functional",
+      "category": "functional",
+      "basis": "stated",
+      "source": "In the new flow the customer gives consent, completes Aadhaar OTP-based e-KYC, uploads their PAN, and joins a live video call",
+      "citation": null
+    },
+    {
+      "id": "FR-03",
+      "statement": "The system shall support Aadhaar OTP-based e-KYC for identity verification.",
+      "type": "functional",
+      "category": "functional",
+      "basis": "stated",
+      "source": "In the new flow the customer gives consent, completes Aadhaar OTP-based e-KYC, uploads their PAN, and joins a live video call",
+      "citation": null
+    },
+    {
+      "id": "FR-04",
+      "statement": "The system shall allow customers to upload their PAN card during the account opening process.",
+      "type": "functional",
+      "category": "functional",
+      "basis": "stated",
+      "source": "In the new flow the customer gives consent, completes Aadhaar OTP-based e-KYC, uploads their PAN, and joins a live video call",
+      "citation": null
+    },
+    {
+      "id": "FR-05",
+      "statement": "The system shall initiate a live video call with a trained bank official for face matching and verification.",
+      "type": "functional",
+      "category": "functional",
+      "basis": "stated",
+      "source": "In the new flow the customer gives consent, completes Aadhaar OTP-based e-KYC, uploads their PAN, and joins a live video call with a trained bank official who matches their face against the Aadhaar photo and asks a few questions.",
+      "citation": null
+    },
+    {
+      "id": "FR-06",
+      "statement": "The system shall match the customer's face against the Aadhaar photo during the video call.",
+      "type": "functional",
+      "category": "functional",
+      "basis": "stated",
+      "source": "In the new flow the customer gives consent, completes Aadhaar OTP-based e-KYC, uploads their PAN, and joins a live video call with a trained bank official who matches their face against the Aadhaar photo and asks a few questions.",
+      "citation": null
+    },
+    {
+      "id": "FR-07",
+      "statement": "The system shall ask the customer a few questions during the video call for verification.",
+      "type": "functional",
+      "category": "functional",
+      "basis": "stated",
+      "source": "In the new flow the customer gives consent, completes Aadhaar OTP-based e-KYC, uploads their PAN, and joins a live video call with a trained bank official who matches their face against the Aadhaar photo and asks a few questions.",
+      "citation": null
+    },
+    {
+      "id": "NFR-SEC-01",
+      "statement": "The system shall block video calls from IP addresses outside India.",
+      "type": "non-functional",
+      "category": "security",
+      "basis": "stated",
+      "source": "Calls from IP addresses outside India must be blocked",
+      "citation": null
+    },
+    {
+      "id": "NFR-SEC-02",
+      "statement": "The system shall store video recordings and all customer data on servers located in India.",
+      "type": "non-functional",
+      "category": "security",
+      "basis": "stated",
+      "source": "the video recordings and all customer data must be stored on servers in India.",
+      "citation": {
+        "obligation": "rbi-kyc-27-records",
+        "standard": "RBI Know Your Customer Directions 2025 (India)",
+        "ref": "Para 27(3)",
+        "clause": {
+          "passage": "rbi_kyc_2025#67",
+          "document": "Reserve Bank of India (Commercial Banks - Know Your Customer) Directions, 2025",
+          "page": 35,
+          "text": "(xv) The bank shall make all accounts opened through V-CIP operational only after subjecting them to concurrent audit to ensure the integrity of process and its acceptability of its outcome. (xvi) The bank shall appropriately comply with all matters not specified under the paragraph but required under other statutes such as the Information Technology (IT) Act. (3) V-CIP Records and Data Management (i) The bank shall store the entire data and recordings of V-CIP in a system / systems located in India. The bank shall ensure that the video recording is stored in a safe and secure manner and bears the date and time stamp that affords easy historical data search. The extant instructions on record management, as stipulated in this direction, shall also apply to V-CIP. (ii) The bank shall preserve the activity log along with the credentials of the official performing the V-CIP."
+        }
+      }
+    },
+    {
+      "id": "NFR-SEC-03",
+      "statement": "The system shall encrypt all customer data, including Aadhaar numbers, PAN, photographs, and video recordings.",
+      "type": "non-functional",
+      "category": "security",
+      "basis": "stated",
+      "source": "the security team insists on encryption, access logs and a quick response to any breach",
+      "citation": null
+    },
+    {
+      "id": "NFR-SEC-04",
+      "statement": "The system shall maintain access logs for all user and system interactions with customer data.",
+      "type": "non-functional",
+      "category": "security",
+      "basis": "stated",
+      "source": "the security team insists on encryption, access logs and a quick response to any breach",
+      "citation": null
+    },
+    {
+      "id": "NFR-SEC-05",
+      "statement": "The system shall enable a quick response to any data breach or security incident.",
+      "type": "non-functional",
+      "category": "security",
+      "basis": "stated",
+      "source": "the security team insists on encryption, access logs and a quick response to any breach",
+      "citation": null
+    },
+    {
+      "id": "FR-08",
+      "statement": "The system shall not activate or operate a new savings account until the video check and a review of the recording are complete.",
+      "type": "functional",
+      "category": "functional",
+      "basis": "stated",
+      "source": "Accounts must not become operational until the video check and a review of the recording are complete.",
+      "citation": null
+    },
+    {
+      "id": "NFR-DATA-01",
+      "statement": "The system shall store Aadhaar numbers, PAN, photographs, and video recordings for the duration of the account lifecycle.",
+      "type": "non-functional",
+      "category": "data",
+      "basis": "stated",
+      "source": "The app will hold Aadhaar numbers, PAN, photographs and video recordings",
+      "citation": null
+    },
+    {
+      "id": "NFR-INT-01",
+      "statement": "The system shall integrate with the video-KYC vendor platform to enable live video calls.",
+      "type": "non-functional",
+      "category": "integration",
+      "basis": "stated",
+      "source": "the digital team, and the video-KYC vendor platform has not been integrated with the core banking system before",
+      "citation": null
+    },
+    {
+      "id": "NFR-INT-02",
+      "statement": "The system shall integrate with the core banking system to enable account activation after KYC verification.",
+      "type": "non-functional",
+      "category": "integration",
+      "basis": "stated",
+      "source": "the digital team, and the video-KYC vendor platform has not been integrated with the core banking system before",
+      "citation": null
+    },
+    {
+      "id": "NFR-PERF-01",
+      "statement": "The system shall support up to 5,000 account applications per day.",
+      "type": "non-functional",
+      "category": "performance",
+      "basis": "stated",
+      "source": "The bank expects about 5,000 applications a day",
+      "citation": null
+    },
+    {
+      "id": "NFR-AVL-01",
+      "statement": "The system shall be available for use with at least 99.9% uptime during peak hours leading up to Diwali.",
+      "type": "non-functional",
+      "category": "availability",
+      "basis": "inferred",
+      "source": null,
+      "citation": null
+    },
+    {
+      "id": "NFR-AUD-01",
+      "statement": "The system shall allow internal audit team to review onboarding controls and KYC processes.",
+      "type": "non-functional",
+      "category": "audit",
+      "basis": "stated",
+      "source": "The bank's internal audit team will review the onboarding controls, and the RBI may inspect them.",
+      "citation": null
+    },
+    {
+      "id": "NFR-AUD-02",
+      "statement": "The system shall allow RBI to inspect onboarding controls and KYC processes during audits.",
+      "type": "non-functional",
+      "category": "audit",
+      "basis": "stated",
+      "source": "The bank's internal audit team will review the onboarding controls, and the RBI may inspect them.",
+      "citation": null
+    },
+    {
+      "id": "NFR-PRI-01",
+      "statement": "The system shall ensure personal data is collected only with explicit customer consent.",
+      "type": "non-functional",
+      "category": "privacy",
+      "basis": "stated",
+      "source": "In the new flow the customer gives consent, completes Aadhaar OTP-based e-KYC, uploads their PAN, and joins a live video call",
+      "citation": null
+    },
+    {
+      "id": "NFR-REG-01",
+      "statement": "The system shall verify the identity of each new savings account customer using reliable, independent sources before account activation, including Aadhaar OTP-based e-KYC and face matching against the Aadhaar photo during the video call.",
+      "type": "non-functional",
+      "category": "regulatory",
+      "basis": "regulation",
+      "source": null,
+      "citation": {
+        "obligation": "fatf-10-id",
+        "standard": "FATF Recommendations - anti-money laundering and customer due diligence (KYC)",
+        "ref": "R.10",
+        "clause": null
+      }
+    },
+    {
+      "id": "NFR-REG-02",
+      "statement": "The system shall assess money laundering and terrorist financing risks before launching the video-KYC feature and for each new customer, applying appropriate risk-based measures.",
+      "type": "non-functional",
+      "category": "regulatory",
+      "basis": "regulation",
+      "source": null,
+      "citation": {
+        "obligation": "fatf-15",
+        "standard": "FATF Recommendations - anti-money laundering and customer due diligence (KYC)",
+        "ref": "R.15",
+        "clause": null
+      }
+    },
+    {
+      "id": "NFR-REG-03",
+      "statement": "The system shall check whether the customer is a politically exposed person (PEP) and apply enhanced due diligence if such a status is confirmed.",
+      "type": "non-functional",
+      "category": "regulatory",
+      "basis": "regulation",
+      "source": null,
+      "citation": {
+        "obligation": "fatf-12",
+        "standard": "FATF Recommendations - anti-money laundering and customer due diligence (KYC)",
+        "ref": "R.12",
+        "clause": null
+      }
+    },
+    {
+      "id": "NFR-REG-04",
+      "statement": "The system shall screen customers against targeted financial sanctions lists prior to account activation.",
+      "type": "non-functional",
+      "category": "regulatory",
+      "basis": "regulation",
+      "source": null,
+      "citation": {
+        "obligation": "fatf-6",
+        "standard": "FATF Recommendations - anti-money laundering and customer due diligence (KYC)",
+        "ref": "R.6",
+        "clause": null
+      }
+    },
+    {
+      "id": "NFR-REG-05",
+      "statement": "The system shall retain customer due diligence and transaction records for at least five years after the relationship ends, and ensure these records are retrievable on request.",
+      "type": "non-functional",
+      "category": "regulatory",
+      "basis": "regulation",
+      "source": null,
+      "citation": {
+        "obligation": "fatf-11",
+        "standard": "FATF Recommendations - anti-money laundering and customer due diligence (KYC)",
+        "ref": "R.11",
+        "clause": null
+      }
+    },
+    {
+      "id": "NFR-SEC-06",
+      "statement": "The system shall implement face liveness detection to prevent spoofing and ensure the customer is a live person during the video call.",
+      "type": "non-functional",
+      "category": "security",
+      "basis": "regulation",
+      "source": null,
+      "citation": {
+        "obligation": "rbi-kyc-27-liveness",
+        "standard": "RBI Know Your Customer Directions 2025 (India)",
+        "ref": "Para 27(1)(v)",
+        "clause": {
+          "passage": "rbi_kyc_2025#60",
+          "document": "Reserve Bank of India (Commercial Banks - Know Your Customer) Directions, 2025",
+          "page": 32,
+          "text": "(ii) The bank shall ensure end-to-end encryption of data between customer device and the hosting point of the V-CIP application, as per appropriate encryption standards. The bank shall record the customer consent in an auditable and alteration-proof manner. (iii) The V-CIP infrastructure / application shall be capable of preventing connection from IP addresses outside India or from spoofed IP addresses. (iv) The video recordings shall contain the live GPS co-ordinates (geo-tagging) of the customer undertaking the V-CIP and date and time stamp. The quality of the live video in the V-CIP shall be adequate to allow identification of the customer beyond doubt. (v) The application shall have components with face liveness / spoof detection as well as face matching technology with high degree of accuracy, even though the ultimate responsibility of any customer identification rests with the bank. Explanation: Making specific facial gestures, like blinking of eyes, smiling, frowning, etc. is not mandatory for liveness check. The bank shall take due cognizance of special"
+        }
+      }
+    },
+    {
+      "id": "NFR-REG-06",
+      "statement": "The system shall make new savings accounts operational only after a concurrent audit of the video KYC process and recording has been completed by a designated official or auditor.",
+      "type": "non-functional",
+      "category": "regulatory",
+      "basis": "regulation",
+      "source": null,
+      "citation": {
+        "obligation": "rbi-kyc-27-audit",
+        "standard": "RBI Know Your Customer Directions 2025 (India)",
+        "ref": "Para 27(2)(xv)",
+        "clause": {
+          "passage": "rbi_kyc_2025#67",
+          "document": "Reserve Bank of India (Commercial Banks - Know Your Customer) Directions, 2025",
+          "page": 35,
+          "text": "(xv) The bank shall make all accounts opened through V-CIP operational only after subjecting them to concurrent audit to ensure the integrity of process and its acceptability of its outcome. (xvi) The bank shall appropriately comply with all matters not specified under the paragraph but required under other statutes such as the Information Technology (IT) Act. (3) V-CIP Records and Data Management (i) The bank shall store the entire data and recordings of V-CIP in a system / systems located in India. The bank shall ensure that the video recording is stored in a safe and secure manner and bears the date and time stamp that affords easy historical data search. The extant instructions on record management, as stipulated in this direction, shall also apply to V-CIP. (ii) The bank shall preserve the activity log along with the credentials of the official performing the V-CIP."
+        }
+      }
+    },
+    {
+      "id": "NFR-PRI-02",
+      "statement": "The system shall provide a clear notice to the customer itemising the personal data being collected and the purposes for which it will be used, and provide a mechanism to withdraw consent as easily as it was given.",
+      "type": "non-functional",
+      "category": "privacy",
+      "basis": "regulation",
+      "source": null,
+      "citation": {
+        "obligation": "dpdp-r3",
+        "standard": "Digital Personal Data Protection Act 2023 and Rules 2025 (India)",
+        "ref": "Rule 3",
+        "clause": {
+          "passage": "dpdp_rules_2025#4",
+          "document": "Digital Personal Data Protection Rules, 2025 (G.S.R. 846(E))",
+          "page": 24,
+          "text": "(b) give, in clear and plain language, a fair account of the details necessary to enable the Data Principal to give specific and informed consent for the processing of her personal data, which shall include, at the minimum, — (i) an itemised description of such personal data; and (ii) the specified purpose or purposes of, and specific description of the goods or services to be provided or uses to be enabled by, such processing; and (c) give, the particular communication link for accessing the website or app, or both, of such Data Fiduciary, and a description of other means, if any, using which such Data Principal may— (i) withdraw her consent, with the ease of doing so being comparable to that with which such consent was given; (ii) exercise her rights under the Act; and (iii) make a complaint to the Board."
+        }
+      }
+    }
+  ],
+  "clauses": [
+    {
+      "id": "rbi_kyc_2025#50",
+      "source": "rbi_kyc_2025",
+      "page": 28,
+      "text": "of Aadhaar number is not required as per proviso (i) above. Explanation 2: A bank official, business correspondent, or business facilitator can perform biometric-based e-KYC authentication, including Aadhaar Face Authentication. Explanation 3: The bank shall ensure that the use of Aadhaar, proof of possession of Aadhaar etc., is in accordance with the Aadhaar (Targeted Delivery of Financial and Other Subsidies Benefits and Services) Act, 2016 and the regulations made thereunder. Explanation 4: Aadhaar number is not mandatory for purposes of KYC. However, in case the customer is desirous of receiving any benefit or subsidy under any scheme notified under section 7 of the Aadhaar (Targeted Delivery of Financial and Other subsidies, Benefits and Services) Act, 2016 (18 of 2016), the customer shall provide the Aadhaar number to the bank. In other cases, customers may provide the Aadhaar number voluntarily. 24. Digital KYC Process:",
+      "score": 0.7672,
+      "title": "Reserve Bank of India (Commercial Banks - Know Your Customer) Directions, 2025"
+    },
+    {
+      "id": "rbi_kyc_2025#64",
+      "source": "rbi_kyc_2025",
+      "page": 34,
+      "text": "(vi) The authorised official of the bank performing the V-CIP shall record audio and video as well as capture a photograph of the customer present for identification and obtain the identification information using any one of the following: (a) OTP based Aadhaar e-KYC authentication. (b) Offline Verification of Aadhaar for identification. (c) KYC records downloaded from CKYCR, in accordance with paragraph 65, using the KYC identifier provided by the customer. (d) Equivalent e-document of Officially Valid Documents (OVDs) including documents issued through DigiLocker. (vii) The bank shall ensure to redact or blackout the Aadhaar number in terms of paragraph 23. (viii) In case of offline verification of Aadhaar using XML file or Aadhaar Secure QR Code, the bank shall ensure that the XML file or QR code generation date is not older than three working days from the date of carrying out V-CIP.",
+      "score": 0.7643,
+      "title": "Reserve Bank of India (Commercial Banks - Know Your Customer) Directions, 2025"
+    },
+    {
+      "id": "rbi_kyc_2025#52",
+      "source": "rbi_kyc_2025",
+      "page": 29,
+      "text": "(5) The bank’s Application shall have the feature that it captures only a live photograph of the customer and does not capture any printed or video graphed photograph. The background behind the customer while capturing live photograph shall be of white colour and no other person shall come into the frame while capturing the live photograph of the customer. (6) Similarly, the authorised officer shall capture the live photograph of the original OVD or proof of possession of Aadhaar where offline verification cannot be carried out (placed horizontally), vertically from above and shall apply a water-marking in readable form as mentioned above. The authorised officer shall ensure there is no skew or tilt in the mobile device while capturing the live photograph of the original documents. (7) The authorised officer shall capture the live photograph of the customer and his original documents in proper light so that they are clearly readable and identifiable.",
+      "score": 0.758,
+      "title": "Reserve Bank of India (Commercial Banks - Know Your Customer) Directions, 2025"
+    },
+    {
+      "id": "rbi_kyc_2025#60",
+      "source": "rbi_kyc_2025",
+      "page": 32,
+      "text": "(ii) The bank shall ensure end-to-end encryption of data between customer device and the hosting point of the V-CIP application, as per appropriate encryption standards. The bank shall record the customer consent in an auditable and alteration-proof manner. (iii) The V-CIP infrastructure / application shall be capable of preventing connection from IP addresses outside India or from spoofed IP addresses. (iv) The video recordings shall contain the live GPS co-ordinates (geo-tagging) of the customer undertaking the V-CIP and date and time stamp. The quality of the live video in the V-CIP shall be adequate to allow identification of the customer beyond doubt. (v) The application shall have components with face liveness / spoof detection as well as face matching technology with high degree of accuracy, even though the ultimate responsibility of any customer identification rests with the bank. Explanation: Making specific facial gestures, like blinking of eyes, smiling, frowning, etc. is not mandatory for liveness check. The bank shall take due cognizance of special",
+      "score": 0.7529,
+      "title": "Reserve Bank of India (Commercial Banks - Know Your Customer) Directions, 2025"
+    },
+    {
+      "id": "rbi_kyc_2025#57",
+      "source": "rbi_kyc_2025",
+      "page": 31,
+      "text": "(6) The bank shall not allow accounts, both deposit and borrowal, opened using OTP based e-KYC to operate for more than one year unless it carries out identification as per paragraph 23 or as per paragraphs 26 and 27 (V-CIP). If the bank uses Aadhaar details under paragraphs 26 and 27, it shall follow the process in its entirety, including fresh Aadhaar OTP authentication. (7) If the bank does not complete the CDD procedure as mentioned above within a year; (a) in respect of deposit accounts, the bank shall close the same immediately, and (b) in respect of borrowal accounts, the bank shall allow no further debits. (8) The bank shall obtain declaration from the customer to the effect that no other account has been opened nor will be opened using OTP based KYC in non-face-to- face mode with any other RE. Further, while uploading KYC information to CKYCR, bank shall clearly indicate that such accounts are opened using OTP based e-KYC and other REs shall not open accounts based on the KYC information of accounts opened with OTP based e-KYC procedure in non-face- to-face mode.",
+      "score": 0.7499,
+      "title": "Reserve Bank of India (Commercial Banks - Know Your Customer) Directions, 2025"
+    },
+    {
+      "id": "rbi_kyc_2025#51",
+      "source": "rbi_kyc_2025",
+      "page": 28,
+      "text": "(1) The bank shall develop an application for digital KYC process and make it available at customer touch points for undertaking KYC of its customers and shall undertake the KYC process only through this authenticated application. (2) The bank shall control the access to the Application and shall ensure that unauthorised persons do not use it. Authorised officials shall access the Application only through a login-id and password or a Live OTP or Time OTP controlled mechanism that the bank provides. (3) The customer, for the purpose of KYC, shall visit the location of the authorised official of the bank or vice-versa. The original OVD shall be in possession of the customer. (4) The bank shall ensure that the authorised officer takes a Live photograph of the customer and embeds the same photograph in the Customer Application Form (CAF). Further, the bank’s system Application shall put a watermark in readable form, containing the CAF number, GPS coordinates, authorised official’s name, unique employee code (which the bank assigns) and date (DD:MM:YYYY) and time stamp (HH:MM:SS), on the captured live photograph of the customer.",
+      "score": 0.7467,
+      "title": "Reserve Bank of India (Commercial Banks - Know Your Customer) Directions, 2025"
+    }
+  ],
+  "requirement_questions": [
+    {
+      "id": "Q1",
+      "question": "What is the definition of 'complete KYC entirely through the mobile app' in terms of customer journey and data handling?",
+      "options": [
+        "The customer completes all identity verification, document uploads, and video verification via the app without any branch visit or physical interaction.",
+        "The customer uploads documents and initiates e-KYC via the app, but must visit a branch for final verification and account activation.",
+        "The customer completes document uploads via the app, but the video call is conducted in person at a branch with a bank officer.",
+        "The mobile app only serves as a portal to initiate the process, with the actual KYC completed at a branch with staff assistance."
+      ],
+      "requirements": [
+        "FR-01"
+      ]
+    },
+    {
+      "id": "Q2",
+      "question": "How should money laundering and terrorist financing risks be assessed for new customers during the video-KYC process?",
+      "options": [
+        "Automated risk scoring based on PAN, Aadhaar, and transaction patterns with real-time risk alerts to auditors.",
+        "Manual review by a compliance officer for every customer, with no automated tools or thresholds.",
+        "Risk assessment based solely on the customer's address and PAN, with no additional data or behavioral analysis.",
+        "Risk assessment is performed only for high-risk customers identified by a predefined list, with no automated screening."
+      ],
+      "requirements": [
+        "NFR-REG-02"
+      ]
+    },
+    {
+      "id": "Q3",
+      "question": "How will the system determine if a customer is a politically exposed person (PEP), and what action will be taken if confirmed?",
+      "options": [
+        "The system checks against a real-time PEP database maintained by the RBI and applies enhanced due diligence automatically.",
+        "The system flags PEP status for manual review by a compliance officer, with no automated screening or database.",
+        "PEP status is not checked, and the system assumes all customers are non-PEPs by default.",
+        "PEP status is verified only if the customer provides a self-declared statement, with no automated checks."
+      ],
+      "requirements": [
+        "NFR-REG-03"
+      ]
+    },
+    {
+      "id": "Q4",
+      "question": "Who is responsible for conducting the concurrent audit of the video KYC process and recording before account activation?",
+      "options": [
+        "A designated internal auditor from the bank's internal audit team performs the audit independently.",
+        "The RBI conducts the audit as part of its regulatory inspection process.",
+        "The video-KYC vendor platform performs the audit and provides a report to the bank.",
+        "The system automatically triggers a review by a bank officer without requiring a separate audit step."
+      ],
+      "requirements": [
+        "NFR-REG-06"
+      ]
+    }
+  ],
+  "srs": {
+    "title": "Sahyadri Bank Mobile App for Video-Based KYC",
+    "purpose": "To enable new savings account customers to complete their Know Your Customer (KYC) process entirely through the mobile app using video-based authentication, ensuring compliance with RBI regulations and enhancing digital accessibility.",
+    "scope": "The system supports end-to-end digital KYC for new savings account applicants via mobile app, including Aadhaar OTP-based e-KYC, live video verification with bank officials, face matching, and PAN upload. It does not include account management, loan processing, or post-activation services. The system is limited to customers within India and does not support cross-border video calls or offline verification without integration with the core banking system.",
+    "stakeholders": [
+      {
+        "role": "Customer",
+        "interest": "Convenient, secure, and transparent account opening process with clear data usage and consent mechanisms"
+      },
+      {
+        "role": "Bank Internal Audit Team",
+        "interest": "Ability to review onboarding controls and KYC processes for compliance and risk assessment"
+      },
+      {
+        "role": "Reserve Bank of India (RBI)",
+        "interest": "Inspection and audit of KYC processes and compliance with regulatory requirements"
+      },
+      {
+        "role": "Security and Compliance Team",
+        "interest": "Protection of customer data, prevention of spoofing, and rapid response to security incidents"
+      }
+    ],
+    "operating_environment": "The system operates on Android and iOS mobile devices with internet connectivity. It functions within India only, with video calls blocked from external IP addresses. The application must support up to 5,000 daily account applications and maintain 99.9% uptime during peak hours leading up to Diwali.",
+    "constraints": [
+      "Video calls must originate only from IP addresses within India [P4].",
+      "All customer data, including Aadhaar, PAN, photos, and recordings, must be stored on servers located in India [NFR-SEC-02].",
+      "The system must not activate any new savings account until the video KYC process and recording review are completed [FR-08].",
+      "The system must implement end-to-end encryption and maintain access logs for all data interactions [NFR-SEC-03, NFR-SEC-04].",
+      "The system must prevent spoofing through face liveness detection [NFR-SEC-06]."
+    ],
+    "assumptions": [
+      "The video-KYC vendor platform is integrated with the mobile app and core banking system as per the requirements.",
+      "Customers provide explicit consent for data collection and use, and are aware of the data being collected and its purpose.",
+      "The core banking system is capable of receiving KYC verification results and activating accounts only after audit completion."
+    ],
+    "glossary": [
+      {
+        "term": "e-KYC",
+        "definition": "Electronic Know Your Customer process using Aadhaar OTP-based authentication for identity verification."
+      },
+      {
+        "term": "V-CIP",
+        "definition": "Video-based Customer Identification Process, where a customer undergoes live video verification with a bank official for identity confirmation."
+      },
+      {
+        "term": "CKYCR",
+        "definition": "Central KYC Records Registry, the official repository for KYC records maintained by the government."
+      },
+      {
+        "term": "PEP",
+        "definition": "Politically Exposed Person, a person who holds or has held a prominent public position and is at risk of corruption or abuse of power."
+      }
+    ],
+    "date": "2026-11-27",
+    "version": "0.1 (draft)",
+    "functional": [
+      {
+        "id": "FR-01",
+        "statement": "The system shall enable new savings account customers to complete KYC entirely through the mobile app.",
+        "type": "functional",
+        "category": "functional",
+        "basis": "stated",
+        "source": "Sahyadri Bank, a private sector bank regulated by the RBI, wants new savings account customers to complete KYC entirely through its mobile app using video-based customer identification.",
+        "citation": null
+      },
+      {
+        "id": "FR-02",
+        "statement": "The system shall allow customers to provide consent for e-KYC and data collection during the account opening process.",
+        "type": "functional",
+        "category": "functional",
+        "basis": "stated",
+        "source": "In the new flow the customer gives consent, completes Aadhaar OTP-based e-KYC, uploads their PAN, and joins a live video call",
+        "citation": null
+      },
+      {
+        "id": "FR-03",
+        "statement": "The system shall support Aadhaar OTP-based e-KYC for identity verification.",
+        "type": "functional",
+        "category": "functional",
+        "basis": "stated",
+        "source": "In the new flow the customer gives consent, completes Aadhaar OTP-based e-KYC, uploads their PAN, and joins a live video call",
+        "citation": null
+      },
+      {
+        "id": "FR-04",
+        "statement": "The system shall allow customers to upload their PAN card during the account opening process.",
+        "type": "functional",
+        "category": "functional",
+        "basis": "stated",
+        "source": "In the new flow the customer gives consent, completes Aadhaar OTP-based e-KYC, uploads their PAN, and joins a live video call",
+        "citation": null
+      },
+      {
+        "id": "FR-05",
+        "statement": "The system shall initiate a live video call with a trained bank official for face matching and verification.",
+        "type": "functional",
+        "category": "functional",
+        "basis": "stated",
+        "source": "In the new flow the customer gives consent, completes Aadhaar OTP-based e-KYC, uploads their PAN, and joins a live video call with a trained bank official who matches their face against the Aadhaar photo and asks a few questions.",
+        "citation": null
+      },
+      {
+        "id": "FR-06",
+        "statement": "The system shall match the customer's face against the Aadhaar photo during the video call.",
+        "type": "functional",
+        "category": "functional",
+        "basis": "stated",
+        "source": "In the new flow the customer gives consent, completes Aadhaar OTP-based e-KYC, uploads their PAN, and joins a live video call with a trained bank official who matches their face against the Aadhaar photo and asks a few questions.",
+        "citation": null
+      },
+      {
+        "id": "FR-07",
+        "statement": "The system shall ask the customer a few questions during the video call for verification.",
+        "type": "functional",
+        "category": "functional",
+        "basis": "stated",
+        "source": "In the new flow the customer gives consent, completes Aadhaar OTP-based e-KYC, uploads their PAN, and joins a live video call with a trained bank official who matches their face against the Aadhaar photo and asks a few questions.",
+        "citation": null
+      },
+      {
+        "id": "FR-08",
+        "statement": "The system shall not activate or operate a new savings account until the video check and a review of the recording are complete.",
+        "type": "functional",
+        "category": "functional",
+        "basis": "stated",
+        "source": "Accounts must not become operational until the video check and a review of the recording are complete.",
+        "citation": null
+      }
+    ],
+    "non_functional": [
+      {
+        "category": "security",
+        "requirements": [
+          {
+            "id": "NFR-SEC-01",
+            "statement": "The system shall block video calls from IP addresses outside India.",
+            "type": "non-functional",
+            "category": "security",
+            "basis": "stated",
+            "source": "Calls from IP addresses outside India must be blocked",
+            "citation": null
+          },
+          {
+            "id": "NFR-SEC-02",
+            "statement": "The system shall store video recordings and all customer data on servers located in India.",
+            "type": "non-functional",
+            "category": "security",
+            "basis": "stated",
+            "source": "the video recordings and all customer data must be stored on servers in India.",
+            "citation": {
+              "obligation": "rbi-kyc-27-records",
+              "standard": "RBI Know Your Customer Directions 2025 (India)",
+              "ref": "Para 27(3)",
+              "clause": {
+                "passage": "rbi_kyc_2025#67",
+                "document": "Reserve Bank of India (Commercial Banks - Know Your Customer) Directions, 2025",
+                "page": 35,
+                "text": "(xv) The bank shall make all accounts opened through V-CIP operational only after subjecting them to concurrent audit to ensure the integrity of process and its acceptability of its outcome. (xvi) The bank shall appropriately comply with all matters not specified under the paragraph but required under other statutes such as the Information Technology (IT) Act. (3) V-CIP Records and Data Management (i) The bank shall store the entire data and recordings of V-CIP in a system / systems located in India. The bank shall ensure that the video recording is stored in a safe and secure manner and bears the date and time stamp that affords easy historical data search. The extant instructions on record management, as stipulated in this direction, shall also apply to V-CIP. (ii) The bank shall preserve the activity log along with the credentials of the official performing the V-CIP."
+              }
+            }
+          },
+          {
+            "id": "NFR-SEC-03",
+            "statement": "The system shall encrypt all customer data, including Aadhaar numbers, PAN, photographs, and video recordings.",
+            "type": "non-functional",
+            "category": "security",
+            "basis": "stated",
+            "source": "the security team insists on encryption, access logs and a quick response to any breach",
+            "citation": null
+          },
+          {
+            "id": "NFR-SEC-04",
+            "statement": "The system shall maintain access logs for all user and system interactions with customer data.",
+            "type": "non-functional",
+            "category": "security",
+            "basis": "stated",
+            "source": "the security team insists on encryption, access logs and a quick response to any breach",
+            "citation": null
+          },
+          {
+            "id": "NFR-SEC-05",
+            "statement": "The system shall enable a quick response to any data breach or security incident.",
+            "type": "non-functional",
+            "category": "security",
+            "basis": "stated",
+            "source": "the security team insists on encryption, access logs and a quick response to any breach",
+            "citation": null
+          },
+          {
+            "id": "NFR-SEC-06",
+            "statement": "The system shall implement face liveness detection to prevent spoofing and ensure the customer is a live person during the video call.",
+            "type": "non-functional",
+            "category": "security",
+            "basis": "regulation",
+            "source": null,
+            "citation": {
+              "obligation": "rbi-kyc-27-liveness",
+              "standard": "RBI Know Your Customer Directions 2025 (India)",
+              "ref": "Para 27(1)(v)",
+              "clause": {
+                "passage": "rbi_kyc_2025#60",
+                "document": "Reserve Bank of India (Commercial Banks - Know Your Customer) Directions, 2025",
+                "page": 32,
+                "text": "(ii) The bank shall ensure end-to-end encryption of data between customer device and the hosting point of the V-CIP application, as per appropriate encryption standards. The bank shall record the customer consent in an auditable and alteration-proof manner. (iii) The V-CIP infrastructure / application shall be capable of preventing connection from IP addresses outside India or from spoofed IP addresses. (iv) The video recordings shall contain the live GPS co-ordinates (geo-tagging) of the customer undertaking the V-CIP and date and time stamp. The quality of the live video in the V-CIP shall be adequate to allow identification of the customer beyond doubt. (v) The application shall have components with face liveness / spoof detection as well as face matching technology with high degree of accuracy, even though the ultimate responsibility of any customer identification rests with the bank. Explanation: Making specific facial gestures, like blinking of eyes, smiling, frowning, etc. is not mandatory for liveness check. The bank shall take due cognizance of special"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "category": "privacy",
+        "requirements": [
+          {
+            "id": "NFR-PRI-01",
+            "statement": "The system shall ensure personal data is collected only with explicit customer consent.",
+            "type": "non-functional",
+            "category": "privacy",
+            "basis": "stated",
+            "source": "In the new flow the customer gives consent, completes Aadhaar OTP-based e-KYC, uploads their PAN, and joins a live video call",
+            "citation": null
+          },
+          {
+            "id": "NFR-PRI-02",
+            "statement": "The system shall provide a clear notice to the customer itemising the personal data being collected and the purposes for which it will be used, and provide a mechanism to withdraw consent as easily as it was given.",
+            "type": "non-functional",
+            "category": "privacy",
+            "basis": "regulation",
+            "source": null,
+            "citation": {
+              "obligation": "dpdp-r3",
+              "standard": "Digital Personal Data Protection Act 2023 and Rules 2025 (India)",
+              "ref": "Rule 3",
+              "clause": {
+                "passage": "dpdp_rules_2025#4",
+                "document": "Digital Personal Data Protection Rules, 2025 (G.S.R. 846(E))",
+                "page": 24,
+                "text": "(b) give, in clear and plain language, a fair account of the details necessary to enable the Data Principal to give specific and informed consent for the processing of her personal data, which shall include, at the minimum, — (i) an itemised description of such personal data; and (ii) the specified purpose or purposes of, and specific description of the goods or services to be provided or uses to be enabled by, such processing; and (c) give, the particular communication link for accessing the website or app, or both, of such Data Fiduciary, and a description of other means, if any, using which such Data Principal may— (i) withdraw her consent, with the ease of doing so being comparable to that with which such consent was given; (ii) exercise her rights under the Act; and (iii) make a complaint to the Board."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "category": "regulatory",
+        "requirements": [
+          {
+            "id": "NFR-REG-01",
+            "statement": "The system shall verify the identity of each new savings account customer using reliable, independent sources before account activation, including Aadhaar OTP-based e-KYC and face matching against the Aadhaar photo during the video call.",
+            "type": "non-functional",
+            "category": "regulatory",
+            "basis": "regulation",
+            "source": null,
+            "citation": {
+              "obligation": "fatf-10-id",
+              "standard": "FATF Recommendations - anti-money laundering and customer due diligence (KYC)",
+              "ref": "R.10",
+              "clause": null
+            }
+          },
+          {
+            "id": "NFR-REG-02",
+            "statement": "The system shall assess money laundering and terrorist financing risks before launching the video-KYC feature and for each new customer, applying appropriate risk-based measures.",
+            "type": "non-functional",
+            "category": "regulatory",
+            "basis": "regulation",
+            "source": null,
+            "citation": {
+              "obligation": "fatf-15",
+              "standard": "FATF Recommendations - anti-money laundering and customer due diligence (KYC)",
+              "ref": "R.15",
+              "clause": null
+            }
+          },
+          {
+            "id": "NFR-REG-03",
+            "statement": "The system shall check whether the customer is a politically exposed person (PEP) and apply enhanced due diligence if such a status is confirmed.",
+            "type": "non-functional",
+            "category": "regulatory",
+            "basis": "regulation",
+            "source": null,
+            "citation": {
+              "obligation": "fatf-12",
+              "standard": "FATF Recommendations - anti-money laundering and customer due diligence (KYC)",
+              "ref": "R.12",
+              "clause": null
+            }
+          },
+          {
+            "id": "NFR-REG-04",
+            "statement": "The system shall screen customers against targeted financial sanctions lists prior to account activation.",
+            "type": "non-functional",
+            "category": "regulatory",
+            "basis": "regulation",
+            "source": null,
+            "citation": {
+              "obligation": "fatf-6",
+              "standard": "FATF Recommendations - anti-money laundering and customer due diligence (KYC)",
+              "ref": "R.6",
+              "clause": null
+            }
+          },
+          {
+            "id": "NFR-REG-05",
+            "statement": "The system shall retain customer due diligence and transaction records for at least five years after the relationship ends, and ensure these records are retrievable on request.",
+            "type": "non-functional",
+            "category": "regulatory",
+            "basis": "regulation",
+            "source": null,
+            "citation": {
+              "obligation": "fatf-11",
+              "standard": "FATF Recommendations - anti-money laundering and customer due diligence (KYC)",
+              "ref": "R.11",
+              "clause": null
+            }
+          },
+          {
+            "id": "NFR-REG-06",
+            "statement": "The system shall make new savings accounts operational only after a concurrent audit of the video KYC process and recording has been completed by a designated official or auditor.",
+            "type": "non-functional",
+            "category": "regulatory",
+            "basis": "regulation",
+            "source": null,
+            "citation": {
+              "obligation": "rbi-kyc-27-audit",
+              "standard": "RBI Know Your Customer Directions 2025 (India)",
+              "ref": "Para 27(2)(xv)",
+              "clause": {
+                "passage": "rbi_kyc_2025#67",
+                "document": "Reserve Bank of India (Commercial Banks - Know Your Customer) Directions, 2025",
+                "page": 35,
+                "text": "(xv) The bank shall make all accounts opened through V-CIP operational only after subjecting them to concurrent audit to ensure the integrity of process and its acceptability of its outcome. (xvi) The bank shall appropriately comply with all matters not specified under the paragraph but required under other statutes such as the Information Technology (IT) Act. (3) V-CIP Records and Data Management (i) The bank shall store the entire data and recordings of V-CIP in a system / systems located in India. The bank shall ensure that the video recording is stored in a safe and secure manner and bears the date and time stamp that affords easy historical data search. The extant instructions on record management, as stipulated in this direction, shall also apply to V-CIP. (ii) The bank shall preserve the activity log along with the credentials of the official performing the V-CIP."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "category": "performance",
+        "requirements": [
+          {
+            "id": "NFR-PERF-01",
+            "statement": "The system shall support up to 5,000 account applications per day.",
+            "type": "non-functional",
+            "category": "performance",
+            "basis": "stated",
+            "source": "The bank expects about 5,000 applications a day",
+            "citation": null
+          }
+        ]
+      },
+      {
+        "category": "availability",
+        "requirements": [
+          {
+            "id": "NFR-AVL-01",
+            "statement": "The system shall be available for use with at least 99.9% uptime during peak hours leading up to Diwali.",
+            "type": "non-functional",
+            "category": "availability",
+            "basis": "inferred",
+            "source": null,
+            "citation": null
+          }
+        ]
+      },
+      {
+        "category": "data",
+        "requirements": [
+          {
+            "id": "NFR-DATA-01",
+            "statement": "The system shall store Aadhaar numbers, PAN, photographs, and video recordings for the duration of the account lifecycle.",
+            "type": "non-functional",
+            "category": "data",
+            "basis": "stated",
+            "source": "The app will hold Aadhaar numbers, PAN, photographs and video recordings",
+            "citation": null
+          }
+        ]
+      },
+      {
+        "category": "integration",
+        "requirements": [
+          {
+            "id": "NFR-INT-01",
+            "statement": "The system shall integrate with the video-KYC vendor platform to enable live video calls.",
+            "type": "non-functional",
+            "category": "integration",
+            "basis": "stated",
+            "source": "the digital team, and the video-KYC vendor platform has not been integrated with the core banking system before",
+            "citation": null
+          },
+          {
+            "id": "NFR-INT-02",
+            "statement": "The system shall integrate with the core banking system to enable account activation after KYC verification.",
+            "type": "non-functional",
+            "category": "integration",
+            "basis": "stated",
+            "source": "the digital team, and the video-KYC vendor platform has not been integrated with the core banking system before",
+            "citation": null
+          }
+        ]
+      },
+      {
+        "category": "audit",
+        "requirements": [
+          {
+            "id": "NFR-AUD-01",
+            "statement": "The system shall allow internal audit team to review onboarding controls and KYC processes.",
+            "type": "non-functional",
+            "category": "audit",
+            "basis": "stated",
+            "source": "The bank's internal audit team will review the onboarding controls, and the RBI may inspect them.",
+            "citation": null
+          },
+          {
+            "id": "NFR-AUD-02",
+            "statement": "The system shall allow RBI to inspect onboarding controls and KYC processes during audits.",
+            "type": "non-functional",
+            "category": "audit",
+            "basis": "stated",
+            "source": "The bank's internal audit team will review the onboarding controls, and the RBI may inspect them.",
+            "citation": null
+          }
+        ]
+      }
+    ],
+    "regulations": [
+      {
+        "standard": "fatf",
+        "name": "FATF Recommendations - anti-money laundering and customer due diligence (KYC)",
+        "basis": "named",
+        "evidence": "KYC",
+        "obligations": [
+          {
+            "id": "fatf-15",
+            "ref": "R.15",
+            "text": "Assess money laundering and terrorist financing risks before launching a new product or technology.",
+            "page": null,
+            "excerpt": null
+          },
+          {
+            "id": "fatf-10-id",
+            "ref": "R.10",
+            "text": "Identify each customer and verify their identity from reliable, independent sources before opening the account.",
+            "page": null,
+            "excerpt": null
+          },
+          {
+            "id": "fatf-10-ongoing",
+            "ref": "R.10",
+            "text": "Keep customer information up to date and monitor the relationship and its transactions on an ongoing basis.",
+            "page": null,
+            "excerpt": null
+          },
+          {
+            "id": "fatf-12",
+            "ref": "R.12",
+            "text": "Check whether a customer is a politically exposed person and apply enhanced due diligence if so.",
+            "page": null,
+            "excerpt": null
+          },
+          {
+            "id": "fatf-6",
+            "ref": "R.6",
+            "text": "Screen customers against targeted financial sanctions lists.",
+            "page": null,
+            "excerpt": null
+          },
+          {
+            "id": "fatf-11",
+            "ref": "R.11",
+            "text": "Keep customer due diligence and transaction records for at least five years.",
+            "page": null,
+            "excerpt": null
+          },
+          {
+            "id": "fatf-20",
+            "ref": "R.20",
+            "text": "Report suspicious transactions promptly to the financial intelligence unit.",
+            "page": null,
+            "excerpt": null
+          }
+        ]
+      },
+      {
+        "standard": "dpdp",
+        "name": "Digital Personal Data Protection Act 2023 and Rules 2025 (India)",
+        "basis": "named",
+        "evidence": "KYC + RBI",
+        "obligations": [
+          {
+            "id": "dpdp-r3",
+            "ref": "Rule 3",
+            "text": "Give a clear notice itemising the personal data and purposes before consent, with a way to withdraw consent as easily as it was given.",
+            "page": 24,
+            "excerpt": "(b) give, in clear and plain language, a fair account of the details necessary to enable the Data Principal to give specific and informed consent for the processing of her personal data, which shall include, at the minimum, — (i) an itemised description of such personal data; and (ii) the specified purpose or purposes of, and specific description of the goods or services to be provided or uses to be enabled by, such processing; and (c) give, the particular communication link for accessing the website or app, or both, of such Data Fiduciary, and a description of other means, if any, using which such Data Principal may— (i) withdraw her consent, with the ease of doing so being comparable to that with which such consent was given; (ii) exercise her rights under the Act; and (iii) make a complaint to the Board."
+          },
+          {
+            "id": "dpdp-r6",
+            "ref": "Rule 6",
+            "text": "Protect personal data with encryption, masking or tokenisation, access control, monitoring logs and backups.",
+            "page": 26,
+            "excerpt": "(a) appropriate data security measures, such as securing of personal data through encryption, obfuscation, masking or the use of virtual tokens mapped to that personal data; (b) appropriate measures to control access to the computer resources used by such Data Fiduciary or such a Data Processor, wherever applicable; (c) visibility on the accessing of such personal data, through appropriate logs, monitoring and review, for enabling detection of unauthorised access, its investigation and remediation to prevent recurrence; (d) reasonable measures for continued processing in the event of confidentiality, integrity or availability of such personal data being compromised as a result of destruction or loss of access to personal data or otherwise, such as by way of data-backups; (e) for enabling the detection of unauthorised access, its investigation, remediation to prevent recurrence and continued processing in the event of such a compromise, retain such logs and personal data for a period of one year, unless compliance with any law for the time being in force requires otherwise;"
+          },
+          {
+            "id": "dpdp-r7",
+            "ref": "Rule 7",
+            "text": "Notify affected individuals of a personal data breach without delay and report it to the Data Protection Board within 72 hours.",
+            "page": 26,
+            "excerpt": "(c) the measures implemented and being implemented by the Data Fiduciary, if any, to mitigate risk; (d) the safety measures that she may take to protect her interests; and (e) business contact information of a person who is able to respond on behalf of the Data Fiduciary, to queries, if any, of the Data Principal. (2) On becoming aware of any personal data breach, the Data Fiduciary shall intimate to the Board, — (a) without delay, a description of the breach, including its nature, extent, timing and location of occurrence and the likely impact; (b) within seventy-two hours of becoming aware of the breach, or within such longer period as the Board may allow on a request made in writing in this behalf, — (i) updated and detailed information in respect of such description; (ii) the broad facts related to the events, circumstances and reasons leading to the breach;"
+          },
+          {
+            "id": "dpdp-r8",
+            "ref": "Rule 8",
+            "text": "Keep processing logs for at least one year, erase personal data once the purpose is served, and warn the individual 48 hours before erasure.",
+            "page": 27,
+            "excerpt": "logs of the processing (such as order confirmation, payment, and delivery events) for at least one year from the date of the transaction, even if X deletes her account. Case 2: X, a company engages a cloud service provider C as its Data Processor to host customer records. X as the Data Fiduciary, is required to ensure that the C also retains the data and associated logs for at least one year before erasure, unless any other applicable law requires a longer period. 9. Contact information of person to answer questions about processing.— Every Data Fiduciary shall prominently publish on its website or app, and mention in every response to a communication for the exercise of the rights of a Data Principal under the Act, the business contact information of the Data Protection Officer, if applicable, or a person who is able to answer on behalf of the Data Fiduciary the questions of the Data Principal about the processing of her personal data."
+          },
+          {
+            "id": "dpdp-r9-14",
+            "ref": "Rules 9 and 14",
+            "text": "Publish a contact for data protection questions and a way to exercise data rights, and resolve grievances within 90 days.",
+            "page": 30,
+            "excerpt": "(a) the details of the means using which a Data Principal may make a request for the exercise of such rights; and (b) the particulars, if any, such as the username or other identifier of such a Data Principal, which may be required to identify her under its terms of service. (2) To exercise the rights of the Data Principal under the Act, she may make a request to the Data Fiduciary to whom she has previously given consent for processing of her personal data, using the means and furnishing the particulars required by such Data Fiduciary for the exercise of such rights. (3) Every Data Fiduciary and Consent Manager shall prominently publish on its website or app, or both, as the case may be, within a reasonable period not exceeding ninety days under its grievance redressal system for responding to the grievances of Data Principals and shall, for ensuring the effectiveness of the system in responding within such period, implement appropriate technical and organisational measures."
+          }
+        ]
+      },
+      {
+        "standard": "certin",
+        "name": "CERT-In Directions 2022 (IT Act section 70B, India)",
+        "basis": "named",
+        "evidence": "app + RBI",
+        "obligations": [
+          {
+            "id": "certin-ii",
+            "ref": "Direction (ii)",
+            "text": "Report cyber incidents of the listed types to CERT-In within 6 hours of noticing them.",
+            "page": 4,
+            "excerpt": "section (7) of the section 70B of the IT Act, 2000 and other laws as applicable. This direction will become effective after 60 days from the date on which it is issued. Annexure I Types of cyber security incidents mandatorily to be reported by service providers, intermediaries, data centres, body corporate and Government organisations to CERT-In: [Refer Rule 12(1)(a) of The Information Technology (The Indian Computer Emergency Response Team and Manner of Performing Functions and Duties) Rules, 2013] i. Targeted scanning/probing of critical networks/systems ii. Compromise of critical systems/information iii. Unauthorised access of IT systems/data iv. Defacement of website or intrusion into a website and unauthorised changes such as inserting malicious code, links to external websites etc. v. Malicious code attacks such as spreading of virus/worm/Trojan/Bots/ Spyware/Ransomware/Cryptominers vi. Attack on servers such as Database, Mail and DNS and network devices such as Routers"
+          },
+          {
+            "id": "certin-iv",
+            "ref": "Direction (iv)",
+            "text": "Enable logs on all ICT systems and keep them securely for a rolling 180 days within India.",
+            "page": 3,
+            "excerpt": "(iv) All service providers, intermediaries, data centres, body corporate and Government organisations shall mandatorily enable logs of all their ICT systems and maintain them securely for a rolling period of 180 days and the same shall be maintained within the Indian jurisdiction. These should be provided to CERT-In along with reporting of any incident or when ordered / directed by CERT-In. (v) Data Centres, Virtual Private Server (VPS) providers, Cloud Service providers and Virtual Private Network Service (VPN Service) providers, shall be required to register the following accurate information which must be maintained by them for a period of 5 years or longer duration as mandated by the law after any cancellation or withdrawal of the registration as the case may be: a. Validated names of subscribers/customers hiring the services b. Period of hire including dates c. IPs allotted to / being used by the members d. Email address and IP address and time stamp used at the time of registration / on-boarding e. Purpose for hiring services f. Validated address and contact numbers g. Ownership pattern of the subscribers / customers hiring services"
+          },
+          {
+            "id": "certin-i",
+            "ref": "Direction (i)",
+            "text": "Synchronise all system clocks with the NIC or NPL NTP servers, or sources traceable to them.",
+            "page": 2,
+            "excerpt": "(i) All service providers, intermediaries, data centres, body corporate and Government organisations shall connect to the Network Time Protocol (NTP) Server of National Informatics Centre (NIC) or National Physical Laboratory (NPL) or with NTP servers traceable to these NTP servers, for synchronisation of all their ICT systems clocks. Entities having ICT infrastructure spanning multiple geographies may also use accurate and standard time source other than NPL and NIC, however it is to be ensured that their time source shall not deviate from NPL and NIC. (ii) Any service provider, intermediary, data centre, body corporate and Government organisation shall mandatorily report cyber incidents as mentioned in Annexure I to CERT-In within 6 hours of noticing such incidents or being brought to notice about such incidents. The incidents can be reported to CERT-In via email (incident@cert-in.org.in), Phone (1800- 11-4949) and Fax (1800-11-6969). The details regarding methods and formats of reporting cyber security incidents is also published on the website of CERT-In www.cert-in.org.in and will be updated from time to time."
+          },
+          {
+            "id": "certin-iii",
+            "ref": "Direction (iii)",
+            "text": "Designate a point of contact to interface with CERT-In.",
+            "page": 7,
+            "excerpt": "Annexure II Format for providing Point of Contact (PoC) information by Service providers, intermediaries, data centres, body corporate and Government organisations to CERT-In The Information relating to the Point of Contact shall be sent to CERT-In via email (info@cert-in.org.in) in the format specified below and shall be updated from time to time: Name Designation Organisation Name Office Address Email ID Mobile No. Office Phone Office Fax"
+          }
+        ]
+      },
+      {
+        "standard": "rbi_kyc",
+        "name": "RBI Know Your Customer Directions 2025 (India)",
+        "basis": "named",
+        "evidence": "video-based customer identification",
+        "obligations": [
+          {
+            "id": "rbi-kyc-20",
+            "ref": "Para 20",
+            "text": "Categorise customers as low, medium or high risk and keep the categorisation and its reasons confidential from the customer.",
+            "page": 23,
+            "excerpt": "(2) The bank may lay down broad principles for the risk-categorisation of customers. (3) The bank shall undertake risk categorisation based on parameters such as the customer’s identity, social / financial status, nature of business activity, and information about the customer’s business and its location, geographical risk covering customers as well as transactions, type of products / services offered, delivery channel used for delivery of products / services, types of transactions undertaken such as cash, cheque / monetary instruments, wire transfers, forex transactions, etc. The bank may also factor in the ability to confirm identity documents through online or other services offered by issuing authorities, while considering customer’s identity. (4) The bank shall keep the risk categorisation of a customer and the specific reasons for such categorisation confidential and shall not reveal this information to the customer to avoid tipping off. Provided that the bank collects various other non-intrusive information from different categories of customers relating to the perceived risk, and specifies the same in the KYC policy. Explanation: The bank may also use the FATF Public Statement, the reports and guidance notes on KYC / AML issued by the Indian Banks Association (IBA), and other agencies, etc., in its risk assessment."
+          },
+          {
+            "id": "rbi-kyc-27-infra",
+            "ref": "Para 27(1)",
+            "text": "For video KYC, encrypt end to end, record consent in an alteration-proof way, block connections from outside India or spoofed IPs, and geo-tag and time-stamp recordings.",
+            "page": 32,
+            "excerpt": "(ii) The bank shall ensure end-to-end encryption of data between customer device and the hosting point of the V-CIP application, as per appropriate encryption standards. The bank shall record the customer consent in an auditable and alteration-proof manner. (iii) The V-CIP infrastructure / application shall be capable of preventing connection from IP addresses outside India or from spoofed IP addresses. (iv) The video recordings shall contain the live GPS co-ordinates (geo-tagging) of the customer undertaking the V-CIP and date and time stamp. The quality of the live video in the V-CIP shall be adequate to allow identification of the customer beyond doubt. (v) The application shall have components with face liveness / spoof detection as well as face matching technology with high degree of accuracy, even though the ultimate responsibility of any customer identification rests with the bank. Explanation: Making specific facial gestures, like blinking of eyes, smiling, frowning, etc. is not mandatory for liveness check. The bank shall take due cognizance of special"
+          },
+          {
+            "id": "rbi-kyc-27-liveness",
+            "ref": "Para 27(1)(v)",
+            "text": "Build face liveness / spoof detection and accurate face matching into the video KYC application.",
+            "page": 32,
+            "excerpt": "(ii) The bank shall ensure end-to-end encryption of data between customer device and the hosting point of the V-CIP application, as per appropriate encryption standards. The bank shall record the customer consent in an auditable and alteration-proof manner. (iii) The V-CIP infrastructure / application shall be capable of preventing connection from IP addresses outside India or from spoofed IP addresses. (iv) The video recordings shall contain the live GPS co-ordinates (geo-tagging) of the customer undertaking the V-CIP and date and time stamp. The quality of the live video in the V-CIP shall be adequate to allow identification of the customer beyond doubt. (v) The application shall have components with face liveness / spoof detection as well as face matching technology with high degree of accuracy, even though the ultimate responsibility of any customer identification rests with the bank. Explanation: Making specific facial gestures, like blinking of eyes, smiling, frowning, etc. is not mandatory for liveness check. The bank shall take due cognizance of special"
+          },
+          {
+            "id": "rbi-kyc-27-test",
+            "ref": "Para 27(1)(viii)-(ix)",
+            "text": "Have CERT-In empanelled auditors run vulnerability assessment, penetration testing and a security audit, and test functions, performance and APIs; close critical gaps before going live.",
+            "page": 33,
+            "excerpt": "needs, if any, of the customer during liveness check. (vi) The bank may use appropriate artificial intelligence (AI) technology to ensure that the V-CIP is robust. (vii) Based on experience of detected / attempted / ‘near-miss’ cases of forged identity, the bank shall regularly update the technology infrastructure including application software as well as workflows. The bank shall report any detected case of forged identity through V-CIP as a cyber event under extant regulatory guidelines. (viii) The bank shall subject the V-CIP infrastructure to necessary tests such as Vulnerability Assessment, Penetration testing and a Security Audit to ensure its robustness and end-to-end encryption capabilities. The bank shall mitigate any critical gap reported under this process before rolling out its implementation. The empanelled auditors of Indian Computer Emergency Response Team (CERT-In) shall conduct such tests. Such tests shall also be carried out periodically in conformance to internal / regulatory guidelines."
+          },
+          {
+            "id": "rbi-kyc-27-procedure",
+            "ref": "Para 27(2)",
+            "text": "Run video KYC only with specially trained officials following a written SOP; vary the questions, reject the case on any prompting, and capture the PAN and a photograph.",
+            "page": 28,
+            "excerpt": "(1) The bank shall develop an application for digital KYC process and make it available at customer touch points for undertaking KYC of its customers and shall undertake the KYC process only through this authenticated application. (2) The bank shall control the access to the Application and shall ensure that unauthorised persons do not use it. Authorised officials shall access the Application only through a login-id and password or a Live OTP or Time OTP controlled mechanism that the bank provides. (3) The customer, for the purpose of KYC, shall visit the location of the authorised official of the bank or vice-versa. The original OVD shall be in possession of the customer. (4) The bank shall ensure that the authorised officer takes a Live photograph of the customer and embeds the same photograph in the Customer Application Form (CAF). Further, the bank’s system Application shall put a watermark in readable form, containing the CAF number, GPS coordinates, authorised official’s name, unique employee code (which the bank assigns) and date (DD:MM:YYYY) and time stamp (HH:MM:SS), on the captured live photograph of the customer."
+          },
+          {
+            "id": "rbi-kyc-27-audit",
+            "ref": "Para 27(2)(xv)",
+            "text": "Make accounts opened through video KYC operational only after a concurrent audit.",
+            "page": 35,
+            "excerpt": "(xv) The bank shall make all accounts opened through V-CIP operational only after subjecting them to concurrent audit to ensure the integrity of process and its acceptability of its outcome. (xvi) The bank shall appropriately comply with all matters not specified under the paragraph but required under other statutes such as the Information Technology (IT) Act. (3) V-CIP Records and Data Management (i) The bank shall store the entire data and recordings of V-CIP in a system / systems located in India. The bank shall ensure that the video recording is stored in a safe and secure manner and bears the date and time stamp that affords easy historical data search. The extant instructions on record management, as stipulated in this direction, shall also apply to V-CIP. (ii) The bank shall preserve the activity log along with the credentials of the official performing the V-CIP."
+          },
+          {
+            "id": "rbi-kyc-27-records",
+            "ref": "Para 27(3)",
+            "text": "Store all video KYC data and recordings on systems in India, time-stamped and searchable, with the activity log and the official's credentials.",
+            "page": 35,
+            "excerpt": "(xv) The bank shall make all accounts opened through V-CIP operational only after subjecting them to concurrent audit to ensure the integrity of process and its acceptability of its outcome. (xvi) The bank shall appropriately comply with all matters not specified under the paragraph but required under other statutes such as the Information Technology (IT) Act. (3) V-CIP Records and Data Management (i) The bank shall store the entire data and recordings of V-CIP in a system / systems located in India. The bank shall ensure that the video recording is stored in a safe and secure manner and bears the date and time stamp that affords easy historical data search. The extant instructions on record management, as stipulated in this direction, shall also apply to V-CIP. (ii) The bank shall preserve the activity log along with the credentials of the official performing the V-CIP."
+          },
+          {
+            "id": "rbi-kyc-50",
+            "ref": "Para 50",
+            "text": "Keep transaction records for at least five years, and identification records for five years after the relationship ends, retrievable on request.",
+            "page": 53,
+            "excerpt": "Chapter VII – Record Management 50. The bank shall take the following steps regarding maintenance, preservation and reporting of customer information, with reference to provisions of PML Act and Rules. The bank shall, (1) maintain all necessary records of transactions between the bank and the customer, both domestic and international, for at least five years from the date of transaction; (1A) 4maintain all necessary information with respect to the amounts and accounts put on debit hold, including the date of placing debit hold (on own accord or on directions of an authority competent by law to do so) and its release, reasons for the same, details of correspondence with account holder and the jurisdictional police authority for a period of five years from the date of placing the debit hold; (2) preserve the records pertaining to the identification of the customers and their addresses, obtained while opening the account and during the course of business relationship, for at least five years after the business relationship has ended;"
+          }
+        ]
+      },
+      {
+        "standard": "rbi_it_governance",
+        "name": "RBI IT Governance, Risk, Controls and Assurance Directions 2023 (India; marked withdrawn)",
+        "basis": "named",
+        "evidence": "Bank + app + RBI",
+        "obligations": [
+          {
+            "id": "rbi-itg-12",
+            "ref": "Para 12",
+            "text": "Follow a formally defined project management approach with stakeholder participation, and put new applications through product approval and quality assurance.",
+            "page": 12,
+            "excerpt": "12. Project Management (a) REs shall follow a consistent and formally defined project management approach for IT projects undertaken by them. The project management approach shall, inter alia, enable appropriate stakeholder participation for effective monitoring and management of project risks and progress. (b) While adopting new or emerging technologies, tools, or revamping their existing ones in the technology stack, REs shall follow a standard enterprise architecture planning methodology or framework. (c) Adoption of new or emerging technologies shall be commensurate with the risk appetite and align with overall Business/ IT strategy of the RE. It should facilitate optimal creation, use, or sharing of information by a business in a secure and resilient way. (d) REs shall maintain enterprise data dictionary to enable the sharing of data among applications and information systems and promote a common understanding of data. (e) REs shall ensure that maintenance and necessary support of software applications is provided by the software vendors and the same is enforced through formal agreement."
+          },
+          {
+            "id": "rbi-itg-12g",
+            "ref": "Para 12(g)",
+            "text": "Obtain the vendor's written confirmation that the application is free of known vulnerabilities and malware, again after every material change.",
+            "page": 12,
+            "excerpt": "(f) REs shall obtain the source codes for all critical applications from their vendors. Where obtaining of the source code is not possible, REs shall put in place a source code escrow arrangement or other arrangements to adequately mitigate the risk of default by the vendor. REs shall ensure that all product updates and programme fixes are included in the source code escrow arrangement. (g) REs shall obtain a certificate or a written confirmation from the application developer or vendor stating that the application is free of known vulnerabilities, malware, and any covert channels in the code. Such a certificate or a written confirmation shall also be obtained whenever material changes to the code, including upgrades, occur. (h) Any new IT application proposed to be introduced as a business product13 shall be subjected to product approval and quality assurance process."
+          },
+          {
+            "id": "rbi-itg-13",
+            "ref": "Para 13",
+            "text": "Assess, approve, document and review every change and patch, with a way to recover from failed changes.",
+            "page": 13,
+            "excerpt": "13. Change and Patch Management REs shall put in place documented policy(ies) and procedures for change and patch management to ensure the following: (a) the business impact of implementing patches/ changes (or not implementing a particular patch/ change request) are assessed; (b) the patches/ changes are applied/ implemented and reviewed in a secure and timely manner with necessary approvals; (c) any changes to an application system or data are justified by genuine business needs and approvals supported by documentation and subjected to a robust change management process; and (d) mechanism is established to recover from failed changes/ patch deployment or unexpected results. 14. Data Migration Controls REs shall have a documented data migration policy specifying a systematic process for data migration, ensuring data integrity, completeness and consistency. The policy shall, inter alia, contain provisions pertaining to signoffs from business users and application owners at each stage of migration, maintenance of audit trails, etc. 13 IT Applications that enable functioning of a business process whether offered as a product to the customers (including potential customers), third parties (or) internal employees could be broadly referred as business product."
+          },
+          {
+            "id": "rbi-itg-15",
+            "ref": "Para 15",
+            "text": "Keep audit trails detailed enough for audit and forensics, and monitor them regularly.",
+            "page": 14,
+            "excerpt": "15. Audit Trails (a) Every IT application which can access or affect critical or sensitive information, shall have necessary audit and system logging capability and should provide audit trails. (b) The audit trails shall satisfy a RE’s business requirements apart from regulatory and legal requirements. The audit trails must be detailed enough to facilitate the conduct of audit, serve as forensic evidence when required and assist in dispute resolution, including for non-repudiation purposes. (c) REs shall put in place a system for regularly monitoring the audit trails and system logs to detect any unauthorised activity. 16. Cryptographic controls The key length, algorithms, cipher suites and applicable protocols used in transmission channels, processing of data and authentication purpose shall be strong. REs shall adopt internationally accepted and published standards that are not deprecated/ demonstrated to be insecure/ vulnerable and the configurations involved in implementing such controls shall be compliant with extant laws and regulatory instructions."
+          },
+          {
+            "id": "rbi-itg-29",
+            "ref": "Para 29",
+            "text": "Define RTO and RPO, run DR drills at least half-yearly for critical systems, and test backup restores.",
+            "page": 21,
+            "excerpt": "(d) REs shall regularly test the BCP / DR under different scenarios for possible types of contingencies, to ensure that it is up-to-date and effective. (e) REs shall backup data and periodically restore such backed-up data to check its usability. The integrity of such backup data shall be preserved along with securing it from unauthorised access. (f) REs shall ensure that DR architecture and procedures are robust, meeting the defined RTO and RPO for any recovery operations in case of contingency. (g) REs should prioritise achieving minimal RTO (as approved by the RE’s ITSC) and a near zero RPO for critical information systems. (h) In a scenario of non-zero RPO, REs shall have a documented methodology for reconciliation of data while resuming operations from the alternate location. (i) REs shall ensure that the configurations of information systems and deployed security patches at the DC and DR19 are identical."
+          },
+          {
+            "id": "rbi-itg-30",
+            "ref": "Para 30",
+            "text": "Cover the system in the information systems audit overseen by the board's audit committee.",
+            "page": 21,
+            "excerpt": "(j) REs shall ensure BCP and DR capabilities in critical interconnected systems and networks including those of vendors and partners. REs shall ensure demonstrated readiness through collaborative and co-ordinated resilience testing that meets the REs’ RTO. 19 DC refers to primary data centre for a given application/ system and DR its Disaster Recovery site/ alternate site. Chapter VI - Information Systems (IS) Audit 30. Information Systems (IS) Audit (a) The Audit Committee of the Board (ACB) shall be responsible for exercising oversight of IS Audit of the RE. (b) REs shall put in place an IS Audit Policy. The IS Audit Policy shall contain a clear description of its mandate, purpose, authority, audit universe, periodicity of audit etc. The policy shall be approved by the ACB and reviewed at least annually. (c) The ACB shall review critical issues highlighted related to IT / information security / cyber security and provide appropriate direction and guidance to the RE’s Management."
+          }
+        ]
+      }
+    ],
+    "clauses": [
+      {
+        "id": "P1",
+        "document": "Reserve Bank of India (Commercial Banks - Know Your Customer) Directions, 2025",
+        "page": 28,
+        "text": "of Aadhaar number is not required as per proviso (i) above. Explanation 2: A bank official, business correspondent, or business facilitator can perform biometric-based e-KYC authentication, including Aadhaar Face Authentication. Explanation 3: The bank shall ensure that the use of Aadhaar, proof of possession of Aadhaar etc., is in accordance with the Aadhaar (Targeted Delivery of Financial and Other Subsidies Benefits and Services) Act, 2016 and the regulations made thereunder. Explanation 4: Aadhaar number is not mandatory for purposes of KYC. However, in case the customer is desirous of receiving any benefit or subsidy under any scheme notified under section 7 of the Aadhaar (Targeted Delivery of Financial and Other subsidies, Benefits and Services) Act, 2016 (18 of 2016), the customer shall provide the Aadhaar number to the bank. In other cases, customers may provide the Aadhaar number voluntarily. 24. Digital KYC Process:"
+      },
+      {
+        "id": "P2",
+        "document": "Reserve Bank of India (Commercial Banks - Know Your Customer) Directions, 2025",
+        "page": 34,
+        "text": "(vi) The authorised official of the bank performing the V-CIP shall record audio and video as well as capture a photograph of the customer present for identification and obtain the identification information using any one of the following: (a) OTP based Aadhaar e-KYC authentication. (b) Offline Verification of Aadhaar for identification. (c) KYC records downloaded from CKYCR, in accordance with paragraph 65, using the KYC identifier provided by the customer. (d) Equivalent e-document of Officially Valid Documents (OVDs) including documents issued through DigiLocker. (vii) The bank shall ensure to redact or blackout the Aadhaar number in terms of paragraph 23. (viii) In case of offline verification of Aadhaar using XML file or Aadhaar Secure QR Code, the bank shall ensure that the XML file or QR code generation date is not older than three working days from the date of carrying out V-CIP."
+      },
+      {
+        "id": "P3",
+        "document": "Reserve Bank of India (Commercial Banks - Know Your Customer) Directions, 2025",
+        "page": 29,
+        "text": "(5) The bank’s Application shall have the feature that it captures only a live photograph of the customer and does not capture any printed or video graphed photograph. The background behind the customer while capturing live photograph shall be of white colour and no other person shall come into the frame while capturing the live photograph of the customer. (6) Similarly, the authorised officer shall capture the live photograph of the original OVD or proof of possession of Aadhaar where offline verification cannot be carried out (placed horizontally), vertically from above and shall apply a water-marking in readable form as mentioned above. The authorised officer shall ensure there is no skew or tilt in the mobile device while capturing the live photograph of the original documents. (7) The authorised officer shall capture the live photograph of the customer and his original documents in proper light so that they are clearly readable and identifiable."
+      },
+      {
+        "id": "P4",
+        "document": "Reserve Bank of India (Commercial Banks - Know Your Customer) Directions, 2025",
+        "page": 32,
+        "text": "(ii) The bank shall ensure end-to-end encryption of data between customer device and the hosting point of the V-CIP application, as per appropriate encryption standards. The bank shall record the customer consent in an auditable and alteration-proof manner. (iii) The V-CIP infrastructure / application shall be capable of preventing connection from IP addresses outside India or from spoofed IP addresses. (iv) The video recordings shall contain the live GPS co-ordinates (geo-tagging) of the customer undertaking the V-CIP and date and time stamp. The quality of the live video in the V-CIP shall be adequate to allow identification of the customer beyond doubt. (v) The application shall have components with face liveness / spoof detection as well as face matching technology with high degree of accuracy, even though the ultimate responsibility of any customer identification rests with the bank. Explanation: Making specific facial gestures, like blinking of eyes, smiling, frowning, etc. is not mandatory for liveness check. The bank shall take due cognizance of special"
+      },
+      {
+        "id": "P5",
+        "document": "Reserve Bank of India (Commercial Banks - Know Your Customer) Directions, 2025",
+        "page": 31,
+        "text": "(6) The bank shall not allow accounts, both deposit and borrowal, opened using OTP based e-KYC to operate for more than one year unless it carries out identification as per paragraph 23 or as per paragraphs 26 and 27 (V-CIP). If the bank uses Aadhaar details under paragraphs 26 and 27, it shall follow the process in its entirety, including fresh Aadhaar OTP authentication. (7) If the bank does not complete the CDD procedure as mentioned above within a year; (a) in respect of deposit accounts, the bank shall close the same immediately, and (b) in respect of borrowal accounts, the bank shall allow no further debits. (8) The bank shall obtain declaration from the customer to the effect that no other account has been opened nor will be opened using OTP based KYC in non-face-to- face mode with any other RE. Further, while uploading KYC information to CKYCR, bank shall clearly indicate that such accounts are opened using OTP based e-KYC and other REs shall not open accounts based on the KYC information of accounts opened with OTP based e-KYC procedure in non-face- to-face mode."
+      },
+      {
+        "id": "P6",
+        "document": "Reserve Bank of India (Commercial Banks - Know Your Customer) Directions, 2025",
+        "page": 28,
+        "text": "(1) The bank shall develop an application for digital KYC process and make it available at customer touch points for undertaking KYC of its customers and shall undertake the KYC process only through this authenticated application. (2) The bank shall control the access to the Application and shall ensure that unauthorised persons do not use it. Authorised officials shall access the Application only through a login-id and password or a Live OTP or Time OTP controlled mechanism that the bank provides. (3) The customer, for the purpose of KYC, shall visit the location of the authorised official of the bank or vice-versa. The original OVD shall be in possession of the customer. (4) The bank shall ensure that the authorised officer takes a Live photograph of the customer and embeds the same photograph in the Customer Application Form (CAF). Further, the bank’s system Application shall put a watermark in readable form, containing the CAF number, GPS coordinates, authorised official’s name, unique employee code (which the bank assigns) and date (DD:MM:YYYY) and time stamp (HH:MM:SS), on the captured live photograph of the customer."
+      }
+    ],
+    "sdlc": {
+      "primary": "Spiral",
+      "hybrid": [],
+      "ranking": [
+        "Spiral",
+        "DevSecOps",
+        "V-Model",
+        "Agile",
+        "Waterfall"
+      ],
+      "acceptable": [
+        "Spiral",
+        "DevSecOps",
+        "V-Model"
+      ],
+      "provisional": true,
+      "withheld": true
+    },
+    "traceability": [
+      {
+        "id": "FR-01",
+        "requirement": "The system shall enable new savings account customers to complete KYC entirely through the mobile app.",
+        "basis": "stated",
+        "source": "Sahyadri Bank, a private sector bank regulated by the RBI, wants new savings account customers to complete KYC entirely through its mobile app using video-based customer identification.",
+        "regulation": "",
+        "verification": "Test"
+      },
+      {
+        "id": "FR-02",
+        "requirement": "The system shall allow customers to provide consent for e-KYC and data collection during the account opening process.",
+        "basis": "stated",
+        "source": "In the new flow the customer gives consent, completes Aadhaar OTP-based e-KYC, uploads their PAN, and joins a live video call",
+        "regulation": "",
+        "verification": "Test"
+      },
+      {
+        "id": "FR-03",
+        "requirement": "The system shall support Aadhaar OTP-based e-KYC for identity verification.",
+        "basis": "stated",
+        "source": "In the new flow the customer gives consent, completes Aadhaar OTP-based e-KYC, uploads their PAN, and joins a live video call",
+        "regulation": "",
+        "verification": "Test"
+      },
+      {
+        "id": "FR-04",
+        "requirement": "The system shall allow customers to upload their PAN card during the account opening process.",
+        "basis": "stated",
+        "source": "In the new flow the customer gives consent, completes Aadhaar OTP-based e-KYC, uploads their PAN, and joins a live video call",
+        "regulation": "",
+        "verification": "Test"
+      },
+      {
+        "id": "FR-05",
+        "requirement": "The system shall initiate a live video call with a trained bank official for face matching and verification.",
+        "basis": "stated",
+        "source": "In the new flow the customer gives consent, completes Aadhaar OTP-based e-KYC, uploads their PAN, and joins a live video call with a trained bank official who matches their face against the Aadhaar photo and asks a few questions.",
+        "regulation": "",
+        "verification": "Test"
+      },
+      {
+        "id": "FR-06",
+        "requirement": "The system shall match the customer's face against the Aadhaar photo during the video call.",
+        "basis": "stated",
+        "source": "In the new flow the customer gives consent, completes Aadhaar OTP-based e-KYC, uploads their PAN, and joins a live video call with a trained bank official who matches their face against the Aadhaar photo and asks a few questions.",
+        "regulation": "",
+        "verification": "Test"
+      },
+      {
+        "id": "FR-07",
+        "requirement": "The system shall ask the customer a few questions during the video call for verification.",
+        "basis": "stated",
+        "source": "In the new flow the customer gives consent, completes Aadhaar OTP-based e-KYC, uploads their PAN, and joins a live video call with a trained bank official who matches their face against the Aadhaar photo and asks a few questions.",
+        "regulation": "",
+        "verification": "Test"
+      },
+      {
+        "id": "NFR-SEC-01",
+        "requirement": "The system shall block video calls from IP addresses outside India.",
+        "basis": "stated",
+        "source": "Calls from IP addresses outside India must be blocked",
+        "regulation": "",
+        "verification": "Test, inspection"
+      },
+      {
+        "id": "NFR-SEC-02",
+        "requirement": "The system shall store video recordings and all customer data on servers located in India.",
+        "basis": "stated",
+        "source": "the video recordings and all customer data must be stored on servers in India.",
+        "regulation": "RBI Know Your Customer Directions 2025 (India) Para 27(3)",
+        "verification": "Test, inspection"
+      },
+      {
+        "id": "NFR-SEC-03",
+        "requirement": "The system shall encrypt all customer data, including Aadhaar numbers, PAN, photographs, and video recordings.",
+        "basis": "stated",
+        "source": "the security team insists on encryption, access logs and a quick response to any breach",
+        "regulation": "",
+        "verification": "Test, inspection"
+      },
+      {
+        "id": "NFR-SEC-04",
+        "requirement": "The system shall maintain access logs for all user and system interactions with customer data.",
+        "basis": "stated",
+        "source": "the security team insists on encryption, access logs and a quick response to any breach",
+        "regulation": "",
+        "verification": "Test, inspection"
+      },
+      {
+        "id": "NFR-SEC-05",
+        "requirement": "The system shall enable a quick response to any data breach or security incident.",
+        "basis": "stated",
+        "source": "the security team insists on encryption, access logs and a quick response to any breach",
+        "regulation": "",
+        "verification": "Test, inspection"
+      },
+      {
+        "id": "FR-08",
+        "requirement": "The system shall not activate or operate a new savings account until the video check and a review of the recording are complete.",
+        "basis": "stated",
+        "source": "Accounts must not become operational until the video check and a review of the recording are complete.",
+        "regulation": "",
+        "verification": "Test"
+      },
+      {
+        "id": "NFR-DATA-01",
+        "requirement": "The system shall store Aadhaar numbers, PAN, photographs, and video recordings for the duration of the account lifecycle.",
+        "basis": "stated",
+        "source": "The app will hold Aadhaar numbers, PAN, photographs and video recordings",
+        "regulation": "",
+        "verification": "Analysis"
+      },
+      {
+        "id": "NFR-INT-01",
+        "requirement": "The system shall integrate with the video-KYC vendor platform to enable live video calls.",
+        "basis": "stated",
+        "source": "the digital team, and the video-KYC vendor platform has not been integrated with the core banking system before",
+        "regulation": "",
+        "verification": "Test"
+      },
+      {
+        "id": "NFR-INT-02",
+        "requirement": "The system shall integrate with the core banking system to enable account activation after KYC verification.",
+        "basis": "stated",
+        "source": "the digital team, and the video-KYC vendor platform has not been integrated with the core banking system before",
+        "regulation": "",
+        "verification": "Test"
+      },
+      {
+        "id": "NFR-PERF-01",
+        "requirement": "The system shall support up to 5,000 account applications per day.",
+        "basis": "stated",
+        "source": "The bank expects about 5,000 applications a day",
+        "regulation": "",
+        "verification": "Test (load)"
+      },
+      {
+        "id": "NFR-AVL-01",
+        "requirement": "The system shall be available for use with at least 99.9% uptime during peak hours leading up to Diwali.",
+        "basis": "inferred",
+        "source": "",
+        "regulation": "",
+        "verification": "Test (failover)"
+      },
+      {
+        "id": "NFR-AUD-01",
+        "requirement": "The system shall allow internal audit team to review onboarding controls and KYC processes.",
+        "basis": "stated",
+        "source": "The bank's internal audit team will review the onboarding controls, and the RBI may inspect them.",
+        "regulation": "",
+        "verification": "Inspection"
+      },
+      {
+        "id": "NFR-AUD-02",
+        "requirement": "The system shall allow RBI to inspect onboarding controls and KYC processes during audits.",
+        "basis": "stated",
+        "source": "The bank's internal audit team will review the onboarding controls, and the RBI may inspect them.",
+        "regulation": "",
+        "verification": "Inspection"
+      },
+      {
+        "id": "NFR-PRI-01",
+        "requirement": "The system shall ensure personal data is collected only with explicit customer consent.",
+        "basis": "stated",
+        "source": "In the new flow the customer gives consent, completes Aadhaar OTP-based e-KYC, uploads their PAN, and joins a live video call",
+        "regulation": "",
+        "verification": "Inspection"
+      },
+      {
+        "id": "NFR-REG-01",
+        "requirement": "The system shall verify the identity of each new savings account customer using reliable, independent sources before account activation, including Aadhaar OTP-based e-KYC and face matching against the Aadhaar photo during the video call.",
+        "basis": "regulation",
+        "source": "",
+        "regulation": "FATF Recommendations R.10",
+        "verification": "Inspection"
+      },
+      {
+        "id": "NFR-REG-02",
+        "requirement": "The system shall assess money laundering and terrorist financing risks before launching the video-KYC feature and for each new customer, applying appropriate risk-based measures.",
+        "basis": "regulation",
+        "source": "",
+        "regulation": "FATF Recommendations R.15",
+        "verification": "Inspection"
+      },
+      {
+        "id": "NFR-REG-03",
+        "requirement": "The system shall check whether the customer is a politically exposed person (PEP) and apply enhanced due diligence if such a status is confirmed.",
+        "basis": "regulation",
+        "source": "",
+        "regulation": "FATF Recommendations R.12",
+        "verification": "Inspection"
+      },
+      {
+        "id": "NFR-REG-04",
+        "requirement": "The system shall screen customers against targeted financial sanctions lists prior to account activation.",
+        "basis": "regulation",
+        "source": "",
+        "regulation": "FATF Recommendations R.6",
+        "verification": "Inspection"
+      },
+      {
+        "id": "NFR-REG-05",
+        "requirement": "The system shall retain customer due diligence and transaction records for at least five years after the relationship ends, and ensure these records are retrievable on request.",
+        "basis": "regulation",
+        "source": "",
+        "regulation": "FATF Recommendations R.11",
+        "verification": "Inspection"
+      },
+      {
+        "id": "NFR-SEC-06",
+        "requirement": "The system shall implement face liveness detection to prevent spoofing and ensure the customer is a live person during the video call.",
+        "basis": "regulation",
+        "source": "",
+        "regulation": "RBI Know Your Customer Directions 2025 (India) Para 27(1)(v)",
+        "verification": "Test, inspection"
+      },
+      {
+        "id": "NFR-REG-06",
+        "requirement": "The system shall make new savings accounts operational only after a concurrent audit of the video KYC process and recording has been completed by a designated official or auditor.",
+        "basis": "regulation",
+        "source": "",
+        "regulation": "RBI Know Your Customer Directions 2025 (India) Para 27(2)(xv)",
+        "verification": "Inspection"
+      },
+      {
+        "id": "NFR-PRI-02",
+        "requirement": "The system shall provide a clear notice to the customer itemising the personal data being collected and the purposes for which it will be used, and provide a mechanism to withdraw consent as easily as it was given.",
+        "basis": "regulation",
+        "source": "",
+        "regulation": "Digital Personal Data Protection Act 2023 and Rules 2025 (India) Rule 3",
+        "verification": "Inspection"
+      }
+    ],
+    "open_questions": [
+      {
+        "question": "What is the definition of 'complete KYC entirely through the mobile app' in terms of customer journey and data handling?",
+        "options": [
+          "The customer completes all identity verification, document uploads, and video verification via the app without any branch visit or physical interaction.",
+          "The customer uploads documents and initiates e-KYC via the app, but must visit a branch for final verification and account activation.",
+          "The customer completes document uploads via the app, but the video call is conducted in person at a branch with a bank officer.",
+          "The mobile app only serves as a portal to initiate the process, with the actual KYC completed at a branch with staff assistance."
+        ]
+      },
+      {
+        "question": "How should money laundering and terrorist financing risks be assessed for new customers during the video-KYC process?",
+        "options": [
+          "Automated risk scoring based on PAN, Aadhaar, and transaction patterns with real-time risk alerts to auditors.",
+          "Manual review by a compliance officer for every customer, with no automated tools or thresholds.",
+          "Risk assessment based solely on the customer's address and PAN, with no additional data or behavioral analysis.",
+          "Risk assessment is performed only for high-risk customers identified by a predefined list, with no automated screening."
+        ]
+      },
+      {
+        "question": "How will the system determine if a customer is a politically exposed person (PEP), and what action will be taken if confirmed?",
+        "options": [
+          "The system checks against a real-time PEP database maintained by the RBI and applies enhanced due diligence automatically.",
+          "The system flags PEP status for manual review by a compliance officer, with no automated screening or database.",
+          "PEP status is not checked, and the system assumes all customers are non-PEPs by default.",
+          "PEP status is verified only if the customer provides a self-declared statement, with no automated checks."
+        ]
+      },
+      {
+        "question": "Who is responsible for conducting the concurrent audit of the video KYC process and recording before account activation?",
+        "options": [
+          "A designated internal auditor from the bank's internal audit team performs the audit independently.",
+          "The RBI conducts the audit as part of its regulatory inspection process.",
+          "The video-KYC vendor platform performs the audit and provides a report to the bank.",
+          "The system automatically triggers a review by a bank officer without requiring a separate audit step."
+        ]
+      },
+      {
+        "question": "How often are requirements expected to change during and after development?",
+        "options": []
+      },
+      {
+        "question": "How frequently must working software reach production?",
+        "options": []
+      },
+      {
+        "question": "What happens if the software fails?",
+        "options": []
+      },
+      {
+        "question": "How much does the project depend on existing legacy systems?",
+        "options": []
+      }
+    ]
+  },
+  "factors": {
+    "requirement_stability": {
+      "level": "not_stated",
+      "evidence": null
+    },
+    "change_frequency": {
+      "level": "not_stated",
+      "evidence": null
+    },
+    "continuous_delivery_need": {
+      "level": "not_stated",
+      "evidence": null
+    },
+    "regulatory_criticality": {
+      "level": "high",
+      "evidence": "The bank's internal audit team will review the onboarding controls, and the RBI may inspect them"
+    },
+    "security_risk": {
+      "level": "high",
+      "evidence": "The app will hold Aadhaar numbers, PAN, photographs and video recordings, so the security team insists on encryption, access logs and a quick response to any breach"
+    },
+    "failure_consequence": {
+      "level": "not_stated",
+      "evidence": null
+    },
+    "verification_rigor": {
+      "level": "not_stated",
+      "evidence": null
+    },
+    "test_doc_rigor": {
+      "level": "not_stated",
+      "evidence": null
+    },
+    "complexity": {
+      "level": "not_stated",
+      "evidence": null
+    },
+    "size": {
+      "level": "not_stated",
+      "evidence": null
+    },
+    "technical_novelty": {
+      "level": "high",
+      "evidence": "The account opening journey is new to the digital team, and the video-KYC vendor platform has not been integrated with the core banking system before"
+    },
+    "legacy_dependence": {
+      "level": "not_stated",
+      "evidence": null
+    },
+    "stakeholder_availability": {
+      "level": "not_stated",
+      "evidence": null
+    },
+    "scope_rigidity": {
+      "level": "not_stated",
+      "evidence": null
+    }
+  },
+  "questions": [
+    {
+      "factor": "change_frequency",
+      "could_lead_to": [
+        "DevSecOps",
+        "Spiral",
+        "V-Model"
+      ],
+      "question": "How often are requirements expected to change during and after development?\n   low = Changes are rare (e.g., yearly or only through formal change control).\n   medium = Occasional planned change (e.g., quarterly adjustments).\n   high = Features are expected to change continuously based on feedback or competition."
+    },
+    {
+      "factor": "continuous_delivery_need",
+      "could_lead_to": [
+        "DevSecOps",
+        "Spiral"
+      ],
+      "question": "How frequently must working software reach production?\n   low = One or very few releases (about yearly or rarer); deployment is costly or physically constrained.\n   medium = Every two weeks to quarterly, inclusive - fortnightly, monthly and quarterly all count as medium.\n   high = Weekly or more often, or on demand."
+    },
+    {
+      "factor": "failure_consequence",
+      "could_lead_to": [
+        "DevSecOps",
+        "Spiral"
+      ],
+      "question": "What happens if the software fails?\n   low = Minor inconvenience.\n   medium = Noticeable business disruption or recoverable financial loss.\n   high = Safety harm, large financial loss, or serious legal/reputational damage."
+    },
+    {
+      "factor": "legacy_dependence",
+      "could_lead_to": [
+        "DevSecOps",
+        "Spiral"
+      ],
+      "question": "How much does the project depend on existing legacy systems?\n   low = Greenfield with no legacy constraints.\n   medium = Some integration with existing systems.\n   high = Must integrate with, replace, or migrate data from legacy systems."
+    }
+  ],
+  "answers": {},
+  "recommendation": {
+    "ranking": [
+      "Spiral",
+      "DevSecOps",
+      "V-Model",
+      "Agile",
+      "Waterfall"
+    ],
+    "primary": "Spiral",
+    "acceptable_set": [
+      "Spiral",
+      "DevSecOps",
+      "V-Model"
+    ],
+    "hybrid": [],
+    "low_evidence": true,
+    "stated": 3,
+    "stated_coverage": 0.2143,
+    "primary_withheld": true,
+    "withheld_reasons": [
+      "TIE_WITHHELD"
+    ],
+    "supported_models": [
+      "Spiral",
+      "DevSecOps"
+    ]
+  },
+  "plan": null,
+  "justification": null,
+  "report": null,
+  "repairs": 0,
+  "insufficient_evidence": false,
+  "compliance": {
+    "standards": [
+      {
+        "standard": "fatf",
+        "name": "FATF Recommendations - anti-money laundering and customer due diligence (KYC)",
+        "how": "named",
+        "evidence": "KYC",
+        "score": 1.0
+      },
+      {
+        "standard": "dpdp",
+        "name": "Digital Personal Data Protection Act 2023 and Rules 2025 (India)",
+        "how": "named",
+        "evidence": "KYC + RBI",
+        "score": 1.0
+      },
+      {
+        "standard": "certin",
+        "name": "CERT-In Directions 2022 (IT Act section 70B, India)",
+        "how": "named",
+        "evidence": "app + RBI",
+        "score": 1.0
+      },
+      {
+        "standard": "rbi_kyc",
+        "name": "RBI Know Your Customer Directions 2025 (India)",
+        "how": "named",
+        "evidence": "video-based customer identification",
+        "score": 1.0
+      },
+      {
+        "standard": "rbi_it_governance",
+        "name": "RBI IT Governance, Risk, Controls and Assurance Directions 2023 (India; marked withdrawn)",
+        "how": "named",
+        "evidence": "Bank + app + RBI",
+        "score": 1.0
+      }
+    ],
+    "obligations": [
+      {
+        "id": "fatf-15",
+        "standard": "fatf",
+        "standard_name": "FATF Recommendations - anti-money laundering and customer due diligence (KYC)",
+        "ref": "R.15",
+        "phase": "planning",
+        "description": "Assess money laundering and terrorist financing risks before launching a new product or technology.",
+        "covered_by": null,
+        "clause": null
+      },
+      {
+        "id": "fatf-10-id",
+        "standard": "fatf",
+        "standard_name": "FATF Recommendations - anti-money laundering and customer due diligence (KYC)",
+        "ref": "R.10",
+        "phase": "design",
+        "description": "Identify each customer and verify their identity from reliable, independent sources before opening the account.",
+        "covered_by": null,
+        "clause": null
+      },
+      {
+        "id": "fatf-10-ongoing",
+        "standard": "fatf",
+        "standard_name": "FATF Recommendations - anti-money laundering and customer due diligence (KYC)",
+        "ref": "R.10",
+        "phase": "operations",
+        "description": "Keep customer information up to date and monitor the relationship and its transactions on an ongoing basis.",
+        "covered_by": null,
+        "clause": null
+      },
+      {
+        "id": "fatf-12",
+        "standard": "fatf",
+        "standard_name": "FATF Recommendations - anti-money laundering and customer due diligence (KYC)",
+        "ref": "R.12",
+        "phase": "design",
+        "description": "Check whether a customer is a politically exposed person and apply enhanced due diligence if so.",
+        "covered_by": null,
+        "clause": null
+      },
+      {
+        "id": "fatf-6",
+        "standard": "fatf",
+        "standard_name": "FATF Recommendations - anti-money laundering and customer due diligence (KYC)",
+        "ref": "R.6",
+        "phase": "design",
+        "description": "Screen customers against targeted financial sanctions lists.",
+        "covered_by": null,
+        "clause": null
+      },
+      {
+        "id": "fatf-11",
+        "standard": "fatf",
+        "standard_name": "FATF Recommendations - anti-money laundering and customer due diligence (KYC)",
+        "ref": "R.11",
+        "phase": "operations",
+        "description": "Keep customer due diligence and transaction records for at least five years.",
+        "covered_by": null,
+        "clause": null
+      },
+      {
+        "id": "fatf-20",
+        "standard": "fatf",
+        "standard_name": "FATF Recommendations - anti-money laundering and customer due diligence (KYC)",
+        "ref": "R.20",
+        "phase": "operations",
+        "description": "Report suspicious transactions promptly to the financial intelligence unit.",
+        "covered_by": null,
+        "clause": null
+      },
+      {
+        "id": "dpdp-r3",
+        "standard": "dpdp",
+        "standard_name": "Digital Personal Data Protection Act 2023 and Rules 2025 (India)",
+        "ref": "Rule 3",
+        "phase": "requirements",
+        "description": "Give a clear notice itemising the personal data and purposes before consent, with a way to withdraw consent as easily as it was given.",
+        "covered_by": null,
+        "clause": {
+          "passage": "dpdp_rules_2025#4",
+          "document": "Digital Personal Data Protection Rules, 2025 (G.S.R. 846(E))",
+          "page": 24,
+          "text": "(b) give, in clear and plain language, a fair account of the details necessary to enable the Data Principal to give specific and informed consent for the processing of her personal data, which shall include, at the minimum, — (i) an itemised description of such personal data; and (ii) the specified purpose or purposes of, and specific description of the goods or services to be provided or uses to be enabled by, such processing; and (c) give, the particular communication link for accessing the website or app, or both, of such Data Fiduciary, and a description of other means, if any, using which such Data Principal may— (i) withdraw her consent, with the ease of doing so being comparable to that with which such consent was given; (ii) exercise her rights under the Act; and (iii) make a complaint to the Board."
+        }
+      },
+      {
+        "id": "dpdp-r6",
+        "standard": "dpdp",
+        "standard_name": "Digital Personal Data Protection Act 2023 and Rules 2025 (India)",
+        "ref": "Rule 6",
+        "phase": "design",
+        "description": "Protect personal data with encryption, masking or tokenisation, access control, monitoring logs and backups.",
+        "covered_by": null,
+        "clause": {
+          "passage": "dpdp_rules_2025#9",
+          "document": "Digital Personal Data Protection Rules, 2025 (G.S.R. 846(E))",
+          "page": 26,
+          "text": "(a) appropriate data security measures, such as securing of personal data through encryption, obfuscation, masking or the use of virtual tokens mapped to that personal data; (b) appropriate measures to control access to the computer resources used by such Data Fiduciary or such a Data Processor, wherever applicable; (c) visibility on the accessing of such personal data, through appropriate logs, monitoring and review, for enabling detection of unauthorised access, its investigation and remediation to prevent recurrence; (d) reasonable measures for continued processing in the event of confidentiality, integrity or availability of such personal data being compromised as a result of destruction or loss of access to personal data or otherwise, such as by way of data-backups; (e) for enabling the detection of unauthorised access, its investigation, remediation to prevent recurrence and continued processing in the event of such a compromise, retain such logs and personal data for a period of one year, unless compliance with any law for the time being in force requires otherwise;"
+        }
+      },
+      {
+        "id": "dpdp-r7",
+        "standard": "dpdp",
+        "standard_name": "Digital Personal Data Protection Act 2023 and Rules 2025 (India)",
+        "ref": "Rule 7",
+        "phase": "operations",
+        "description": "Notify affected individuals of a personal data breach without delay and report it to the Data Protection Board within 72 hours.",
+        "covered_by": null,
+        "clause": {
+          "passage": "dpdp_rules_2025#11",
+          "document": "Digital Personal Data Protection Rules, 2025 (G.S.R. 846(E))",
+          "page": 26,
+          "text": "(c) the measures implemented and being implemented by the Data Fiduciary, if any, to mitigate risk; (d) the safety measures that she may take to protect her interests; and (e) business contact information of a person who is able to respond on behalf of the Data Fiduciary, to queries, if any, of the Data Principal. (2) On becoming aware of any personal data breach, the Data Fiduciary shall intimate to the Board, — (a) without delay, a description of the breach, including its nature, extent, timing and location of occurrence and the likely impact; (b) within seventy-two hours of becoming aware of the breach, or within such longer period as the Board may allow on a request made in writing in this behalf, — (i) updated and detailed information in respect of such description; (ii) the broad facts related to the events, circumstances and reasons leading to the breach;"
+        }
+      },
+      {
+        "id": "dpdp-r8",
+        "standard": "dpdp",
+        "standard_name": "Digital Personal Data Protection Act 2023 and Rules 2025 (India)",
+        "ref": "Rule 8",
+        "phase": "operations",
+        "description": "Keep processing logs for at least one year, erase personal data once the purpose is served, and warn the individual 48 hours before erasure.",
+        "covered_by": null,
+        "clause": {
+          "passage": "dpdp_rules_2025#15",
+          "document": "Digital Personal Data Protection Rules, 2025 (G.S.R. 846(E))",
+          "page": 27,
+          "text": "logs of the processing (such as order confirmation, payment, and delivery events) for at least one year from the date of the transaction, even if X deletes her account. Case 2: X, a company engages a cloud service provider C as its Data Processor to host customer records. X as the Data Fiduciary, is required to ensure that the C also retains the data and associated logs for at least one year before erasure, unless any other applicable law requires a longer period. 9. Contact information of person to answer questions about processing.— Every Data Fiduciary shall prominently publish on its website or app, and mention in every response to a communication for the exercise of the rights of a Data Principal under the Act, the business contact information of the Data Protection Officer, if applicable, or a person who is able to answer on behalf of the Data Fiduciary the questions of the Data Principal about the processing of her personal data."
+        }
+      },
+      {
+        "id": "dpdp-r9-14",
+        "standard": "dpdp",
+        "standard_name": "Digital Personal Data Protection Act 2023 and Rules 2025 (India)",
+        "ref": "Rules 9 and 14",
+        "phase": "release",
+        "description": "Publish a contact for data protection questions and a way to exercise data rights, and resolve grievances within 90 days.",
+        "covered_by": null,
+        "clause": {
+          "passage": "dpdp_rules_2025#26",
+          "document": "Digital Personal Data Protection Rules, 2025 (G.S.R. 846(E))",
+          "page": 30,
+          "text": "(a) the details of the means using which a Data Principal may make a request for the exercise of such rights; and (b) the particulars, if any, such as the username or other identifier of such a Data Principal, which may be required to identify her under its terms of service. (2) To exercise the rights of the Data Principal under the Act, she may make a request to the Data Fiduciary to whom she has previously given consent for processing of her personal data, using the means and furnishing the particulars required by such Data Fiduciary for the exercise of such rights. (3) Every Data Fiduciary and Consent Manager shall prominently publish on its website or app, or both, as the case may be, within a reasonable period not exceeding ninety days under its grievance redressal system for responding to the grievances of Data Principals and shall, for ensuring the effectiveness of the system in responding within such period, implement appropriate technical and organisational measures."
+        }
+      },
+      {
+        "id": "certin-ii",
+        "standard": "certin",
+        "standard_name": "CERT-In Directions 2022 (IT Act section 70B, India)",
+        "ref": "Direction (ii)",
+        "phase": "operations",
+        "description": "Report cyber incidents of the listed types to CERT-In within 6 hours of noticing them.",
+        "covered_by": null,
+        "clause": {
+          "passage": "certin_directions_2022#9",
+          "document": "CERT-In Directions under Section 70B(6) of the IT Act, 2000 (No. 20(3)/2022-CERT-In)",
+          "page": 4,
+          "text": "section (7) of the section 70B of the IT Act, 2000 and other laws as applicable. This direction will become effective after 60 days from the date on which it is issued. Annexure I Types of cyber security incidents mandatorily to be reported by service providers, intermediaries, data centres, body corporate and Government organisations to CERT-In: [Refer Rule 12(1)(a) of The Information Technology (The Indian Computer Emergency Response Team and Manner of Performing Functions and Duties) Rules, 2013] i. Targeted scanning/probing of critical networks/systems ii. Compromise of critical systems/information iii. Unauthorised access of IT systems/data iv. Defacement of website or intrusion into a website and unauthorised changes such as inserting malicious code, links to external websites etc. v. Malicious code attacks such as spreading of virus/worm/Trojan/Bots/ Spyware/Ransomware/Cryptominers vi. Attack on servers such as Database, Mail and DNS and network devices such as Routers"
+        }
+      },
+      {
+        "id": "certin-iv",
+        "standard": "certin",
+        "standard_name": "CERT-In Directions 2022 (IT Act section 70B, India)",
+        "ref": "Direction (iv)",
+        "phase": "operations",
+        "description": "Enable logs on all ICT systems and keep them securely for a rolling 180 days within India.",
+        "covered_by": null,
+        "clause": {
+          "passage": "certin_directions_2022#6",
+          "document": "CERT-In Directions under Section 70B(6) of the IT Act, 2000 (No. 20(3)/2022-CERT-In)",
+          "page": 3,
+          "text": "(iv) All service providers, intermediaries, data centres, body corporate and Government organisations shall mandatorily enable logs of all their ICT systems and maintain them securely for a rolling period of 180 days and the same shall be maintained within the Indian jurisdiction. These should be provided to CERT-In along with reporting of any incident or when ordered / directed by CERT-In. (v) Data Centres, Virtual Private Server (VPS) providers, Cloud Service providers and Virtual Private Network Service (VPN Service) providers, shall be required to register the following accurate information which must be maintained by them for a period of 5 years or longer duration as mandated by the law after any cancellation or withdrawal of the registration as the case may be: a. Validated names of subscribers/customers hiring the services b. Period of hire including dates c. IPs allotted to / being used by the members d. Email address and IP address and time stamp used at the time of registration / on-boarding e. Purpose for hiring services f. Validated address and contact numbers g. Ownership pattern of the subscribers / customers hiring services"
+        }
+      },
+      {
+        "id": "certin-i",
+        "standard": "certin",
+        "standard_name": "CERT-In Directions 2022 (IT Act section 70B, India)",
+        "ref": "Direction (i)",
+        "phase": "implementation",
+        "description": "Synchronise all system clocks with the NIC or NPL NTP servers, or sources traceable to them.",
+        "covered_by": null,
+        "clause": {
+          "passage": "certin_directions_2022#4",
+          "document": "CERT-In Directions under Section 70B(6) of the IT Act, 2000 (No. 20(3)/2022-CERT-In)",
+          "page": 2,
+          "text": "(i) All service providers, intermediaries, data centres, body corporate and Government organisations shall connect to the Network Time Protocol (NTP) Server of National Informatics Centre (NIC) or National Physical Laboratory (NPL) or with NTP servers traceable to these NTP servers, for synchronisation of all their ICT systems clocks. Entities having ICT infrastructure spanning multiple geographies may also use accurate and standard time source other than NPL and NIC, however it is to be ensured that their time source shall not deviate from NPL and NIC. (ii) Any service provider, intermediary, data centre, body corporate and Government organisation shall mandatorily report cyber incidents as mentioned in Annexure I to CERT-In within 6 hours of noticing such incidents or being brought to notice about such incidents. The incidents can be reported to CERT-In via email (incident@cert-in.org.in), Phone (1800- 11-4949) and Fax (1800-11-6969). The details regarding methods and formats of reporting cyber security incidents is also published on the website of CERT-In www.cert-in.org.in and will be updated from time to time."
+        }
+      },
+      {
+        "id": "certin-iii",
+        "standard": "certin",
+        "standard_name": "CERT-In Directions 2022 (IT Act section 70B, India)",
+        "ref": "Direction (iii)",
+        "phase": "planning",
+        "description": "Designate a point of contact to interface with CERT-In.",
+        "covered_by": null,
+        "clause": {
+          "passage": "certin_directions_2022#11",
+          "document": "CERT-In Directions under Section 70B(6) of the IT Act, 2000 (No. 20(3)/2022-CERT-In)",
+          "page": 7,
+          "text": "Annexure II Format for providing Point of Contact (PoC) information by Service providers, intermediaries, data centres, body corporate and Government organisations to CERT-In The Information relating to the Point of Contact shall be sent to CERT-In via email (info@cert-in.org.in) in the format specified below and shall be updated from time to time: Name Designation Organisation Name Office Address Email ID Mobile No. Office Phone Office Fax"
+        }
+      },
+      {
+        "id": "rbi-kyc-20",
+        "standard": "rbi_kyc",
+        "standard_name": "RBI Know Your Customer Directions 2025 (India)",
+        "ref": "Para 20",
+        "phase": "requirements",
+        "description": "Categorise customers as low, medium or high risk and keep the categorisation and its reasons confidential from the customer.",
+        "covered_by": null,
+        "clause": {
+          "passage": "rbi_kyc_2025#42",
+          "document": "Reserve Bank of India (Commercial Banks - Know Your Customer) Directions, 2025",
+          "page": 23,
+          "text": "(2) The bank may lay down broad principles for the risk-categorisation of customers. (3) The bank shall undertake risk categorisation based on parameters such as the customer’s identity, social / financial status, nature of business activity, and information about the customer’s business and its location, geographical risk covering customers as well as transactions, type of products / services offered, delivery channel used for delivery of products / services, types of transactions undertaken such as cash, cheque / monetary instruments, wire transfers, forex transactions, etc. The bank may also factor in the ability to confirm identity documents through online or other services offered by issuing authorities, while considering customer’s identity. (4) The bank shall keep the risk categorisation of a customer and the specific reasons for such categorisation confidential and shall not reveal this information to the customer to avoid tipping off. Provided that the bank collects various other non-intrusive information from different categories of customers relating to the perceived risk, and specifies the same in the KYC policy. Explanation: The bank may also use the FATF Public Statement, the reports and guidance notes on KYC / AML issued by the Indian Banks Association (IBA), and other agencies, etc., in its risk assessment."
+        }
+      },
+      {
+        "id": "rbi-kyc-27-infra",
+        "standard": "rbi_kyc",
+        "standard_name": "RBI Know Your Customer Directions 2025 (India)",
+        "ref": "Para 27(1)",
+        "phase": "design",
+        "description": "For video KYC, encrypt end to end, record consent in an alteration-proof way, block connections from outside India or spoofed IPs, and geo-tag and time-stamp recordings.",
+        "covered_by": null,
+        "clause": {
+          "passage": "rbi_kyc_2025#60",
+          "document": "Reserve Bank of India (Commercial Banks - Know Your Customer) Directions, 2025",
+          "page": 32,
+          "text": "(ii) The bank shall ensure end-to-end encryption of data between customer device and the hosting point of the V-CIP application, as per appropriate encryption standards. The bank shall record the customer consent in an auditable and alteration-proof manner. (iii) The V-CIP infrastructure / application shall be capable of preventing connection from IP addresses outside India or from spoofed IP addresses. (iv) The video recordings shall contain the live GPS co-ordinates (geo-tagging) of the customer undertaking the V-CIP and date and time stamp. The quality of the live video in the V-CIP shall be adequate to allow identification of the customer beyond doubt. (v) The application shall have components with face liveness / spoof detection as well as face matching technology with high degree of accuracy, even though the ultimate responsibility of any customer identification rests with the bank. Explanation: Making specific facial gestures, like blinking of eyes, smiling, frowning, etc. is not mandatory for liveness check. The bank shall take due cognizance of special"
+        }
+      },
+      {
+        "id": "rbi-kyc-27-liveness",
+        "standard": "rbi_kyc",
+        "standard_name": "RBI Know Your Customer Directions 2025 (India)",
+        "ref": "Para 27(1)(v)",
+        "phase": "implementation",
+        "description": "Build face liveness / spoof detection and accurate face matching into the video KYC application.",
+        "covered_by": null,
+        "clause": {
+          "passage": "rbi_kyc_2025#60",
+          "document": "Reserve Bank of India (Commercial Banks - Know Your Customer) Directions, 2025",
+          "page": 32,
+          "text": "(ii) The bank shall ensure end-to-end encryption of data between customer device and the hosting point of the V-CIP application, as per appropriate encryption standards. The bank shall record the customer consent in an auditable and alteration-proof manner. (iii) The V-CIP infrastructure / application shall be capable of preventing connection from IP addresses outside India or from spoofed IP addresses. (iv) The video recordings shall contain the live GPS co-ordinates (geo-tagging) of the customer undertaking the V-CIP and date and time stamp. The quality of the live video in the V-CIP shall be adequate to allow identification of the customer beyond doubt. (v) The application shall have components with face liveness / spoof detection as well as face matching technology with high degree of accuracy, even though the ultimate responsibility of any customer identification rests with the bank. Explanation: Making specific facial gestures, like blinking of eyes, smiling, frowning, etc. is not mandatory for liveness check. The bank shall take due cognizance of special"
+        }
+      },
+      {
+        "id": "rbi-kyc-27-test",
+        "standard": "rbi_kyc",
+        "standard_name": "RBI Know Your Customer Directions 2025 (India)",
+        "ref": "Para 27(1)(viii)-(ix)",
+        "phase": "verification",
+        "description": "Have CERT-In empanelled auditors run vulnerability assessment, penetration testing and a security audit, and test functions, performance and APIs; close critical gaps before going live.",
+        "covered_by": null,
+        "clause": {
+          "passage": "rbi_kyc_2025#61",
+          "document": "Reserve Bank of India (Commercial Banks - Know Your Customer) Directions, 2025",
+          "page": 33,
+          "text": "needs, if any, of the customer during liveness check. (vi) The bank may use appropriate artificial intelligence (AI) technology to ensure that the V-CIP is robust. (vii) Based on experience of detected / attempted / ‘near-miss’ cases of forged identity, the bank shall regularly update the technology infrastructure including application software as well as workflows. The bank shall report any detected case of forged identity through V-CIP as a cyber event under extant regulatory guidelines. (viii) The bank shall subject the V-CIP infrastructure to necessary tests such as Vulnerability Assessment, Penetration testing and a Security Audit to ensure its robustness and end-to-end encryption capabilities. The bank shall mitigate any critical gap reported under this process before rolling out its implementation. The empanelled auditors of Indian Computer Emergency Response Team (CERT-In) shall conduct such tests. Such tests shall also be carried out periodically in conformance to internal / regulatory guidelines."
+        }
+      },
+      {
+        "id": "rbi-kyc-27-procedure",
+        "standard": "rbi_kyc",
+        "standard_name": "RBI Know Your Customer Directions 2025 (India)",
+        "ref": "Para 27(2)",
+        "phase": "operations",
+        "description": "Run video KYC only with specially trained officials following a written SOP; vary the questions, reject the case on any prompting, and capture the PAN and a photograph.",
+        "covered_by": null,
+        "clause": {
+          "passage": "rbi_kyc_2025#51",
+          "document": "Reserve Bank of India (Commercial Banks - Know Your Customer) Directions, 2025",
+          "page": 28,
+          "text": "(1) The bank shall develop an application for digital KYC process and make it available at customer touch points for undertaking KYC of its customers and shall undertake the KYC process only through this authenticated application. (2) The bank shall control the access to the Application and shall ensure that unauthorised persons do not use it. Authorised officials shall access the Application only through a login-id and password or a Live OTP or Time OTP controlled mechanism that the bank provides. (3) The customer, for the purpose of KYC, shall visit the location of the authorised official of the bank or vice-versa. The original OVD shall be in possession of the customer. (4) The bank shall ensure that the authorised officer takes a Live photograph of the customer and embeds the same photograph in the Customer Application Form (CAF). Further, the bank’s system Application shall put a watermark in readable form, containing the CAF number, GPS coordinates, authorised official’s name, unique employee code (which the bank assigns) and date (DD:MM:YYYY) and time stamp (HH:MM:SS), on the captured live photograph of the customer."
+        }
+      },
+      {
+        "id": "rbi-kyc-27-audit",
+        "standard": "rbi_kyc",
+        "standard_name": "RBI Know Your Customer Directions 2025 (India)",
+        "ref": "Para 27(2)(xv)",
+        "phase": "release",
+        "description": "Make accounts opened through video KYC operational only after a concurrent audit.",
+        "covered_by": null,
+        "clause": {
+          "passage": "rbi_kyc_2025#67",
+          "document": "Reserve Bank of India (Commercial Banks - Know Your Customer) Directions, 2025",
+          "page": 35,
+          "text": "(xv) The bank shall make all accounts opened through V-CIP operational only after subjecting them to concurrent audit to ensure the integrity of process and its acceptability of its outcome. (xvi) The bank shall appropriately comply with all matters not specified under the paragraph but required under other statutes such as the Information Technology (IT) Act. (3) V-CIP Records and Data Management (i) The bank shall store the entire data and recordings of V-CIP in a system / systems located in India. The bank shall ensure that the video recording is stored in a safe and secure manner and bears the date and time stamp that affords easy historical data search. The extant instructions on record management, as stipulated in this direction, shall also apply to V-CIP. (ii) The bank shall preserve the activity log along with the credentials of the official performing the V-CIP."
+        }
+      },
+      {
+        "id": "rbi-kyc-27-records",
+        "standard": "rbi_kyc",
+        "standard_name": "RBI Know Your Customer Directions 2025 (India)",
+        "ref": "Para 27(3)",
+        "phase": "operations",
+        "description": "Store all video KYC data and recordings on systems in India, time-stamped and searchable, with the activity log and the official's credentials.",
+        "covered_by": null,
+        "clause": {
+          "passage": "rbi_kyc_2025#67",
+          "document": "Reserve Bank of India (Commercial Banks - Know Your Customer) Directions, 2025",
+          "page": 35,
+          "text": "(xv) The bank shall make all accounts opened through V-CIP operational only after subjecting them to concurrent audit to ensure the integrity of process and its acceptability of its outcome. (xvi) The bank shall appropriately comply with all matters not specified under the paragraph but required under other statutes such as the Information Technology (IT) Act. (3) V-CIP Records and Data Management (i) The bank shall store the entire data and recordings of V-CIP in a system / systems located in India. The bank shall ensure that the video recording is stored in a safe and secure manner and bears the date and time stamp that affords easy historical data search. The extant instructions on record management, as stipulated in this direction, shall also apply to V-CIP. (ii) The bank shall preserve the activity log along with the credentials of the official performing the V-CIP."
+        }
+      },
+      {
+        "id": "rbi-kyc-50",
+        "standard": "rbi_kyc",
+        "standard_name": "RBI Know Your Customer Directions 2025 (India)",
+        "ref": "Para 50",
+        "phase": "operations",
+        "description": "Keep transaction records for at least five years, and identification records for five years after the relationship ends, retrievable on request.",
+        "covered_by": null,
+        "clause": {
+          "passage": "rbi_kyc_2025#102",
+          "document": "Reserve Bank of India (Commercial Banks - Know Your Customer) Directions, 2025",
+          "page": 53,
+          "text": "Chapter VII – Record Management 50. The bank shall take the following steps regarding maintenance, preservation and reporting of customer information, with reference to provisions of PML Act and Rules. The bank shall, (1) maintain all necessary records of transactions between the bank and the customer, both domestic and international, for at least five years from the date of transaction; (1A) 4maintain all necessary information with respect to the amounts and accounts put on debit hold, including the date of placing debit hold (on own accord or on directions of an authority competent by law to do so) and its release, reasons for the same, details of correspondence with account holder and the jurisdictional police authority for a period of five years from the date of placing the debit hold; (2) preserve the records pertaining to the identification of the customers and their addresses, obtained while opening the account and during the course of business relationship, for at least five years after the business relationship has ended;"
+        }
+      },
+      {
+        "id": "rbi-itg-12",
+        "standard": "rbi_it_governance",
+        "standard_name": "RBI IT Governance, Risk, Controls and Assurance Directions 2023 (India; marked withdrawn)",
+        "ref": "Para 12",
+        "phase": "planning",
+        "description": "Follow a formally defined project management approach with stakeholder participation, and put new applications through product approval and quality assurance.",
+        "covered_by": null,
+        "clause": {
+          "passage": "rbi_it_governance_2023#18",
+          "document": "Master Direction on Information Technology Governance, Risk, Controls and Assurance Practices, 2023",
+          "page": 12,
+          "text": "12. Project Management (a) REs shall follow a consistent and formally defined project management approach for IT projects undertaken by them. The project management approach shall, inter alia, enable appropriate stakeholder participation for effective monitoring and management of project risks and progress. (b) While adopting new or emerging technologies, tools, or revamping their existing ones in the technology stack, REs shall follow a standard enterprise architecture planning methodology or framework. (c) Adoption of new or emerging technologies shall be commensurate with the risk appetite and align with overall Business/ IT strategy of the RE. It should facilitate optimal creation, use, or sharing of information by a business in a secure and resilient way. (d) REs shall maintain enterprise data dictionary to enable the sharing of data among applications and information systems and promote a common understanding of data. (e) REs shall ensure that maintenance and necessary support of software applications is provided by the software vendors and the same is enforced through formal agreement."
+        }
+      },
+      {
+        "id": "rbi-itg-12g",
+        "standard": "rbi_it_governance",
+        "standard_name": "RBI IT Governance, Risk, Controls and Assurance Directions 2023 (India; marked withdrawn)",
+        "ref": "Para 12(g)",
+        "phase": "release",
+        "description": "Obtain the vendor's written confirmation that the application is free of known vulnerabilities and malware, again after every material change.",
+        "covered_by": null,
+        "clause": {
+          "passage": "rbi_it_governance_2023#19",
+          "document": "Master Direction on Information Technology Governance, Risk, Controls and Assurance Practices, 2023",
+          "page": 12,
+          "text": "(f) REs shall obtain the source codes for all critical applications from their vendors. Where obtaining of the source code is not possible, REs shall put in place a source code escrow arrangement or other arrangements to adequately mitigate the risk of default by the vendor. REs shall ensure that all product updates and programme fixes are included in the source code escrow arrangement. (g) REs shall obtain a certificate or a written confirmation from the application developer or vendor stating that the application is free of known vulnerabilities, malware, and any covert channels in the code. Such a certificate or a written confirmation shall also be obtained whenever material changes to the code, including upgrades, occur. (h) Any new IT application proposed to be introduced as a business product13 shall be subjected to product approval and quality assurance process."
+        }
+      },
+      {
+        "id": "rbi-itg-13",
+        "standard": "rbi_it_governance",
+        "standard_name": "RBI IT Governance, Risk, Controls and Assurance Directions 2023 (India; marked withdrawn)",
+        "ref": "Para 13",
+        "phase": "operations",
+        "description": "Assess, approve, document and review every change and patch, with a way to recover from failed changes.",
+        "covered_by": null,
+        "clause": {
+          "passage": "rbi_it_governance_2023#20",
+          "document": "Master Direction on Information Technology Governance, Risk, Controls and Assurance Practices, 2023",
+          "page": 13,
+          "text": "13. Change and Patch Management REs shall put in place documented policy(ies) and procedures for change and patch management to ensure the following: (a) the business impact of implementing patches/ changes (or not implementing a particular patch/ change request) are assessed; (b) the patches/ changes are applied/ implemented and reviewed in a secure and timely manner with necessary approvals; (c) any changes to an application system or data are justified by genuine business needs and approvals supported by documentation and subjected to a robust change management process; and (d) mechanism is established to recover from failed changes/ patch deployment or unexpected results. 14. Data Migration Controls REs shall have a documented data migration policy specifying a systematic process for data migration, ensuring data integrity, completeness and consistency. The policy shall, inter alia, contain provisions pertaining to signoffs from business users and application owners at each stage of migration, maintenance of audit trails, etc. 13 IT Applications that enable functioning of a business process whether offered as a product to the customers (including potential customers), third parties (or) internal employees could be broadly referred as business product."
+        }
+      },
+      {
+        "id": "rbi-itg-15",
+        "standard": "rbi_it_governance",
+        "standard_name": "RBI IT Governance, Risk, Controls and Assurance Directions 2023 (India; marked withdrawn)",
+        "ref": "Para 15",
+        "phase": "design",
+        "description": "Keep audit trails detailed enough for audit and forensics, and monitor them regularly.",
+        "covered_by": null,
+        "clause": {
+          "passage": "rbi_it_governance_2023#21",
+          "document": "Master Direction on Information Technology Governance, Risk, Controls and Assurance Practices, 2023",
+          "page": 14,
+          "text": "15. Audit Trails (a) Every IT application which can access or affect critical or sensitive information, shall have necessary audit and system logging capability and should provide audit trails. (b) The audit trails shall satisfy a RE’s business requirements apart from regulatory and legal requirements. The audit trails must be detailed enough to facilitate the conduct of audit, serve as forensic evidence when required and assist in dispute resolution, including for non-repudiation purposes. (c) REs shall put in place a system for regularly monitoring the audit trails and system logs to detect any unauthorised activity. 16. Cryptographic controls The key length, algorithms, cipher suites and applicable protocols used in transmission channels, processing of data and authentication purpose shall be strong. REs shall adopt internationally accepted and published standards that are not deprecated/ demonstrated to be insecure/ vulnerable and the configurations involved in implementing such controls shall be compliant with extant laws and regulatory instructions."
+        }
+      },
+      {
+        "id": "rbi-itg-29",
+        "standard": "rbi_it_governance",
+        "standard_name": "RBI IT Governance, Risk, Controls and Assurance Directions 2023 (India; marked withdrawn)",
+        "ref": "Para 29",
+        "phase": "operations",
+        "description": "Define RTO and RPO, run DR drills at least half-yearly for critical systems, and test backup restores.",
+        "covered_by": null,
+        "clause": {
+          "passage": "rbi_it_governance_2023#34",
+          "document": "Master Direction on Information Technology Governance, Risk, Controls and Assurance Practices, 2023",
+          "page": 21,
+          "text": "(d) REs shall regularly test the BCP / DR under different scenarios for possible types of contingencies, to ensure that it is up-to-date and effective. (e) REs shall backup data and periodically restore such backed-up data to check its usability. The integrity of such backup data shall be preserved along with securing it from unauthorised access. (f) REs shall ensure that DR architecture and procedures are robust, meeting the defined RTO and RPO for any recovery operations in case of contingency. (g) REs should prioritise achieving minimal RTO (as approved by the RE’s ITSC) and a near zero RPO for critical information systems. (h) In a scenario of non-zero RPO, REs shall have a documented methodology for reconciliation of data while resuming operations from the alternate location. (i) REs shall ensure that the configurations of information systems and deployed security patches at the DC and DR19 are identical."
+        }
+      },
+      {
+        "id": "rbi-itg-30",
+        "standard": "rbi_it_governance",
+        "standard_name": "RBI IT Governance, Risk, Controls and Assurance Directions 2023 (India; marked withdrawn)",
+        "ref": "Para 30",
+        "phase": "verification",
+        "description": "Cover the system in the information systems audit overseen by the board's audit committee.",
+        "covered_by": null,
+        "clause": {
+          "passage": "rbi_it_governance_2023#35",
+          "document": "Master Direction on Information Technology Governance, Risk, Controls and Assurance Practices, 2023",
+          "page": 21,
+          "text": "(j) REs shall ensure BCP and DR capabilities in critical interconnected systems and networks including those of vendors and partners. REs shall ensure demonstrated readiness through collaborative and co-ordinated resilience testing that meets the REs’ RTO. 19 DC refers to primary data centre for a given application/ system and DR its Disaster Recovery site/ alternate site. Chapter VI - Information Systems (IS) Audit 30. Information Systems (IS) Audit (a) The Audit Committee of the Board (ACB) shall be responsible for exercising oversight of IS Audit of the RE. (b) REs shall put in place an IS Audit Policy. The IS Audit Policy shall contain a clear description of its mandate, purpose, authority, audit universe, periodicity of audit etc. The policy shall be approved by the ACB and reviewed at least annually. (c) The ACB shall review critical issues highlighted related to IT / information security / cyber security and provide appropriate direction and guidance to the RE’s Management."
+        }
+      }
+    ],
+    "coverage": null,
+    "missing": []
+  },
+  "risks": [
+    {
+      "id": "security_breach",
+      "title": "Security breach or data exposure",
+      "owner": "Security Lead",
+      "evidence": [
+        {
+          "factor": "security_risk",
+          "level": "high",
+          "evidence": "The app will hold Aadhaar numbers, PAN, photographs and video recordings, so the security team insists on encryption, access logs and a quick response to any breach"
+        }
+      ],
+      "likelihood": "high",
+      "impact": "high",
+      "score": 9,
+      "assumed": true,
+      "note": null,
+      "mitigations": [
+        {
+          "id": "threat_modelling",
+          "description": "Threat modelling of the architecture and data flows",
+          "covered_by": null
+        },
+        {
+          "id": "penetration_test",
+          "description": "Penetration test before release",
+          "covered_by": null
+        },
+        {
+          "id": "sast",
+          "description": "Static application security testing on every build",
+          "covered_by": null
+        },
+        {
+          "id": "dependency_scanning",
+          "description": "Dependency and software-composition scanning",
+          "covered_by": null
+        }
+      ],
+      "mitigated": null
+    },
+    {
+      "id": "regulatory_findings",
+      "title": "Regulatory or audit findings delay release",
+      "owner": "Compliance Officer",
+      "evidence": [
+        {
+          "factor": "regulatory_criticality",
+          "level": "high",
+          "evidence": "The bank's internal audit team will review the onboarding controls, and the RBI may inspect them"
+        },
+        {
+          "factor": "standard",
+          "level": "applies",
+          "evidence": "FATF Recommendations - anti-money laundering and customer due diligence (KYC) (named: KYC)"
+        },
+        {
+          "factor": "standard",
+          "level": "applies",
+          "evidence": "Digital Personal Data Protection Act 2023 and Rules 2025 (India) (named: KYC + RBI)"
+        },
+        {
+          "factor": "standard",
+          "level": "applies",
+          "evidence": "CERT-In Directions 2022 (IT Act section 70B, India) (named: app + RBI)"
+        },
+        {
+          "factor": "standard",
+          "level": "applies",
+          "evidence": "RBI Know Your Customer Directions 2025 (India) (named: video-based customer identification)"
+        },
+        {
+          "factor": "standard",
+          "level": "applies",
+          "evidence": "RBI IT Governance, Risk, Controls and Assurance Directions 2023 (India; marked withdrawn) (named: Bank + app + RBI)"
+        }
+      ],
+      "likelihood": "medium",
+      "impact": "high",
+      "score": 6,
+      "assumed": false,
+      "note": null,
+      "mitigations": [
+        {
+          "id": "compliance_checkpoints",
+          "description": "Compliance checkpoint at every approval gate",
+          "covered_by": null
+        },
+        {
+          "id": "audit_trail",
+          "description": "Audit trail and evidence file kept for the regulator or auditor",
+          "covered_by": null
+        },
+        {
+          "id": "compliance_approval",
+          "description": "Compliance officer approval before release",
+          "covered_by": null
+        }
+      ],
+      "mitigated": null
+    },
+    {
+      "id": "unproven_technology",
+      "title": "Unproven technology does not work as planned",
+      "owner": "Software Architect",
+      "evidence": [
+        {
+          "factor": "technical_novelty",
+          "level": "high",
+          "evidence": "The account opening journey is new to the digital team, and the video-KYC vendor platform has not been integrated with the core banking system before"
+        }
+      ],
+      "likelihood": "high",
+      "impact": "medium",
+      "score": 6,
+      "assumed": true,
+      "note": null,
+      "mitigations": [
+        {
+          "id": "prototype_spike",
+          "description": "Prototype or technical spike for the unproven technology",
+          "covered_by": null
+        },
+        {
+          "id": "risk_register",
+          "description": "Risk register reviewed at every gate",
+          "covered_by": null
+        }
+      ],
+      "mitigated": null
+    }
+  ],
+  "summary": "NO SINGLE LIFECYCLE: the top models are level on the stated evidence.  [PROVISIONAL - low evidence: 3 of 14 factors stated]\nCandidates: Spiral, DevSecOps, V-Model\nRanking (provisional): Spiral > DevSecOps > V-Model > Agile > Waterfall\nWhat would decide it: Spiral if technical novelty high; DevSecOps if continuous delivery need high or security risk high; V-Model if verification rigor high or failure consequence high\nFactors read from the description: 3 of 14\n  regulatory_criticality=high, security_risk=high, technical_novelty=high\nUnanswered questions that could change this: change_frequency, continuous_delivery_need, failure_consequence, legacy_dependence",
+  "log": [
+    {
+      "node": "comply",
+      "ok": true,
+      "seconds": 22.96,
+      "detail": {
+        "standards": [
+          "fatf",
+          "dpdp",
+          "certin",
+          "rbi_kyc",
+          "rbi_it_governance"
+        ],
+        "obligations": 30
+      }
+    },
+    {
+      "node": "requirements",
+      "ok": true,
+      "seconds": 124.53,
+      "detail": {
+        "parsed": true,
+        "count": 21,
+        "stated": 20,
+        "regulation": 0,
+        "inferred": 1
+      }
+    },
+    {
+      "node": "regulate",
+      "ok": true,
+      "seconds": 972.25,
+      "detail": {
+        "parsed": true,
+        "obligations_offered": 36,
+        "linked": 1,
+        "added": 8,
+        "clauses": [
+          "rbi_kyc_2025#50",
+          "rbi_kyc_2025#64",
+          "rbi_kyc_2025#52",
+          "rbi_kyc_2025#60",
+          "rbi_kyc_2025#57",
+          "rbi_kyc_2025#51"
+        ],
+        "standards": [
+          "certin",
+          "dpdp",
+          "fatf",
+          "rbi_it_governance",
+          "rbi_kyc",
+          "rbi_kyc_2025"
+        ]
+      }
+    },
+    {
+      "node": "ask_requirements",
+      "ok": true,
+      "seconds": 50.39,
+      "detail": {
+        "asked": 4
+      }
+    },
+    {
+      "node": "extract",
+      "ok": true,
+      "seconds": 40.3,
+      "detail": {
+        "parse_ok": true,
+        "stated": 3
+      }
+    },
+    {
+      "node": "clarify",
+      "ok": true,
+      "seconds": 0.01,
+      "detail": {
+        "asked": 4,
+        "unstated": 11
+      }
+    },
+    {
+      "node": "rubric",
+      "ok": true,
+      "seconds": 0.01,
+      "detail": {
+        "primary": "Spiral",
+        "acceptable": [
+          "Spiral",
+          "DevSecOps",
+          "V-Model"
+        ],
+        "hybrid": [],
+        "stated": 3,
+        "low_evidence": true,
+        "insufficient_evidence": false
+      }
+    },
+    {
+      "node": "assess",
+      "ok": true,
+      "seconds": 0.03,
+      "detail": {
+        "coverage": null,
+        "missing": 0,
+        "risks": 3,
+        "unmitigated": 0
+      }
+    },
+    {
+      "node": "explain",
+      "ok": true,
+      "seconds": 0.02,
+      "detail": {}
+    },
+    {
+      "node": "srs",
+      "ok": true,
+      "seconds": 113.56,
+      "detail": {
+        "sections": 8,
+        "constraints": 5
+      }
+    }
+  ]
+}

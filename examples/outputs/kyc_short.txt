@@ -1,0 +1,85 @@
+================================================================================================
+REQUIREMENTS (13)
+  FR-01       The system shall allow new customers to upload an ID document
+              [functional] from the text: "new customers upload an ID document and a selfie"
+  FR-02       The system shall allow new customers to upload a selfie
+              [functional] from the text: "new customers upload an ID document and a selfie"
+  FR-03       The system shall verify the identity of new customers
+              [functional] from the text: "we verify their identity"
+  FR-04       The system shall screen customers against sanctions lists
+              [functional] from the text: "screen them against sanctions lists"
+  FR-05       The system shall prevent account opening until identity verification and sanctions
+              screening are completed
+              [functional] from the text: "before the account is opened"
+  NFR-SEC-01  The system shall store uploaded ID documents and selfies in a secure manner
+              [security] inferred, not in the text: confirm with a stakeholder
+  NFR-PRI-01  The system shall ensure personal data collected during KYC is processed in
+              compliance with privacy regulations
+              [privacy] inferred, not in the text: confirm with a stakeholder
+  NFR-AUD-01  The system shall maintain an audit trail of all KYC actions and decisions
+              [audit] inferred, not in the text: confirm with a stakeholder
+  NFR-REG-01  The system shall assess money laundering and terrorist financing risks before
+              launching the KYC module in the mobile app.
+              [regulatory] required by FATF Recommendations - anti-money laundering and customer
+              due diligence (KYC) R.15
+  FR-06       The system shall verify the identity of new customers using reliable and
+              independent sources as required by FATF Recommendation R.10.
+              [functional] required by FATF Recommendations - anti-money laundering and customer
+              due diligence (KYC) R.10
+  FR-07       The system shall check whether a customer is a politically exposed person (PEP)
+              and apply enhanced due diligence if such a status is confirmed.
+              [functional] required by FATF Recommendations - anti-money laundering and customer
+              due diligence (KYC) R.12
+  NFR-DATA-01 The system shall retain all customer due diligence records, including KYC data and
+              verification results, for at least five years from the date of account opening.
+              [data] required by FATF Recommendations - anti-money laundering and customer due
+              diligence (KYC) R.11
+  FR-08       The system shall screen customers against targeted financial sanctions lists in
+              real time during the KYC process.
+              [functional] required by FATF Recommendations - anti-money laundering and customer
+              due diligence (KYC) R.6
+
+NO RECOMMENDATION: too little evidence (0 of 14 factors could be read from the description).
+The rubric scores unstated factors as neutral, so any ranking now would reflect its tie-break order, not the project. Answer the questions below (or add detail to the description) and run again.
+Factors read from the description: 0 of 14
+Unanswered questions that could change this: failure_consequence, regulatory_criticality, size, test_doc_rigor
+
+FACTORS (0 of 14 stated)
+
+ANSWER THESE FIRST:
+
+  [failure_consequence]  could lead to: Agile, V-Model, Waterfall
+    What happens if the software fails?
+    low = Minor inconvenience.
+    medium = Noticeable business disruption or recoverable financial loss.
+    high = Safety harm, large financial loss, or serious legal/reputational damage.
+
+  [regulatory_criticality]  could lead to: Agile, V-Model, Waterfall
+    Is the software subject to binding external regulation or audit?
+    low = No specific regulatory obligations.
+    medium = General legal obligations apply (e.g., data protection) without software certification.
+    high = A named standard or regulator certifies or audits the software (e.g., IEC 62304, DO-178C, PCI DSS).
+
+  [size]  could lead to: Agile, V-Model, Waterfall
+    How large is the effort?
+    low = 5 people or fewer.
+    medium = 6 to 25 people.
+    high = 26 people or more, or many subsystems/teams.
+
+  [test_doc_rigor]  could lead to: Agile, V-Model, Waterfall
+    How much formal test and documentation output is required?
+    low = Minimal documentation.
+    medium = Standard documentation expected but not contractually audited.
+    high = Extensive formal deliverables (test reports, design documents, manuals) are acceptance conditions.
+
+RUN LOG
+  comply         ok       14.44s  {"standards": ["fatf"], "obligations": 7}
+  requirements   ok       41.55s  {"parsed": true, "count": 8, "stated": 5, "regulation": 0, "inferred": 3}
+  regulate       ok       27.69s  {"parsed": true, "obligations_offered": 7, "linked": 0, "added": 5, "standards": ["fatf"]}
+  extract        ok       40.56s  {"parse_ok": true, "stated": 0}
+  clarify        ok        0.01s  {"asked": 4, "unstated": 14}
+  rubric         ok        0.02s  {"primary": "Waterfall", "acceptable": ["Waterfall", "V-Model", "Spiral"], "hybrid": ["V-Model test levels"], "state
+  assess         ok        0.03s  {"missing": 0, "risks": 1, "unmitigated": 0}
+  explain        ok        0.00s  {}
+
+wrote examples\runs\kyc_short.json

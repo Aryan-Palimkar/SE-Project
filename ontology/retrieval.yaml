@@ -1,0 +1,11 @@
+# Standards retrieval settings (compliance/retrieve.py).
+#   mode     alias | tfidf | dense | hybrid
+#   scoring  relative: best-sentence similarity minus the median over all standards
+#   cap      at most this many standards inferred (not named) per description
+version: '2.0'
+mode: hybrid
+scoring: relative
+thresholds:
+  dense: 0.59
+  dense_relative: 0.13
+cap: 1

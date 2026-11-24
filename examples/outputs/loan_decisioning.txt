@@ -1,0 +1,160 @@
+================================================================================================
+REQUIREMENTS (13)
+  NFR-INT-01  The system shall pull credit bureau reports and bank-account transaction data via
+              open-banking APIs.
+              [integration] from the text: "the service pulls their credit bureau report and
+              bank-account transaction data through open-banking APIs"
+  FR-01       The system shall run affordability and fraud checks on applicant data.
+              [functional] from the text: "runs affordability and fraud checks"
+  NFR-PERF-01 The system shall return an approval, decline, or refer decision within a few
+              seconds.
+              [performance] from the text: "returns approve, decline or refer within a few
+              seconds"
+  FR-02       The system shall route referred applications to an underwriter's queue.
+              [functional] from the text: "Referred applications go to an underwriter's queue"
+  FR-03       The system shall allow the credit risk team to adjust cut-off scores,
+              affordability buffers, and fraud rules every few weeks.
+              [functional] from the text: "The credit risk team changes the lending rules
+              constantly: cut-off scores, affordability buffers and fraud rules are adjusted
+              every few weeks"
+  NFR-OPS-01  The system shall enable product managers to deploy new rules into production
+              within days of agreement.
+              [operational] from the text: "the product manager wants new rules in production
+              within days of being agreed"
+  NFR-OPS-02  The system shall be deployed through an automated pipeline on a public cloud.
+              [operational] from the text: "The platform team already deploys the website
+              several times a week through an automated pipeline on a public cloud, and the
+              decision service is expected to ship the same way"
+  FR-04       The system shall be able to process bank statements, income details, and national
+              identity numbers.
+              [functional] from the text: "the service handles bank statements, income details
+              and national identity numbers"
+  NFR-PRI-01  The system shall provide an explanation for every credit decision to the
+              applicant.
+              [privacy] from the text: "the consumer credit regulator expects every decision to
+              be explainable to the applicant"
+  FR-05       The system shall allow declined applicants to ask why their application was
+              declined.
+              [functional] from the text: "declined applicants can ask why"
+  NFR-SEC-01  The system shall be resilient against credential-stuffing attacks.
+              [security] from the text: "last year the company fought off a credential-stuffing
+              attack on its customer login"
+  NFR-REG-01  The system shall comply with the consumer credit regulator's explainability
+              requirements.
+              [regulatory] from the text: "the consumer credit regulator expects every decision
+              to be explainable to the applicant"
+  NFR-OPS-03  The system shall be deployed at least once within four months of project start.
+              [operational] from the text: "the first version should be live within four months"
+
+Recommended lifecycle: DevSecOps with compliance gates  [PROVISIONAL - low evidence: 5 of 14 factors stated]
+Acceptable alternatives: DevSecOps, Agile, Spiral
+Ranking: DevSecOps > Agile > Spiral > V-Model > Waterfall
+Factors read from the description: 5 of 14
+  change_frequency=high, continuous_delivery_need=high, regulatory_criticality=high, security_risk=high, stakeholder_availability=high
+Plan check: mandatory recall 1.0, over-generation None, schema valid
+
+FACTORS (5 of 14 stated)
+change_frequency high "cut-off scores, affordability buffers and fraud rules are adjusted ..."
+continuous_delivery_need high "The platform team already deploys the website several times ..."
+regulatory_criticality high "The consumer credit regulator expects every decision to be ..."
+security_risk high "The service handles bank statements, income details and national ..."
+stakeholder_availability high "The product manager sits with the team every day"
+
+LIFECYCLE: DevSecOps
+PHASES   : Plan -> Code -> Build -> Test -> Release -> Deploy -> Operate and Monitor -> Feedback
+
+  Plan
+    Define the scope, requirements, and risk factors for the automated credit decision service
+    activities             Conduct stakeholder workshops with product manager, credit risk team,
+                           and compliance officer; Define user stories for loan application,
+                           affordability, fraud checks, and explainability; Establish initial
+                           data flow and integration points with open-banking APIs
+    roles                  Project Manager; Product Owner; Domain Expert; Compliance Officer
+    deliverables           Requirements specification; High-level architecture document; Initial
+                           threat model draft
+    approval_gate          Compliance Officer - Requirements and risk factors are aligned with regulatory explainability and data handling standards
+
+  Code
+    Develop the core decision service logic and data processing components
+    activities             Implement affordability, fraud, and credit scoring logic; Integrate
+                           with open-banking APIs for bank statements and income data; Develop
+                           explainability engine for decision outputs
+    roles                  Software Architect; Developer; Domain Expert
+    deliverables           Source code for decision engine; API contracts for data ingestion
+    approval_gate          Security Engineer - Code structure supports data isolation and privacy by design
+
+  Build
+    Create a secure, reproducible build of the decision service
+    activities             Set up CI/CD pipeline with automated build and test steps; Configure
+                           static application security testing (SAST); Perform dependency and
+                           software-composition scanning
+    roles                  Developer; Platform Engineer; Security Engineer
+    deliverables           Automated build artifact; SAST and dependency scan reports
+    security_activities    Static application security testing on every build; Dependency and
+                           software-composition scanning; Threat modelling of the architecture
+                           and data flows
+    approval_gate          Security Engineer - All security scans pass with no critical vulnerabilities
+
+  Test
+    Validate functionality, security, and regulatory compliance of the decision service
+    activities             Run unit and integration tests for scoring and fraud checks; Test
+                           explainability of decisions for declined applications; Simulate real-
+                           world data flows from open-banking APIs
+    roles                  Developer; QA Engineer; Test Lead
+    deliverables           Test case documentation; Test execution reports
+    testing                Unit and integration testing; Security testing via SAST and
+                           dependency scans
+    approval_gate          Independent V&V Engineer - All test cases pass with 100% coverage of core business flows
+
+  Release
+    Prepare the service for production release with full compliance and security validation
+    activities             Conduct penetration test on the service and data flows; Generate
+                           audit trail and evidence file for regulator review; Re-prioritise
+                           requirements based on latest market and competitor data
+    roles                  Release Manager; Compliance Officer; Security Engineer; Product Owner
+    deliverables           Release package for production; Audit trail and evidence file;
+                           Penetration test report
+    security_activities    Penetration test before release; Security sign-off at the release
+                           gate
+    compliance_checkpoints Compliance officer approves release based on explainability and data
+                           handling; Audit trail and evidence file are complete and accessible
+    approval_gate          Compliance Officer + Security Engineer - All security and compliance checks pass; audit trail is complete and regulator-ready
+
+  Deploy
+    Deploy the decision service to production with automated rollback capability
+    activities             Deploy to public cloud via automated pipeline; Configure automated
+                           rollback in case of failure
+    roles                  Platform Engineer; Release Manager; Operations Engineer
+    deliverables           Production deployment with rollback mechanism
+    approval_gate          Release Manager - Deployment succeeds and rollback is tested and functional
+
+  Operate and Monitor
+    Ensure the service runs securely and reliably in production with real-time monitoring
+    activities             Monitor system performance, fraud patterns, and decision outcomes;
+                           Respond to incidents with automated alerts and root cause analysis
+    roles                  Operations Engineer; Platform Engineer; Security Engineer
+    deliverables           Real-time monitoring dashboard; Incident response log
+    approval_gate          Operations Engineer - All monitoring and incident response systems are operational
+
+  Feedback
+    Collect user and stakeholder feedback to re-prioritise requirements and improve the service
+    activities             Gather feedback from applicants and underwriters; Review declined
+                           applications for explainability and fairness; Update requirements
+                           based on feedback and market changes
+    roles                  Product Owner; Customer Representative; Domain Expert
+    deliverables           Feedback report; Updated requirements and rule adjustments
+    approval_gate          Product Owner - Feedback is collected and requirements are re-prioritised within 7 days
+
+RUN LOG
+  comply         ok       12.59s  {"obligations": 0}
+  requirements   ok       84.44s  {"parsed": true, "count": 13, "stated": 13, "regulation": 0, "inferred": 0}
+  regulate       ok        0.00s  {"obligations_offered": 0}
+  extract        ok       56.74s  {"parse_ok": true, "stated": 5}
+  clarify        ok        0.01s  {"asked": 0, "unstated": 9}
+  rubric         ok        0.02s  {"primary": "DevSecOps", "acceptable": ["DevSecOps", "Agile", "Spiral"], "hybrid": ["compliance gates"], "stated": 5
+  plan           ok      226.17s  {"parse_ok": true, "phases": 8}
+  check          ok        0.03s  {"mandatory_recall": 1.0}
+  assess         ok        0.04s  {"missing": 0, "risks": 3, "unmitigated": 0}
+  explain        ok        0.00s  {}
+
+wrote examples\runs\loan_decisioning.json
